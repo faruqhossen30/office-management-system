@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Deposit;
 use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
@@ -20,22 +21,20 @@ class DepositController extends Controller
         $request->validate([
             'amount'      => 'required',
             'amount_type' => 'required',
-
             'office_id'   => 'required',
             'date'        => 'required',
 
         ],[
             'amount.required'      => 'Please input your amount ',
             'amount_type.required' => 'Please select your amount_type ',
-
-            'office_id.required'   => 'Please input your author id ',
+            'office_id.required'   => 'Please select your office name ',
             'date.required'        => 'Please input your date ',
         ]);
        $Data=[
             'amount'      => $request->amount,
             'amount_type' => $request->amount_type,
-            'author_id'   => $request->author_id,
             'office_id'   => $request->office_id,
+            'author_id'   => Auth::user()->id,
             'date'        => $request->date,
        ];
        Deposit::create($Data);
@@ -49,7 +48,8 @@ class DepositController extends Controller
 // ---------------------deposit_edit--------------------
    public function edit($id){
     $deposit = Deposit::findOrFail($id);
-    return view('backend.deposit.edit',compact('deposit'));
+    $offices = Office::all();
+    return view('backend.deposit.edit',compact('deposit','offices'));
    }
 
 //    --------------------deposit update-------------------------
@@ -58,6 +58,7 @@ class DepositController extends Controller
 
                 'amount'      => $request->amount,
                 'amount_type' => $request->amount_type,
+                'office_name' => $request->office_name,
                 'author_id'   => $request->author_id,
                 'office_id'   => $request->office_id,
                 'date'        => $request->date,

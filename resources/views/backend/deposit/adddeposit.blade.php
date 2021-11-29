@@ -5,43 +5,25 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        Add Deposit
-                    </div>
-
+            <div class="col-md-6 offset-3">
+                <div class="card mt-4">
                     <div class="card-body">
                         <!-- Left aligned buttons -->
                         <div class="card">
-                            <div class="card-header header-elements-inline">
-                                {{-- <h6 class="card-title text-success">All amount information</h6> --}}
-                                <div class="header-elements">
-                                    <div class="list-icons">
-                                        {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                                        {{-- <a class="list-icons-item" data-action="reload"></a> --}}
-                                        {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                                    </div>
-                                </div>
+                            <div class="card-header bg-light d-flex justify-content-between p-2 pl-3" >
+                                <h6 class="font-weight-semibold">Deposite Information</h6>
+                                <a href="{{route('deposit.view')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-menu7"></i></b>List</a>
                             </div>
 
                             <div class="card-body">
                                 <form action="{{ route('deposit.amount') }}" method="POST">
                                     @csrf
-                                    {{-- <div class="form-group">
-										<label>Author:</label>
-										<input name="author" type="text" class="form-control  @error('author')is-invalid @enderror " placeholder="Your Author name">
-                                        @error('author')
-                                            <div class="invalid-feedback">
-                                                {{$message}}
-                                            </div>
-                                        @enderror
-									</div> --}}
+
                                     <div class="form-group">
                                         <label>Amount:</label>
-                                        <input name="amount" type="text"
+                                        <input name="amount" type="number"
                                             class="form-control  @error('amount')is-invalid @enderror "
-                                            placeholder="Your amount">
+                                            placeholder="1,000 TK">
                                         @error('amount')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -72,15 +54,15 @@
                                     <div class="form-group">
                                         <label class="text">Office-Name:</label>
                                         <div class="form-group">
-                                            <select class="form-control @error('office_id') is-invalid @enderror"
+                                            <select class="form-control @error('office_name') is-invalid @enderror"
                                                 name="office_id">
                                                 <option value="">Select Office</option>
                                                 @foreach ($offices as $office)
-                                                    <option value="{{ $office->id }}">{{ $office->name }}</option>
+                                                    <option value="{{ $office->id}}">{{ $office->name }}</option>
                                                 @endforeach
 
                                             </select>
-                                            @error('office_id')
+                                            @error('office_name')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -98,11 +80,8 @@
                                             </div>
                                         @enderror
                                     </div>
-
-
-
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <button type="submit" class="btn btn-light">Cancel</button>
+                                        <button type="reset" class="btn btn-light">reset</button>
                                         <button type="submit" class="btn bg-blue ml-3"> <i class="icon-plus2 mr-2"></i>Add
                                             Deposit
                                         </button>

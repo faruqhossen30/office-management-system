@@ -18,10 +18,10 @@
                                 <form action="{{ route('expense.store') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label>Name:</label>
+                                        <label>Expense type:</label>
                                         <input name="name" type="text"
                                             class="form-control  @error('name')is-invalid @enderror "
-                                            placeholder="Your Author name">
+                                            placeholder="Your expense type">
                                         @error('name')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

@@ -1,27 +1,15 @@
 @extends('backend.layouts.app')
-
-{{-- @yield('content') --}}
-
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 offset-3">
                 <div class="card">
-                    <div class="card-header">
-                        Add office
-                    </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
                         <div class="card">
-                            <div class="card-header header-elements-inline">
-                                <h6 class="card-title text-success"></h6>
-                                <div class="header-elements">
-                                    <div class="list-icons">
-                                        {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                                        {{-- <a class="list-icons-item" data-action="reload"></a> --}}
-                                        {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                                    </div>
-                                </div>
+                            <div class="card-header  bg-light d-flex justify-content-between">
+                                <h6 class="card-title text-success"> Office information</h6>
+                                <a href="{{route('office.view')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-menu7"></i></b>Office List</a>
                             </div>
                             @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">

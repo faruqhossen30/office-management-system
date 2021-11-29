@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h5 class="card-title">Deposite Table</h5>
+                    <h5 class="card-title">Asset information</h5>
                     <div class="header-elements">
                         <div class="list-icons">
                             {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
@@ -13,7 +13,7 @@
                             {{-- <a class="list-icons-item" data-action="remove"></a> --}}
                         </div>
                         <div>
-                            <a href="{{route('deposit')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-plus3"></i></b>Add Deposite</a>
+                            <a href="{{route('asset.create')}}" class="btn btn-primary btn-sm m-2">Add Asset</a>
                         </div>
                     </div>
                 </div>
@@ -40,12 +40,15 @@
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Amount</th>
-                                <th>Amount type</th>
-                                <th>Office Name</th>
-                                <th>Author id</th>
-                                <th>Office id</th>
-                                <th>Date</th>
+                                <th>Asset Name</th>
+                                <th>Asset type</th>
+                                <th>Price</th>
+                                <th>Buy date</th>
+                                <th>Expiry date</th>
+                                <th>Warranty date</th>
+                                <th>Serial</th>
+                                <th>Additional information</th>
+                                <th>Remarks</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,22 +56,36 @@
                             @php
                                 $serial=1;
                             @endphp
-                            @foreach ($deposits as $deposit)
+                            @foreach ($assets as $asset)
                             <tr>
                                 <th scope="row">{{$serial++}}</th>
-                                <td>{{$deposit->amount}}</td>
-                                <td>{{$deposit->amount_type}}</td>
-                                <td>{{$deposit->office_name}}</td>
-                                <td>{{$deposit->author_id}}</td>
-                                <td>{{$deposit->office_id}}</td>
-                                <td>{{$deposit->date}}</td>
+                                <td>{{$asset->name}}</td>
+                                <td>{{$asset->assettype_id}}</td>
+                                <td>{{$asset->price}}</td>
+                                <td>{{$asset->buy_date}}</td>
+                                <td>{{$asset->expiry_date}}</td>
+                                <td>{{$asset->warranty_date}}</td>
+                                <td>{{$asset->serial}}</td>
+                                <td>{{$asset->additional_information}}</td>
+                                <td>{{$asset->remarks}}</td>
 
-                                <td>
-                                    <a href="" class="btn btn-sm btn-primary icon-eye"></a>
-                                    <a href="{{'deposit/edit/'.$deposit->id}}" class="btn btn-sm btn-info icon-pencil7"></a>
-                                    <a href="{{'deposit/destroy/'.$deposit->id}}" onclick=" return confirm('Are you  shure to delete?')" class="btn btn-sm btn-danger
-                                        icon-trash"></a>
-                                </td>
+
+                                    <td>
+                                        <div class="d-flex justify-content-start">
+                                            <a href="#" class="btn btn-success btn-xm">View</a>
+                                            <a href="{{ route('asset.edit', $asset->id) }}"
+                                                class="btn btn-warning btn-xm ml-1"> Edit
+                                            </a>
+                                                <form action="{{ route('asset.destroy', $asset->id) }}"
+                                                    method="POST" style="display: inline-flex">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick=" return confirm('Are you  shure to delete?')"
+                                                        class="btn btn-danger btn-xm ml-1"> Delete </button>
+                                                </form>
+                                        </div>
+                                  </td>
                             </tr>
 
                             @endforeach
@@ -82,6 +99,4 @@
 			<!-- /bordered table -->
     </div>
 </div>
-
 @endsection
-

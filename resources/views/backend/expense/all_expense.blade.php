@@ -42,8 +42,8 @@
             <table class="table datatable-html">
                 <thead>
                     <tr>
-                        <th>s</th>
-                        <th>Name</th>
+                        <th>sL</th>
+                        <th>Expense Type</th>
                         <th>Author_id</th>
                         <th class="text-center">Actions</th>
                     </tr>

@@ -5,17 +5,12 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title">Office information</h5>
+                        <h5 class="card-title">Expense information</h5>
                         <div class="header-elements">
                             <div class="list-icons">
                                 {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
                                 {{-- <a class="list-icons-item" data-action="reload"></a> --}}
                                 {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                            </div>
-                            <div>
-                                <a href="{{ route('office') }}" type="button"
-                                    class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                            class="icon-plus3"></i></b>Add Office</a>
                             </div>
                         </div>
                     </div>
@@ -33,13 +28,14 @@
                             <thead>
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Manager Name</th>
-                                    <th>Mobile</th>
-                                    <th>Telephone</th>
-                                    <th>Email</th>
-                                    <th>Author id</th>
+                                    <th>Date</th>
+                                    <th>Expense type</th>
+                                    <th>Description</th>
+                                    <th>voucher_no</th>
+                                    <th>Amount</th>
+                                    <th>Payment_type</th>
+                                    <th>Remarks</th>
+                                    <th>Office Name</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -47,25 +43,33 @@
                                 @php
                                     $serial = 1;
                                 @endphp
-                                @foreach ($offices as $office)
+                                @foreach ($expense_lists as $expense_list)
                                     <tr>
                                         <th scope="row">{{ $serial++ }}</th>
-                                        <td>{{ $office->name }}</td>
-                                        <td>{{ $office->address }}</td>
-                                        <td>{{ $office->manager_name }}</td>
-                                        <td>{{ $office->mobile }}</td>
-                                        <td>{{ $office->telephone }}</td>
-                                        <td>{{ $office->email }}</td>
-                                        <td>{{ $office->author_id }}</td>
+                                        <td>{{ $expense_list->date }}</td>
+                                        <td>{{ $expense_list->expense_type }}</td>
+                                        <td>{{ $expense_list->description }}</td>
+                                        <td>{{ $expense_list->voucher_no }}</td>
+                                        <td>{{ $expense_list->amount }}</td>
+                                        <td>{{ $expense_list->payment_type }}</td>
+                                        <td>{{ $expense_list->remarks }}</td>
+                                        <td>{{ $expense_list->office->name }}</td>
+                                        {{-- <td>{{$office->author_id}}</td> --}}
 
                                         <td>
                                             <div class="d-flex justify-content-start">
-                                                <a href="{{ route('office.edit', $office->id) }}"
-                                                    class="btn btn-sm btn-info mr-1 icon-pencil7"><a>
-                                                        <a href="{{ route('office.destroy', $office->id) }}"
-                                                            onclick=" return confirm('Are you  shure to delete?')"
-                                                            class="btn btn-sm btn-danger
-                                                            icon-trash"></a>
+                                                {{-- <a href="" class="btn btn-sm btn-info mr-1">view</a> --}}
+                                                <a href="{{ route('expenselist.edit', $expense_list->id) }}"
+
+                                                    class="btn btn-sm btn-success mr-1"><i class="fa fa-pencil"></i>edit</a>
+                                                <form action="{{ route('expenselist.destroy', $expense_list->id) }}"
+                                                    method="POST" style="display: inline-flex">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick=" return confirm('Are you  shure to delete?')"
+                                                        class="btn btn-danger btn-sm"> Delete </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -80,5 +84,4 @@
             <!-- /bordered table -->
         </div>
     </div>
-
 @endsection

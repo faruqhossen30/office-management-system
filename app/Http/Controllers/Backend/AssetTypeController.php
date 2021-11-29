@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Expense;
+use App\Models\Asset;
+use App\Models\AssetType;
 use Illuminate\Http\Request;
 
-class ExpenseController extends Controller
+class AssetTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +15,12 @@ class ExpenseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        $expense = Expense::get();
-        // return $expense;
-         return view('backend.expense.all_expense',compact('expense'));
+    $asset_types = AssetType::get();
+
+    // return  $asset_types;
+       return view('backend.asset-type.asset-type',compact('asset_types'));
     }
 
     /**
@@ -27,8 +30,8 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('backend.expense.create');
-
+        return view('backend.asset-type.asset-type');
+        // return "ok";
     }
 
     /**
@@ -39,15 +42,15 @@ class ExpenseController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
+        $request ->validate([
+            'asset_name' => 'required',
         ],[
-           'name.required' => 'please input your office name',
+            'asset_name.required' => 'please enter your asset type',
         ]);
-        Expense::create([
-            'name' => $request->name,
+        AssetType::create([
+            'asset_name' =>$request->asset_name,
         ]);
-        return redirect()->route('expense.index')->with('success','successfully data added');
+        return redirect()->route('assettype.index')->with('success','successfully data added');
     }
 
     /**
@@ -58,10 +61,7 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        $expense = Expense::Where('id', $id)->first();
-        // return $expense;
-        return view('backend.expense.show',compact('expense'));
-
+        //
     }
 
     /**
@@ -72,9 +72,9 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        $expense = Expense::findOrFail($id);
-        // return $expense;
-        return view('backend.expense.edit',compact('expense'));
+        $asset_types = AssetType::findOrFail($id);
+        // return $asset_types;
+        return view('backend.asset-type.edit-asset-type',compact('asset_types'));
     }
 
     /**
@@ -86,11 +86,13 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Expense::findOrFail($id)->update([
-            'name' => $request->name
-        ]);
-        // return 'Ok';
-    return redirect()->route('expense.index')->with('update', 'Successfully Data Updated');
+        // return $request->all();
+       AssetType     :: findOrFail($id)->update([
+        'asset_name' => $request->asset_name,
+       ]);
+
+    //    return "ok";
+       return redirect()->route('assettype.index')->with('update', 'Successfully Data Updated');
     }
 
     /**
@@ -101,9 +103,7 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        Expense::findOrFail($id)->delete();
-        return redirect()->route('expense.index')->with('delete', 'Successfully Data delete');
+        AssetType::findOrFail($id)->delete();
+        return redirect()->route('assettype.index')->with('delete', 'Successfully Data delete');
     }
-
-    
 }
