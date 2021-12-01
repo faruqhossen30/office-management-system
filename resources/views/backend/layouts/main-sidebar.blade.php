@@ -27,9 +27,9 @@
                     </div>
 
                     <div class="media-body">
-                        <div class="media-title font-weight-semibold">Victoria Baker</div>
+                        <div class="media-title font-weight-semibold">{{Auth::user()->name}}</div>
                         <div class="font-size-xs opacity-50">
-                            <i class="icon-pin font-size-sm"></i> &nbsp;Santa Ana, CA
+                            <i class="icon-pin font-size-sm"></i>{{Auth::user()->email}}
                         </div>
                     </div>
 
@@ -52,14 +52,14 @@
                         title="Main"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">
+                    <a href="{{route('dashboard')}}" class="nav-link">
                         <i class="icon-home4"></i>
                         <span>
                             Dashboard
                         </span>
                     </a>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('deposit', 'deposit.view')) nav-item-expanded nav-item-open @endif">
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('deposit', 'deposit.view', 'payment.index')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="icon-library2"></i> <span>Deposite</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -67,8 +67,11 @@
                                 class="nav-link {{ request()->routeIs('deposit') ? 'active' : '' }} ">Add
                                 Deposit</a></li>
                         <li class="nav-item"><a href="{{ route('deposit.view') }}"
-                                class="nav-link {{ request()->routeIs('deposit.view') ? 'active' : '' }}">All
-                                Deposit</a></li>
+                                class="nav-link {{ request()->routeIs('deposit.view') ? 'active' : '' }}">
+                                Deposit  List</a></li>
+                        <li class="nav-item"><a href="{{ route('payment.index') }}"
+                                class="nav-link {{ request()->routeIs('payment.index') ? 'active' : '' }}">
+                                Payment system</a></li>
 
                     </ul>
                 </li>
@@ -80,8 +83,8 @@
                                 class="nav-link @if (request()->routeIs('office')) active @endif ">Add
                                 Office</a></li>
                         <li class="nav-item"><a href="{{ route('office.view') }}"
-                                class="nav-link @if (request()->routeIs('office.view')) active @endif">View
-                                Office</a></li>
+                                class="nav-link @if (request()->routeIs('office.view')) active @endif">
+                                Office List</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index')) nav-item-expanded nav-item-open @endif">

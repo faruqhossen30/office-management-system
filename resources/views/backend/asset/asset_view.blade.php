@@ -12,9 +12,12 @@
                             {{-- <a class="list-icons-item" data-action="reload"></a> --}}
                             {{-- <a class="list-icons-item" data-action="remove"></a> --}}
                         </div>
+
                         <div>
-                            <a href="{{route('asset.create')}}" class="btn btn-primary btn-sm m-2">Add Asset</a>
-                        </div>
+                                <a href="{{ route('asset.create') }}" type="button"
+                                    class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                            class="icon-plus3"></i></b>Add Asset</a>
+                            </div>
                     </div>
                 </div>
                 @if (session('update'))
@@ -47,8 +50,8 @@
                                 <th>Expiry date</th>
                                 <th>Warranty date</th>
                                 <th>Serial</th>
-                                <th>Additional information</th>
-                                <th>Remarks</th>
+                                {{-- <th>Additional information</th>
+                                <th>Remarks</th> --}}
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -66,15 +69,15 @@
                                 <td>{{$asset->expiry_date}}</td>
                                 <td>{{$asset->warranty_date}}</td>
                                 <td>{{$asset->serial}}</td>
-                                <td>{{$asset->additional_information}}</td>
-                                <td>{{$asset->remarks}}</td>
+                                {{-- <td>{{$asset->additional_information}}</td>
+                                <td>{{$asset->remarks}}</td> --}}
 
 
                                     <td>
                                         <div class="d-flex justify-content-start">
-                                            <a href="#" class="btn btn-success btn-xm">View</a>
+                                            <a href="#" class="btn btn-success btn-xm icon-eye "></a>
                                             <a href="{{ route('asset.edit', $asset->id) }}"
-                                                class="btn btn-warning btn-xm ml-1"> Edit
+                                                class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                             </a>
                                                 <form action="{{ route('asset.destroy', $asset->id) }}"
                                                     method="POST" style="display: inline-flex">
@@ -82,7 +85,7 @@
                                                     @method('DELETE')
                                                     <button type="submit"
                                                         onclick=" return confirm('Are you  shure to delete?')"
-                                                        class="btn btn-danger btn-xm ml-1"> Delete </button>
+                                                        class="btn btn-danger btn-xm ml-1  icon-trash"></button>
                                                 </form>
                                         </div>
                                   </td>

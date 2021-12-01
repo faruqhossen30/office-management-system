@@ -10,9 +10,24 @@ class Deposit extends Model
     use HasFactory;
     protected $fillable =[
         'amount',
-        'amount_type',
+        'payment_system_id',
         'author_id',
         'office_id',
-        'date'
+        'date',
     ];
+
+    protected $dates = ['date'];
+
+    public function office()
+    {
+        return $this->hasOne(Office::class, 'id', 'office_id');
+    }
+    public function author()
+    {
+        return $this->hasOne(User::class, 'id', 'author_id');
+    }
+    public function paymentsystem()
+    {
+        return $this->hasOne(PaymentSystem::class, 'id', 'payment_system_id');
+    }
 }

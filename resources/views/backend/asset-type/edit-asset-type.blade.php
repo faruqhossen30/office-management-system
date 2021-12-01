@@ -15,7 +15,7 @@
                                 </h5>
                                 <div class="row g-3 align-items-center">
                                     <div class="col-auto">
-                                        <label for="inputPassword6" class="col-form-label"> Add Type*</label>
+                                        <label for="inputPassword6" class="col-form-label">Add Type*</label>
                                     </div>
                                     <div class="col-auto">
                                         <input name="asset_name" type="text" id="inputPassword6"

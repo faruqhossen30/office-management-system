@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Expense;
+use App\Models\PaymentSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ExpenseController extends Controller
+class PaymentSystemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expense = Expense::get();
-        // return $expense;
-         return view('backend.expense.all_expense',compact('expense'));
+        $PaymentSystems = PaymentSystem::with('user')->get();
+        // return $PaymentSystems;
+        return view('backend.payment.view_payment',compact('PaymentSystems'));
     }
 
     /**
@@ -28,8 +28,8 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        return view('backend.expense.create');
 
+        return view('backend.payment.create_payment');
     }
 
     /**
@@ -41,15 +41,19 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name'        => 'required',
+            'description' => 'required',
         ],[
-           'name.required' => 'please input your office name',
+            'name.required'        => 'Please enter your payment name',
+            'description.required' => 'Please enter your payment name',
         ]);
-        Expense::create([
-            'name' => $request->name,
-            'author_id' => Auth::user()->id
+        PaymentSystem::create([
+            'name'        => $request->name,
+            'description' => $request->description,
+            'author_id'   => Auth::user()->id,
         ]);
-        return redirect()->route('expense.index')->with('success','successfully data added');
+
+        return redirect()->route('payment.index')->with('success','Successfully data Added');
     }
 
     /**
@@ -60,10 +64,7 @@ class ExpenseController extends Controller
      */
     public function show($id)
     {
-        $expense = Expense::Where('id', $id)->first();
-        // return $expense;
-        return view('backend.expense.show',compact('expense'));
-
+        //
     }
 
     /**
@@ -74,9 +75,9 @@ class ExpenseController extends Controller
      */
     public function edit($id)
     {
-        $expense = Expense::findOrFail($id);
-        // return $expense;
-        return view('backend.expense.edit',compact('expense'));
+        $paymentsystem = PaymentSystem::findOrFail($id) ;
+        return view('backend.payment.edit_payment' ,compact('paymentsystem'));
+
     }
 
     /**
@@ -88,11 +89,11 @@ class ExpenseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Expense::findOrFail($id)->update([
-            'name' => $request->name
+        PaymentSystem::findOrFail($id)->update([
+            'name'        => $request->name,
+            'description' => $request->description,
         ]);
-        // return 'Ok';
-    return redirect()->route('expense.index')->with('update', 'Successfully Data Updated');
+        return redirect()->route('payment.index')->with('update','Successfully data Updated');
     }
 
     /**
@@ -103,9 +104,7 @@ class ExpenseController extends Controller
      */
     public function destroy($id)
     {
-        Expense::findOrFail($id)->delete();
-        return redirect()->route('expense.index')->with('delete', 'Successfully Data delete');
+        PaymentSystem::findOrFail($id)->delete();
+        return redirect()->back()->with('delete', 'Successfully Data delete');
     }
-
-
 }

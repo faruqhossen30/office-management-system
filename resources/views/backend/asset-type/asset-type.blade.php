@@ -63,9 +63,9 @@
                                                         <th scope="row">{{ $serial++ }}</th>
                                                         <td>{{ $asset_type->asset_name }}</td>
                                                         <td class="text-center">
-                                                            <a href="#" class="btn btn-success btn-sm">View</a>
+                                                            <a href="#" class="btn btn-success btn-sm icon-eye"></a>
                                                             <a href="{{ route('assettype.edit', $asset_type->id) }}"
-                                                                class="btn btn-warning btn-sm"> Edit
+                                                                class="btn btn-warning btn-sm icon-pencil7">
                                                             </a>
                                                             <form action="{{ route('assettype.destroy', $asset_type->id) }}"
                                                                 method="POST" style="display: inline-flex">
@@ -73,7 +73,7 @@
                                                                 @method('DELETE')
                                                                 <button type="submit"
                                                                     onclick=" return confirm('Are you  shure to delete?')"
-                                                                    class="btn btn-danger btn-sm"> Delete </button>
+                                                                    class="btn btn-danger btn-sm icon-trash"></button>
                                                             </form>
                                                         </td>
                                                     </tr>

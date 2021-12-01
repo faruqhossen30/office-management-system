@@ -9,10 +9,11 @@
 
                         <form action="{{ route('asset.store') }}" method="POST">
                             @csrf
-                            <h5 style="background: rgb(70, 27, 223) ; size:30px">
-                                <center><b style="color: white; ">Add Asset</b></center>
-                            </h5>
-                            <div class="form-group">
+                            <div class="card-header bg-light d-flex justify-content-between p-2 pl-3" >
+                                <h6 class="font-weight-semibold">Add Asset Information</h6>
+                                <a href="{{route('asset.index')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-menu7"></i></b>List</a>
+                            </div>
+                            <div class="form-group mt-2">
                                 <label class="col-xm-4">Asset Name*</label>
                                 <input name="name" class="col-xm-8 form-control @error('name')is-invalid @enderror"
                                     type="text" placeholder="Enter your asset name">
@@ -43,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Price*</label>
                                 <input name="price" class="col-xm-9 form-control  @error('price')is-invalid @enderror"
-                                    type="text" placeholder="Enter your price ">
+                                    type="number"placeholder="Enter your price ">
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -94,7 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Additional information*</label>
-                                <textarea id="summernote" name="additional_information" type="text"
+                                <textarea  name="additional_information" type="text"
                                     class="form-control @error('additional_information')is-invalid @enderror"
                                     rows="3"></textarea>
                                 @error('additional_information')
@@ -103,18 +104,19 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label class="col-xm-3">Remarks*</label>
+                                <textarea  name="remarks" type="text"
+                                class="form-control @error('remarks')is-invalid @enderror"
+                                rows="3"></textarea>
+                                @error('remarks')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             <div class="col-sm mt-3">
-                                <div class="form-group">
-                                    <label class="col-xm-3">Remarks*</label>
-                                    <input name="remarks"
-                                        class="col-xm-9 form-control  @error('remarks')is-invalid @enderror" type="text"
-                                        placeholder="Enter your serial number ">
-                                    @error('remarks')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
+
                                 <div class="form-group form-group-margin text-right">
                                     <button type="reset" class="btn bg-danger ml-3 mb-2">Reset</button>
                                     <button type="submit" class="btn bg-blue ml-1 mb-2">Save</button>

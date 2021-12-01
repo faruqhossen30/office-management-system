@@ -2,37 +2,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 offset-3">
                 <div class="card">
-                    <div class="card-header">
-                        Update payment
-                    </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
                         <div class="card">
-                            <div class="card-header header-elements-inline">
-                                {{-- <h6 class="card-title">Update amount information</h6>
-								<div class="header-elements">
-									<div class="list-icons">
-				                		<a class="list-icons-item" data-action="collapse"></a>
-				                		<a class="list-icons-item" data-action="reload"></a>
-				                		<a class="list-icons-item" data-action="remove"></a>
-				                	</div>
-			                	</div> --}}
+                            <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
+                                <h6 class="font-weight-semibold">Deposite Information</h6>
                             </div>
-
                             <div class="card-body">
                                 <form action="{{ route('deposit.update', $deposit->id) }}" method="POST">
                                     @csrf
-                                    {{-- <div class="form-group">
-										<label>Author:</label>
-										<input name="author" type="text" class="form-control  @error('author')is-invalid @enderror" value="{{$deposit->author}}">
-                                        @error('author')
-                                            <div class="invalid-feedback">
-                                                {{$message}}
-                                            </div>
-                                        @enderror
-									</div> --}}
                                     <div class="form-group">
                                         <label>Amount:</label>
                                         <input name="amount" type="text"
@@ -47,16 +27,14 @@
                                     <div class="form-group">
                                         <label class="text">Payment-System:</label>
                                         <div class="form-group">
-                                            <select class="form-control @error('amount_type') is-invalid @enderror"
-                                                name="amount_type" value="{{ $deposit->amount_type }}">
-                                                <option value=""> select-your-payment </option>
-                                                <option value="Bkash">Bkash</option>
-                                                <option value="Rocket">Rocket</option>
-                                                <option value="Nagot">Nagot</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Bank-Chaque">Bank-Chaque</option>
+                                            <select class="form-control @error('payment_system_id') is-invalid @enderror"
+                                                name="payment_system_id">
+                                                <option value="">Select payment system </option>
+                                                @foreach ( $paymentSystem as $payment)
+                                                <option value="{{ $payment->id}}" @if ($payment->id == $deposit->payment_system_id) selected @endif >{{ $payment->name}}</option>
+                                                @endforeach
                                             </select>
-                                            @error('amount_type')
+                                            @error('payment_system_id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -66,16 +44,16 @@
                                     <div class="form-group">
                                         <label class="text">Office-Name:</label>
                                         <div class="form-group">
-                                            <select class="form-control @error('office_name') is-invalid @enderror"
-                                                name="office_name">
-                                                <option value="">Select Office</option>
+                                            <select class="form-control @error('office_id') is-invalid @enderror"
+                                                name="office_id">
+                                                <option value=""> Select Office </option>
                                                 @foreach ($offices as $office)
-                                                    <option value="{{ $office->name }}" @if ($office->name == $deposit->office_name) selected @endif>
+                                                    <option value="{{ $office->id }}" @if ($office->id == $deposit->office_id) selected @endif>
                                                         {{ $office->name }}</option>
                                                 @endforeach
 
                                             </select>
-                                            @error('office_name')
+                                            @error('office_id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

@@ -33,14 +33,14 @@
                             <thead>
                                 <tr>
                                     <th>Sl</th>
-                                    <th>Name</th>
+                                    <th>Office Name</th>
                                     <th>Address</th>
-                                    <th>Manager Name</th>
+                                    <th class="text-center">Manager Name</th>
                                     <th>Mobile</th>
                                     <th>Telephone</th>
-                                    <th>Email</th>
-                                    <th>Author id</th>
-                                    <th>Action</th>
+                                    <th class="text-center">Email</th>
+                                    <th>Author</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,8 +60,9 @@
 
                                         <td>
                                             <div class="d-flex justify-content-start">
+                                                <a href="#" class="btn btn-success btn-xm icon-eye "></a>
                                                 <a href="{{ route('office.edit', $office->id) }}"
-                                                    class="btn btn-sm btn-info mr-1 icon-pencil7"><a>
+                                                    class="btn btn-sm btn-info ml-1 mr-1 icon-pencil7"><a>
                                                         <a href="{{ route('office.destroy', $office->id) }}"
                                                             onclick=" return confirm('Are you  shure to delete?')"
                                                             class="btn btn-sm btn-danger

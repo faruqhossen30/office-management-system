@@ -2,13 +2,13 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8 offset-2">
                 <!-- HTML sourced data -->
                 <div class="card">
 
                     <div class="card-body">
-                        <div class="col-12">
-                            <a href="{{ route('expense.create') }}" class="btn btn-primary btn-sm">Create Expense</a>
+                        <div>
+                            <a href="{{route('expense.create')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-plus3"></i></b>Add Expense</a>
                         </div>
                         @if (session('delete'))
                             <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -44,7 +44,7 @@
                     <tr>
                         <th>sL</th>
                         <th>Expense Type</th>
-                        <th>Author_id</th>
+                        <th>Author</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -59,8 +59,8 @@
                             <td>{{ $item->author_id }}</td>
                             <td class="text-center">
 
-                                <a href="{{ route('expense.show', $item->id) }}" class="btn btn-success btn-sm">View</a>
-                                <a href="{{ route('expense.edit', $item->id) }}" class="btn btn-warning btn-sm"> Edit
+                                <a href="{{ route('expense.show', $item->id) }}" class="btn btn-success btn-sm icon-eye"></a>
+                                <a href="{{ route('expense.edit', $item->id) }}" class="btn btn-warning btn-sm icon-pencil7">
                                 </a>
 
                                 <form action="{{ route('expense.destroy', $item->id) }}" method="POST"
@@ -68,7 +68,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" onclick=" return confirm('Are you  shure to delete?')"
-                                        class="btn btn-danger btn-sm"> Delete </button>
+                                        class="btn btn-danger btn-sm  icon-trash"></button>
                                 </form>
                             </td>
                         </tr>

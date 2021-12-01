@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Deposit;
 use App\Models\Office;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OfficeController extends Controller
 {
@@ -40,7 +41,7 @@ class OfficeController extends Controller
             'mobile'       => $request->mobile,
             'telephone'    => $request->telephone,
             'email'        => $request->email,
-            'author_id'    => $request->author_id,
+            'author_id'    => Auth::user()->id,
         ]);
         return redirect()->route('office.view')->with('success','successfully data added');
     }
@@ -64,10 +65,10 @@ class OfficeController extends Controller
                 'mobile'       => $request->mobile,
                 'telephone'    => $request->telephone,
                 'email'        => $request->email,
-                'author_id'    => $request->author_id,
+                'author_id'    => Auth::user()->id,
 
             ]);
-            return redirect()->to('office-view')->with('update', 'Successfully Data Updated');
+            return redirect()->route('office.view')->with('update', 'Successfully Data Updated');
         }
 
         // ----------------------------office-delete---------------------------

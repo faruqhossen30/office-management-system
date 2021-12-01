@@ -2,17 +2,16 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6 offset-3">
                 <div class="card">
-                    <div class="card-header">
-                        Add Expense
-                    </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
                         <div class="card">
-                            <div>
-                                <a href="{{ route('expense.index') }}" class="btn btn-primary btn-sm m-2">All Expense
-                                    List</a>
+                            <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
+                                <h6 class="font-weight-semibold">Expense Type Information</h6>
+                                <a href="{{ route('expense.index') }}" type="button"
+                                    class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                            class="icon-menu7"></i></b>List</a>
                             </div>
                             <div class="card-body">
                                 <form action="{{ route('expense.store') }}" method="POST">

@@ -1,7 +1,4 @@
 @extends('backend.layouts.app')
-
-{{-- @yield('content') --}}
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -35,16 +32,14 @@
                                     <div class="form-group">
                                         <label class="text">Payment-System:</label>
                                         <div class="form-group">
-                                            <select class="form-control @error('amount_type') is-invalid @enderror"
-                                                name="amount_type">
+                                            <select class="form-control @error('payment_system_id') is-invalid @enderror"
+                                                name="payment_system_id">
                                                 <option value="">Select payment system </option>
-                                                <option value="Bkash">Bkash</option>
-                                                <option value="Rocket">Rocket</option>
-                                                <option value="Nagot">Nagot</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Bank-Chaque">Bank-Chaque</option>
+                                                @foreach ( $paymentSystem as $payment)
+                                                <option value="{{ $payment->id}}">{{ $payment->name}}</option>
+                                                @endforeach
                                             </select>
-                                            @error('amount_type')
+                                            @error('payment_system_id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -54,7 +49,7 @@
                                     <div class="form-group">
                                         <label class="text">Office-Name:</label>
                                         <div class="form-group">
-                                            <select class="form-control @error('office_name') is-invalid @enderror"
+                                            <select class="form-control @error('office_id') is-invalid @enderror"
                                                 name="office_id">
                                                 <option value="">Select Office</option>
                                                 @foreach ($offices as $office)
@@ -62,7 +57,7 @@
                                                 @endforeach
 
                                             </select>
-                                            @error('office_name')
+                                            @error('office_id')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -81,9 +76,7 @@
                                         @enderror
                                     </div>
                                     <div class="d-flex justify-content-start align-items-center">
-                                        <button type="reset" class="btn btn-light">reset</button>
-                                        <button type="submit" class="btn bg-blue ml-3"> <i class="icon-plus2 mr-2"></i>Add
-                                            Deposit
+                                        <button type="submit" class="btn bg-blue "> <i class="icon-floppy-disk mr-2"></i>Save
                                         </button>
                                     </div>
                                 </form>

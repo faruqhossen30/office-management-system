@@ -9,9 +9,9 @@
                         <form action="{{ route('asset.update',$assets->id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                            <h5 style="background: rgb(70, 27, 223) ; size:30px">
-                                <center><b style="color: white;">Edit Asset</b></center>
-                            </h5>
+                            <div class="card-header  bg-light d-flex justify-content-between">
+                                <h6 class="card-title text-success">Update Office</h6>
+                            </div>
                             <div class="form-group">
                                 <label class="col-xm-4">Asset Name*</label>
                                 <input name="name" class="col-xm-8 form-control @error('name')is-invalid @enderror"
@@ -102,18 +102,18 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label class="col-xm-3">Remarks*</label>
+                                <textarea  name="remarks" type="text"
+                                class="form-control @error('remarks')is-invalid @enderror"
+                                rows="3"></textarea>
+                                @error('remarks')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             <div class="col-sm mt-3">
-                                <div class="form-group">
-                                    <label class="col-xm-3">Remarks*</label>
-                                    <input name="remarks"
-                                        class="col-xm-9 form-control  @error('remarks')is-invalid @enderror" type="text"
-                                        placeholder="Enter your serial number ">
-                                    @error('remarks')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
                                 <div class="form-group form-group-margin text-right">
                                     <button type="reset" class="btn bg-danger ml-3 mb-2">Reset</button>
                                     <button type="submit" class="btn bg-blue ml-1 mb-2">Update</button>

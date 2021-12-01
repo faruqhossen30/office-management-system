@@ -1,87 +1,105 @@
 @extends('backend.layouts.app')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header header-elements-inline">
-                    <h5 class="card-title">Deposite Table</h5>
-                    <div class="header-elements">
-                        <div class="list-icons">
-                            {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                            {{-- <a class="list-icons-item" data-action="reload"></a> --}}
-                            {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                        </div>
-                        <div>
-                            <a href="{{route('deposit')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-plus3"></i></b>Add Deposite</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header header-elements-inline">
+                        <h5 class="card-title">Deposite Table</h5>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                                {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
+                                {{-- <a class="list-icons-item" data-action="reload"></a> --}}
+                                {{-- <a class="list-icons-item" data-action="remove"></a> --}}
+                            </div>
+                            <div>
+                                <a href="{{ route('deposit') }}" type="button"
+                                    class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                            class="icon-plus3"></i></b>Add Deposite</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @if (session('update'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>{{session('update')}}</strong>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
+                    @if (session('update'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{ session('update') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     @endif
 
 
-                        @if (session('delete'))
+                    @if (session('delete'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>{{session('delete')}}</strong>
+                            <strong>{{ session('delete') }}</strong>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                          </div>
-                          @endif
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Sl</th>
-                                <th>Amount</th>
-                                <th>Amount type</th>
-                                <th>Office Name</th>
-                                <th>Author id</th>
-                                <th>Office id</th>
-                                <th>Date</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $serial=1;
-                            @endphp
-                            @foreach ($deposits as $deposit)
-                            <tr>
-                                <th scope="row">{{$serial++}}</th>
-                                <td>{{$deposit->amount}}</td>
-                                <td>{{$deposit->amount_type}}</td>
-                                <td>{{$deposit->office_name}}</td>
-                                <td>{{$deposit->author_id}}</td>
-                                <td>{{$deposit->office_id}}</td>
-                                <td>{{$deposit->date}}</td>
+                        </div>
+                    @endif
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <ul class="list-group list-group-horizontal">
+                                <a href="{{route('deposit.view')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view') ) active @endif">All TIme</a>
+                                <a href="{{route('deposit.view.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week') ) active @endif">This week</a>
+                                <a href="{{route('deposit.view.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month') ) active @endif">This Month</a>
+                              </ul>
+                              <div>
+                                <button class="btn btn-primary btn-lg mt-1">Total: {{$total}} TK</button>
+                              </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Amount</th>
+                                        <th>Payment Type</th>
+                                        <th>Office</th>
+                                        <th>Author</th>
+                                        <th class="text-center">Deposite Date</th>
+                                        <th class="text-center">Entry Date</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                                <td>
-                                    <a href="" class="btn btn-sm btn-primary icon-eye"></a>
-                                    <a href="{{'deposit/edit/'.$deposit->id}}" class="btn btn-sm btn-info icon-pencil7"></a>
-                                    <a href="{{'deposit/destroy/'.$deposit->id}}" onclick=" return confirm('Are you  shure to delete?')" class="btn btn-sm btn-danger
+                                    @foreach ($deposits as $deposit)
+                                        <tr>
+                                            <th scope="row">{{ $deposits->firstItem()+$loop->index}}</th>
+                                            <td>{{ $deposit->amount }}</td>
+                                            <td>{{ $deposit->paymentsystem->name }}</td>
+                                            <td>{{ $deposit->office->name }}</td>
+                                            <td>{{ $deposit->author->name }}</td>
+                                            <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>  {{-- Deposite date  --}}
+                                            <td>{{ Carbon\Carbon::parse($deposit->created_at)->diffForHumans() }}</td> {{-- Deposite date  --}}
+
+
+                                            <td>
+                                                <a href="" class="btn btn-sm btn-primary icon-eye"></a>
+                                                <a href="{{ route('deposit.edit', $deposit->id) }}"
+                                                    class="btn btn-sm btn-info icon-pencil7"></a>
+                                                <a href="{{ route('deposit.destroy', $deposit->id) }}"
+                                                    onclick=" return confirm('Are you  shure to delete?')"
+                                                    class="btn btn-sm btn-danger
                                         icon-trash"></a>
-                                </td>
-                            </tr>
+                                            </td>
+                                        </tr>
 
-                            @endforeach
-                        </tbody>
-                    </table>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="my-3">
+                                {{ $deposits->links() }}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Bordered table -->
+            <!-- Bordered table -->
 
-			<!-- /bordered table -->
+            <!-- /bordered table -->
+        </div>
     </div>
-</div>
 
 @endsection
-
