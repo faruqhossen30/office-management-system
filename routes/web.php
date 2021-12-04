@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\OfficeController;
 use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ExpenseListController;
 use App\Http\Controllers\Backend\AssetTypeController;
+use App\Http\Controllers\Backend\ExpenseListFilterController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -71,6 +72,8 @@ Route::prefix('admin')->group(function () {
         Route::resource('expense', ExpenseController::class);
         // --------------------Expense-section------------------------------------
         Route::resource('expenselist', ExpenseListController::class);
+        Route::get('expencelist-filter/week', [ExpenseListFilterController::class, 'expenseListeByWeek'])->name('expense.list.week');
+        Route::get('expencelist-filter/month', [ExpenseListFilterController::class, 'expenseListeByMonth'])->name('expense.list.month');
         // ---------------------Asset- Type---------------------------------------
         Route::resource('asset', AssetController::class);
         Route::resource('assettype', AssetTypeController::class);

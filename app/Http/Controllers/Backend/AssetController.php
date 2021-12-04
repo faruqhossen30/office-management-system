@@ -17,9 +17,10 @@ class AssetController extends Controller
      */
     public function index()
     {
-       $assets = Asset::get();
-    //    return $Asset;
-    return view('backend.asset.asset_view',compact('assets'));
+       $assets = Asset::with('assettype')->latest()->paginate(6);
+       $total = Asset::sum('price');
+    //    return $assets;
+    return view('backend.asset.asset_view',compact('assets','total'));
     }
 
     /**
@@ -55,7 +56,7 @@ class AssetController extends Controller
             // 'additional_information' => 'required',
             // 'remarks'                => 'required',
             // 'author_id'              => 'required',
-        // ],[
+         ],[
             'name.required'                   => 'Please enter your asset name ',
             'assettype_id.required'           => 'Please enter your asset type ',
             'price.required'                  => 'Please enter your asset price ',
@@ -71,9 +72,9 @@ class AssetController extends Controller
             'name'                   => $request->name,
             'assettype_id'           => $request->assettype_id,
             'price'                  => $request->price,
-            // 'buy_date'               => $request->buy_date,
-            // 'expiry_date'            => $request->expiry_date,
-            // 'warranty_date'          => $request->warranty_date,
+            'buy_date'               => $request->buy_date,
+            'expiry_date'            => $request->expiry_date,
+            'warranty_date'          => $request->warranty_date,
             'serial'                 => $request->serial,
             'additional_information' => $request->additional_information,
             'remarks'                => $request->remarks,

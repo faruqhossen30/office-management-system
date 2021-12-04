@@ -3,8 +3,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card ">
+                    <div class="card-header ">
                         <h6 class="card-title">Expanse information</h6>
                     </div>
 
@@ -13,12 +13,6 @@
                             <div class="card" style="position: relative; left: 0px; top: 0px;">
                                 <div class="card-header bg-white ">
                                     <h6 class="card-title">Expanse-Type</h6>
-                                    <div class="header-elements">
-                                        <div class="list-icons">
-                                            {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                                            {{-- <a class="list-icons-item ui-sortable-handle" data-action="move"></a> --}}
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="table-responsive">
@@ -35,7 +29,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>{{ $expense->name }}</td>
-                                                <td>Otto</td>
+                                                <td>{{$expense->author->name}}</td>
                                                 <td>{{ $expense->created_at }}</td>
                                             </tr>
                                         </tbody>

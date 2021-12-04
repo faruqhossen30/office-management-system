@@ -5,13 +5,15 @@
             {{-- Input Colum start --}}
             <div class="col-sm-8 offset-2">
                 <div class="card">
+                    <div class="card-header  bg-light d-flex justify-content-between">
+                        <h6 class="card-title text-dark">Update Asset  Information</h6>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('asset.update',$assets->id)}}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="card-header  bg-light d-flex justify-content-between">
-                                <h6 class="card-title text-success">Update Office</h6>
-                            </div>
+
+
                             <div class="form-group">
                                 <label class="col-xm-4">Asset Name*</label>
                                 <input name="name" class="col-xm-8 form-control @error('name')is-invalid @enderror"
@@ -42,7 +44,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Price*</label>
                                 <input name="price" class="col-xm-9 form-control  @error('price')is-invalid @enderror"
-                                    type="text" placeholder="Enter your price ">
+                                    type="text" placeholder="Enter your price">
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}

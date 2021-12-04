@@ -33,6 +33,7 @@
 	<script src="{{asset('assets/js/app.js')}}"></script>
 	<script src="{{asset('global_assets/js/demo_pages/dashboard.js')}}"></script>
 	<!-- /theme JS files -->
+    @stack('css')
 
 </head>
 
@@ -58,7 +59,7 @@
     </div>
 	<!-- /page content -->
 
-   
+
 
 </body>
 </html>

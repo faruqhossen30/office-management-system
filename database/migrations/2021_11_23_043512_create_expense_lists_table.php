@@ -15,14 +15,15 @@ class CreateExpenseListsTable extends Migration
     {
         Schema::create('expense_lists', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('date');
-            $table->string('expense_type');
-            $table->string('description');
-            $table->bigInteger('voucher_no');
-            $table->bigInteger('amount');
-            $table->string('payment_type');
-            $table->string('remarks');
+            $table->integer('amount');
+            $table->unsignedBigInteger('expense_id');
+            $table->integer('voucher_no')->nullable();
+            $table->unsignedBigInteger('payment_system_id');
             $table->unsignedBigInteger('office_id');
+            $table->unsignedBigInteger('author_id');
+            $table->timestamp('date');
+            $table->string('description', 1000);
+            $table->string('remarks');
             $table->timestamps();
         });
     }

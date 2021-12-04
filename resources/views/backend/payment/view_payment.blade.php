@@ -3,15 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header header-elements-inline">
                         <h5 class="card-title">Payment list Information</h5>
                         <div class="header-elements">
-                            <div class="list-icons">
-                                {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                                {{-- <a class="list-icons-item" data-action="reload"></a> --}}
-                                {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                            </div>
                             <div>
                                 <a href="{{route('payment.create')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-plus3"></i></b>Add Payment</a>
                             </div>
@@ -25,8 +20,6 @@
                             </button>
                         </div>
                     @endif
-
-
                     @if (session('delete'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>{{ session('delete') }}</strong>
@@ -35,6 +28,7 @@
                             </button>
                         </div>
                     @endif
+                    <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -56,9 +50,6 @@
                                         <td>{{  $PaymentSystem->name }}</td>
                                         <td>{{ $PaymentSystem->description }}</td>
                                         <td>{{  $PaymentSystem->user->name }}</td>
-
-
-
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <a href="#" class="btn btn-success btn-xm icon-eye "></a>
@@ -80,6 +71,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
                     </div>
                 </div>
             </div>

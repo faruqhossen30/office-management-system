@@ -37,8 +37,8 @@
                                                 <h6>Select Office :</h6>
                                             </label>
                                             <select name="office_id"
-                                                class="form-control @error('payment_type') is-invalid @enderror"
-                                                name="payment_type">
+                                                class="form-control @error('office_id') is-invalid @enderror"
+                                                >
                                                 <option value="">Select Office </option>
                                                 @foreach ($offices as $office)
                                                     <option value="{{ $office->id }}">{{ $office->name }}</option>
@@ -56,15 +56,15 @@
                                         <div class="form-group">
                                             <label class="text">Expense Type:</label>
                                             <div class="form-group mt-2 mr-1">
-                                                <select class="form-control @error('expense_type') is-invalid @enderror"
-                                                    name="expense_type">
+                                                <select class="form-control @error('expense_id') is-invalid @enderror"
+                                                    name="expense_id">
                                                     <option value="">Select expense type</option>
                                                     @foreach ($expenses as $item)
-                                                        <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
 
                                                 </select>
-                                                @error('expense_type')
+                                                @error('expense_id')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -80,16 +80,15 @@
                                                 <h6>Payment-System:</h6>
                                             </label>
                                             <div class="form-group">
-                                                <select class="form-control @error('payment_type') is-invalid @enderror"
-                                                    name="payment_type">
+                                                <select class="form-control @error('payment_system_id') is-invalid @enderror"
+                                                    name="payment_system_id">
                                                     <option value="">Select payment system </option>
-                                                    <option value="Bkash">Bkash</option>
-                                                    <option value="Rocket">Rocket</option>
-                                                    <option value="Nagot">Nagot</option>
-                                                    <option value="Cash">Cash</option>
-                                                    <option value="Bank-Chaque">Bank-Chaque</option>
+                                                    @foreach ($paymentsystems as $system)
+                                                    <option value="{{$system->id}}">{{$system->name}}</option>
+
+                                                    @endforeach
                                                 </select>
-                                                @error('payment_type')
+                                                @error('payment_system_id')
                                                     <div class="invalid-feedback">
                                                         {{ $message }}
                                                     </div>
@@ -113,12 +112,27 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group ml-1">
+                                            <label>
+                                                <h6>Voucher No:</h6>
+                                            </label>
+                                            <input name="voucher_no" type="text"
+                                                class="form-control  @error('voucher_no')is-invalid @enderror "
+                                                placeholder="Please enter your voucher no">
+                                            @error('voucher_no')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group ml-1 mr-1">
                                     <label>
                                         <h6>Desription</h6>
                                     </label>
-                                    <textarea id="summernote" name="description" type="text"
+                                    <textarea name="description" type="text"
                                         class="form-control @error('description')is-invalid @enderror" rows="3"
                                         placeholder="Enter your description"></textarea>
                                     @error('description')
@@ -132,7 +146,7 @@
                                         <label>
                                             <h6>Remarks :</h6>
                                         </label>
-                                        <textarea id="summernote" name="remarks" type="text"
+                                        <textarea  name="remarks" type="text"
                                             class="form-control @error('remarks')is-invalid @enderror" rows="3"
                                             placeholder="Enter your remarks"></textarea>
                                         @error('remarks')
