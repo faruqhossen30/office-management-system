@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-8 offset-2">
                 <!-- HTML sourced data -->
-                <div class="card">
+                <div class="card ">
 
                     <div class="card-body">
                         <div>
@@ -56,7 +56,7 @@
                         <tr>
                             <th scope="row">{{ $serial++ }}</th>
                             <td>{{ $item->name }}</td>
-                            <td>{{ $item->author_id }}</td>
+                            <td>{{ $item->author->name }}</td>
                             <td class="text-center">
 
                                 <a href="{{ route('expense.show', $item->id) }}" class="btn btn-success btn-sm icon-eye"></a>

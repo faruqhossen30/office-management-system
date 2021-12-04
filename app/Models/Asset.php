@@ -20,4 +20,11 @@ class Asset extends Model
             'remarks',
             'author_id',
     ];
+    protected $dates = ['date'];
+
+    public function assettype()
+    {
+        return $this->hasOne(AssetType::class, 'id', 'assettype_id');
+    }
+
 }

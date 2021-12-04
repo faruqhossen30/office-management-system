@@ -17,5 +17,9 @@ class Office extends Model
         'email',
         'author_id',
     ];
+    public function author()
+    {
+        return $this->hasOne(User::class, 'id', 'author_id');
+    }
 }
 

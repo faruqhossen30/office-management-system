@@ -3,15 +3,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title">Office information</h5>
+                        <h5 class="card-title">Add Office information</h5>
                         <div class="header-elements">
-                            <div class="list-icons">
-                                {{-- <a class="list-icons-item" data-action="collapse"></a> --}}
-                                {{-- <a class="list-icons-item" data-action="reload"></a> --}}
-                                {{-- <a class="list-icons-item" data-action="remove"></a> --}}
-                            </div>
+
                             <div>
                                 <a href="{{ route('office') }}" type="button"
                                     class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
@@ -56,7 +52,7 @@
                                         <td>{{ $office->mobile }}</td>
                                         <td>{{ $office->telephone }}</td>
                                         <td>{{ $office->email }}</td>
-                                        <td>{{ $office->author_id }}</td>
+                                        <td>{{ $office->author->name}}</td>
 
                                         <td>
                                             <div class="d-flex justify-content-start">
@@ -83,3 +79,14 @@
     </div>
 
 @endsection
+@push('css')
+    <style>
+        .table td,
+        .table th {
+            padding: .55rem .55rem .55rem .75rem;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+@endpush

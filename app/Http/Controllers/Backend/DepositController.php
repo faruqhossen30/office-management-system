@@ -47,11 +47,9 @@ class DepositController extends Controller
     }
     public function deposit_view()
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->latest()->paginate(7);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->latest()->paginate(6);
         $total = Deposit::sum('amount');
         // return $test;
-
-
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
@@ -60,11 +58,7 @@ class DepositController extends Controller
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereBetween('date', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])->latest()->paginate(7);
 
         $total =$deposits->sum('amount');
-
-
         // return $total;
-
-
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
@@ -73,8 +67,6 @@ class DepositController extends Controller
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereMonth('date', Carbon::now()->month)->latest()->paginate(7);
 
         $total = $deposits->sum('amount');
-
-
         // $total = 2300;
         //    return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));

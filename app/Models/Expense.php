@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Expense extends Model
 {
     use HasFactory;
-    protected $fillable =['author_id','name'];
+    protected $fillable =[
+        'author_id',
+        'name'
+    ];
+    
+    public function author()
+    {
+        return $this->hasOne(User::class, 'id', 'author_id');
+    }
 }

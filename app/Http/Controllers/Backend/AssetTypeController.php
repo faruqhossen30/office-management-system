@@ -87,7 +87,7 @@ class AssetTypeController extends Controller
     public function update(Request $request, $id)
     {
         // return $request->all();
-       AssetType     :: findOrFail($id)->update([
+       AssetType :: findOrFail($id)->update([
         'asset_name' => $request->asset_name,
        ]);
 

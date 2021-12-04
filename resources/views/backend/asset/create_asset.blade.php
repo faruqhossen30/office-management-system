@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Serial Number*</label>
                                 <input name="serial" class="col-xm-9 form-control @error('serial')is-invalid @enderror"
-                                    type="integer" placeholder="Enter your serial number ">
+                                    type="number" placeholder="Enter your serial number ">
                                 @error('serial')
                                     <div class="invalid-feedback">
                                         {{ $message }}
