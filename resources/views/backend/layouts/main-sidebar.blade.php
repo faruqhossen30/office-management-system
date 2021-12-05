@@ -22,14 +22,14 @@
             <div class="card-body">
                 <div class="media">
                     <div class="mr-3">
-                        <a href="#"><img src="{{ asset('global_assets/images/placeholders/placeholder.jpg') }}"
-                                width="38" height="38" class="rounded-circle" alt=""></a>
+                        <a href="#"><img src="{{ asset('global_assets/images/placeholders/user.png') }}" width="38"
+                                height="38" class="rounded-circle" alt=""></a>
                     </div>
 
                     <div class="media-body">
-                        <div class="media-title font-weight-semibold">{{Auth::user()->name}}</div>
+                        <div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>
                         <div class="font-size-xs opacity-50">
-                            <i class="icon-pin font-size-sm"></i>{{Auth::user()->email}}
+                            <i class="icon-pin font-size-sm"></i>{{ Auth::user()->email }}
                         </div>
                     </div>
 
@@ -52,7 +52,7 @@
                         title="Main"></i>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('dashboard')}}" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <i class="icon-home4"></i>
                         <span>
                             Dashboard
@@ -68,13 +68,18 @@
                                 Deposit</a></li>
                         <li class="nav-item"><a href="{{ route('deposit.view') }}"
                                 class="nav-link {{ request()->routeIs('deposit.view') ? 'active' : '' }}">
-                                Deposit  List</a></li>
+                                Deposit List</a></li>
                         <li class="nav-item"><a href="{{ route('payment.index') }}"
                                 class="nav-link {{ request()->routeIs('payment.index') ? 'active' : '' }}">
                                 Payment system</a></li>
 
                     </ul>
                 </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('balance')) nav-item-expanded nav-item-open @endif">
+                    <a href="{{route('balance')}}" class="nav-link"><i class="icon-wallet"></i> <span>Balance</span></a>
+                </li>
+
+
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('office', 'office.view')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="icon-office"></i> <span>Office</span></a>
 
@@ -104,9 +109,9 @@
                                 Expences Type</a></li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('assettype.index', 'asset.index')) nav-item-expanded nav-item-open @endif">
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('assettype.index', 'asset.index', 'asset.create')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
-                        icon-diamond"></i>
+                        icon-trophy4"></i>
                         <span>Asset</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -114,8 +119,8 @@
                                 class="nav-link @if (request()->routeIs('assettype.index')) active @endif">Asset Type</a>
                         </li>
                         <li class="nav-item"><a href="{{ route('asset.index') }}"
-                                class="nav-link @if (request()->routeIs('asset.index')) active @endif">Equipment</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link active">Asset Assignment</a></li>
+                                class="nav-link @if (request()->routeIs('asset.index') || request()->routeIs('asset.create')) active @endif">Equipment</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li>
                     </ul>
                 </li>
 
@@ -125,7 +130,9 @@
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="icon-switch2"></i>
-                        Logout
+                        <span>
+                            Logout
+                        </span>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

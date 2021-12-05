@@ -11,6 +11,8 @@ use App\Http\Controllers\Backend\ExpenseController;
 use App\Http\Controllers\Backend\ExpenseListController;
 use App\Http\Controllers\Backend\AssetTypeController;
 use App\Http\Controllers\Backend\ExpenseListFilterController;
+use App\Http\Controllers\Backend\AssetListFilterController;
+use App\Http\Controllers\Backend\BalanceController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -27,8 +29,8 @@ use App\Models\ExpenseList;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('backend.dashboard');
+})->middleware('auth');
 
 Auth::routes();
 
@@ -69,15 +71,23 @@ Route::prefix('admin')->group(function () {
         // ----------------------------------------------------------Expense------------------------------------------
 
 
-        Route::resource('expense', ExpenseController::class);
         // --------------------Expense-section------------------------------------
+        Route::resource('expense', ExpenseController::class);
         Route::resource('expenselist', ExpenseListController::class);
         Route::get('expencelist-filter/week', [ExpenseListFilterController::class, 'expenseListeByWeek'])->name('expense.list.week');
         Route::get('expencelist-filter/month', [ExpenseListFilterController::class, 'expenseListeByMonth'])->name('expense.list.month');
-        // ---------------------Asset- Type---------------------------------------
+
+
+
+        // ---------------------Asset-Type---------------------------------------
         Route::resource('asset', AssetController::class);
+        Route::get('assetlist-filter/week', [AssetListFilterController::class, 'assetListByWeek'])->name('asset.list.week');
+        Route::get('assetlist-filter/month', [AssetListFilterController::class, 'assetListByMonth'])->name('asset.list.month');
         Route::resource('assettype', AssetTypeController::class);
 
+        // -------------------------------------Balance----------------------------------------------
+        Route::get('balance',[BalanceController::class,'balanceView'])->name('balance');
+       
     });
 });
 

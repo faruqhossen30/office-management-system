@@ -32,6 +32,17 @@
 
 	<script src="{{asset('assets/js/app.js')}}"></script>
 	<script src="{{asset('global_assets/js/demo_pages/dashboard.js')}}"></script>
+    <style>
+        .navbar-brand {
+    display: inline-block;
+    padding-top: 1.00002rem;
+    padding-bottom: 1.00002rem;
+    margin-right: 0;
+    font-size: 0;
+    line-height: inherit;
+    white-space: nowrap;
+}
+    </style>
 	<!-- /theme JS files -->
     @stack('css')
 
@@ -55,9 +66,9 @@
         <!-- Main content -->
         @yield('content')
         <!-- /main content -->
-
     </div>
 	<!-- /page content -->
+
 
 
 

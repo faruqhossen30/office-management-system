@@ -3,13 +3,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-2">
-                <div class="card">
+                <div class="card mt-2">
+                    <div class="card-header  bg-light d-flex justify-content-between">
+                        <h6 class="card-title text-dark">Update Office</h6>
+                    </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
-                        <div class="card">
-                                <div class="card-header  bg-light d-flex justify-content-between">
-                                    <h6 class="card-title text-success">Update Office</h6>
-                                </div>
+
 
                             @if (session('success'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -98,7 +98,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </div>
+
                         <!-- /left aligned buttons -->
                     </div>
                 </div>

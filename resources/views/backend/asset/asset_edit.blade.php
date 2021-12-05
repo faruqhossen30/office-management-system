@@ -31,7 +31,9 @@
                                         class="form-control @error('assettype_id')is-invalid @enderror" type="text">
                                         <option value="">Select Asset type </option>
                                         @foreach ($asset_types as $asset_type )
-                                        <option value="{{$asset_type->id}}">{{$asset_type->asset_name}}</option>
+                                        <option value="{{$asset_type->id}}" @if ($asset_type->id ==$assets->assettype_id ) selected
+
+                                        @endif>{{$asset_type->asset_name}}</option>
                                         @endforeach
                                     </select>
                                     @error('assettype_id')
@@ -44,7 +46,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Price*</label>
                                 <input name="price" class="col-xm-9 form-control  @error('price')is-invalid @enderror"
-                                    type="text" placeholder="Enter your price">
+                                    type="text" value="{{$assets->price}}" placeholder="Enter your price">
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -54,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Buy Date*</label>
                                 <input name="buy_date" class="col-xm-9 form-control  @error('buy_date')is-invalid @enderror"
-                                    type="datetime-local" placeholder="Enter your price ">
+                                    type="datetime-local"  placeholder="Enter your price ">
                                 @error('buy_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -76,7 +78,7 @@
                                 <label class="col-xm-3">Warranty date*</label>
                                 <input name="warranty_date"
                                     class="col-xm-9 form-control @error('warranty_date')is-invalid @enderror" type="text"
-                                    placeholder="Enter your Warranty time ">
+                                    value="{{$assets->warranty_date}}" placeholder="Enter your Warranty time ">
                                 @error('warranty_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -86,7 +88,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Serial Number*</label>
                                 <input name="serial" class="col-xm-9 form-control @error('serial')is-invalid @enderror"
-                                    type="integer" placeholder="Enter your serial number ">
+                                    type="integer"  value="{{$assets->serial}}" placeholder="Enter your serial number ">
                                 @error('serial')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -97,7 +99,7 @@
                                 <label class="col-xm-3">Additional information*</label>
                                 <textarea id="summernote" name="additional_information" type="text"
                                     class="form-control @error('additional_information')is-invalid @enderror"
-                                    rows="3"></textarea>
+                                    rows="3">{{$assets->additional_information}}</textarea>
                                 @error('additional_information')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -108,7 +110,7 @@
                                 <label class="col-xm-3">Remarks*</label>
                                 <textarea  name="remarks" type="text"
                                 class="form-control @error('remarks')is-invalid @enderror"
-                                rows="3"></textarea>
+                                rows="3">{{$assets->remarks}}</textarea>
                                 @error('remarks')
                                     <div class="invalid-feedback">
                                         {{ $message }}

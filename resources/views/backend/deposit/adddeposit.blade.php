@@ -19,7 +19,7 @@
                                     <label>Amount:</label>
                                     <input name="amount" type="number"
                                         class="form-control  @error('amount')is-invalid @enderror "
-                                        placeholder="1,000 TK">
+                                        placeholder="1,000 TK" value="{{old('amount')}}">
                                     @error('amount')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -32,7 +32,7 @@
                                     <label class="text">Payment-System:</label>
                                     <div class="form-group">
                                         <select class="form-control @error('payment_system_id') is-invalid @enderror"
-                                            name="payment_system_id">
+                                            name="payment_system_id" >
                                             <option value="">Select payment system </option>
                                             @foreach ( $paymentSystem as $payment)
                                             <option value="{{ $payment->id}}">{{ $payment->name}}</option>

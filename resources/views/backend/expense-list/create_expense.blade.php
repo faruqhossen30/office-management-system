@@ -14,7 +14,6 @@
                     <div class="card-body">
                         <form action="{{ route('expenselist.store') }}" method="POST">
                             @csrf
-                            <div class="card p-3">
                                 <div class="row my-2">
                                     <div class="col-md-12">
                                         <div class="form-group mr-1">
@@ -23,7 +22,7 @@
                                             </label>
                                             <input name="amount" type="number"
                                                 class="form-control  @error('amount')is-invalid @enderror "
-                                                placeholder="1,000 TK">
+                                                placeholder="1,000 TK" value="{{old('amount')}}">
                                             @error('amount')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -50,7 +49,6 @@
                                                 </div>
                                             @enderror
                                         </div>
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -85,7 +83,6 @@
                                                     <option value="">Select payment system </option>
                                                     @foreach ($paymentsystems as $system)
                                                     <option value="{{$system->id}}">{{$system->name}}</option>
-
                                                     @endforeach
                                                 </select>
                                                 @error('payment_system_id')
@@ -104,7 +101,7 @@
                                             </label>
                                             <input name="date" type="datetime-local"
                                                 class="form-control  @error('date')is-invalid @enderror "
-                                                placeholder="Please enter your date">
+                                                placeholder="Please enter your date" value="{{old('date')}}">
                                             @error('date')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -119,7 +116,7 @@
                                             </label>
                                             <input name="voucher_no" type="text"
                                                 class="form-control  @error('voucher_no')is-invalid @enderror "
-                                                placeholder="Please enter your voucher no">
+                                                placeholder="Please enter your voucher no" value="{{old('voucher_no')}}">
                                             @error('voucher_no')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -134,7 +131,7 @@
                                     </label>
                                     <textarea name="description" type="text"
                                         class="form-control @error('description')is-invalid @enderror" rows="3"
-                                        placeholder="Enter your description"></textarea>
+                                        placeholder = "Enter your description">{{old('description')}}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -148,7 +145,7 @@
                                         </label>
                                         <textarea  name="remarks" type="text"
                                             class="form-control @error('remarks')is-invalid @enderror" rows="3"
-                                            placeholder="Enter your remarks"></textarea>
+                                            placeholder="Enter your remarks">{{old('remarks')}}</textarea>
                                         @error('remarks')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -162,7 +159,6 @@
                                     </button>
                                     <button type="submit" class="btn btn-danger">Cancel</button>
                                 </div>
-                            </div>
                         </form>
                     </div>
                 </div>
