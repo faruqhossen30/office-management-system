@@ -17,10 +17,10 @@ class AssetController extends Controller
      */
     public function index()
     {
-       $assets = Asset::with('assettype')->latest()->paginate(6);
-       $total = Asset::sum('price');
-    //    return $assets;
-    return view('backend.asset.asset_view',compact('assets','total'));
+        $assets = Asset::with('assettype')->latest()->paginate(6);
+        $total = Asset::sum('price');
+        //    return $assets;
+        return view('backend.asset.asset_view', compact('assets', 'total'));
     }
 
     /**
@@ -32,7 +32,7 @@ class AssetController extends Controller
     {
         $asset_types = AssetType::get();
         // return $asset_types;
-        return view('backend.asset.create_asset',compact('asset_types'));
+        return view('backend.asset.create_asset', compact('asset_types'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AssetController extends Controller
             // 'additional_information' => 'required',
             // 'remarks'                => 'required',
             // 'author_id'              => 'required',
-         ],[
+        ], [
             'name.required'                   => 'Please enter your asset name ',
             'assettype_id.required'           => 'Please enter your asset type ',
             'price.required'                  => 'Please enter your asset price ',
@@ -81,7 +81,7 @@ class AssetController extends Controller
             'author_id'              => Auth::user()->id
         ]);
         // return "ok";
-        return redirect()->route('asset.index')->with('success','successfully data added');
+        return redirect()->route('asset.index')->with('success', 'successfully data added');
     }
 
     /**
@@ -92,7 +92,6 @@ class AssetController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -104,8 +103,8 @@ class AssetController extends Controller
     public function edit($id)
     {
         $assets = Asset::findOrFail($id);
-        $asset_types =AssetType::get();
-        return view('backend.asset.asset_edit',compact('assets','asset_types'));
+        $asset_types = AssetType::get();
+        return view('backend.asset.asset_edit', compact('assets', 'asset_types'));
     }
 
     /**

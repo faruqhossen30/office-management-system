@@ -20,8 +20,8 @@
                                 <div class="form-group">
                                     <label>Payment System:</label>
                                     <input name="name" type="text"
-                                        class="form-control  @error('name')is-invalid @enderror "
-                                        placeholder="please enter your payment system">
+                                        class="form-control  @error('name')is-invalid @enderror"
+                                        placeholder="please enter your payment system" value="{{old('name')}}" >
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -35,7 +35,7 @@
                                     </label>
                                     <textarea id="summernote" name="description" type="text"
                                         class="form-control @error('description')is-invalid @enderror" rows="3"
-                                        placeholder="Enter your description"></textarea>
+                                        placeholder="Enter your description">{{old('description')}}</textarea>
                                     @error('description')
                                         <div class="invalid-feedback">
                                             {{ $message }}

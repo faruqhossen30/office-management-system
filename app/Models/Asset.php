@@ -26,5 +26,6 @@ class Asset extends Model
     {
         return $this->hasOne(AssetType::class, 'id', 'assettype_id');
     }
+    
 
 }

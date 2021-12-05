@@ -34,11 +34,11 @@
                     @endif
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            {{-- <ul class="list-group list-group-horizontal">
-                                <a href="{{route('deposit.view')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view') ) active @endif">All TIme</a>
-                                <a href="{{route('deposit.view.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week') ) active @endif">This week</a>
-                                <a href="{{route('deposit.view.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month') ) active @endif">This Month</a>
-                              </ul> --}}
+                            <ul class="list-group list-group-horizontal">
+                                <a href="{{route('asset.index')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.index') ) active @endif">All TIme</a>
+                                <a href="{{route('asset.list.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.list.week') ) active @endif">This week</a>
+                                <a href="{{route('asset.list.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.list.month') ) active @endif">This Month</a>
+                              </ul>
                               <div>
                                 <button class="btn btn-primary btn-lg mt-1">Total: {{$total}} TK</button>
                               </div>
@@ -68,7 +68,7 @@
                                             <td>{{ $asset->name }}</td>
                                             <td>{{ $asset->assettype->asset_name }}</td>
                                             <td>{{ $asset->price }}</td>
-                                            <td>{{ $asset->buy_date }}</td>
+                                            <td>{{ Carbon\Carbon::parse($asset->buy_date)->diffForHumans()}}</td>
                                             <td>{{ $asset->expiry_date }}</td>
                                             <td>{{ $asset->warranty_date }}</td>
                                             <td>{{ $asset->serial }}</td>

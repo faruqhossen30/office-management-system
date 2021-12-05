@@ -17,7 +17,7 @@ class AssetTypeController extends Controller
     public function index()
 
     {
-    $asset_types = AssetType::get();
+    $asset_types = AssetType::latest()->get();
 
     // return  $asset_types;
        return view('backend.asset-type.asset-type',compact('asset_types'));
