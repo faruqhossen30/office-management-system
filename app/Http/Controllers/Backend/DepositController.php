@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\PaymentSystem;
+use App\Models\Setting\BankSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -16,8 +18,10 @@ class DepositController extends Controller
     {
         $offices = Office::get();
         $paymentSystem = PaymentSystem::all();
+        $banks = Bank::all();
+        $bankselectId = BankSetting::first()->bank_id;
         // return $offices;
-        return view('backend.deposit.adddeposit', compact('offices', 'paymentSystem'));
+        return view('backend.deposit.adddeposit', compact('offices', 'paymentSystem','banks', 'bankselectId'));
     }
 
     public function store(Request $request)
@@ -41,6 +45,7 @@ class DepositController extends Controller
             'office_id'            => $request->office_id,
             'author_id'            => Auth::user()->id,
             'date'                 => $request->date,
+            'bank_id'              => $request->bank_id,
         ];
         Deposit::create($Data);
         return redirect()->route('deposit.view');

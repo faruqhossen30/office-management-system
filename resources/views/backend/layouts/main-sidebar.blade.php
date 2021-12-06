@@ -60,7 +60,8 @@
                     </a>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('deposit', 'deposit.view', 'payment.index')) nav-item-expanded nav-item-open @endif">
-                    <a href="#" class="nav-link"><i class="icon-library2"></i> <span>Deposite</span></a>
+                    <a href="#" class="nav-link"><i class="
+                        icon-piggy-bank"></i> <span>Deposite</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                         <li class="nav-item"><a href="{{ route('deposit') }}"
@@ -123,7 +124,24 @@
                         <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li>
                     </ul>
                 </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('bank.index','bank.create')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="
+                        icon-library2"></i>
+                        <span>Bank</span></a>
 
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{ route('bank.create') }}"
+                                class="nav-link @if (request()->routeIs('bank.create')) active @endif">Add Bank</a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('bank.index') }}"
+                                class="nav-link @if (request()->routeIs('bank.index')) active @endif">bank list</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+                    </ul>
+                </li>
+
+               <li class="nav-item nav-item-submenu @if (request()->routeIs('setting')) nav-item-expanded nav-item-open @endif">
+                    <a href="{{route('setting')}}" class="nav-link"><i class="icon-cog3"></i> <span>Setting</span></a>
+                </li>
 
                 <li class="nav-item">
 
