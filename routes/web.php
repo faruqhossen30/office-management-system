@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\AssetTypeController;
 use App\Http\Controllers\Backend\ExpenseListFilterController;
 use App\Http\Controllers\Backend\AssetListFilterController;
 use App\Http\Controllers\Backend\BalanceController;
+use App\Http\Controllers\Backend\BankController;
+use App\Http\Controllers\Backend\Setting\SettingController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -87,7 +89,16 @@ Route::prefix('admin')->group(function () {
 
         // -------------------------------------Balance----------------------------------------------
         Route::get('balance',[BalanceController::class,'balanceView'])->name('balance');
-       
+
+
+        // -------------------------------------Bank----------------------------------------------------
+        Route::resource('bank', BankController::class);
+
+        // -------------------------------------------Setting-----------------------------------------------
+        Route::get('setting',[SettingController::class,'settingView'])->name('setting');
+        Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
+
+
     });
 });
 
