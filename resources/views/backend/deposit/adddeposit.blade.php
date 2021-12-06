@@ -120,6 +120,9 @@
             if(bankselectId == payment_system_id){
                 bank_div.show();
             }
+            if(bankselectId != payment_system_id){
+                bank_div.hide();
+            }
 
         });
     </script>
