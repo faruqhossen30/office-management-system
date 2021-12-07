@@ -99,6 +99,11 @@ Route::prefix('admin')->group(function () {
         Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
 
 
+
+        // -------------------------------------Employee--------------------------------------------------------
+        Route::resource('employee', UserController::class);
+
+
     });
 });
 
