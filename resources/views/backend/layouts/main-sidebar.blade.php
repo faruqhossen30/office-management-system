@@ -61,15 +61,15 @@
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('deposit', 'deposit.view', 'payment.index')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
-                        icon-piggy-bank"></i> <span>Deposite</span></a>
+                        icon-piggy-bank"></i> <span>Cradit</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                         <li class="nav-item"><a href="{{ route('deposit') }}"
                                 class="nav-link {{ request()->routeIs('deposit') ? 'active' : '' }} ">Add
-                                Deposit</a></li>
+                                Cradit</a></li>
                         <li class="nav-item"><a href="{{ route('deposit.view') }}"
                                 class="nav-link {{ request()->routeIs('deposit.view') ? 'active' : '' }}">
-                                Deposit List</a></li>
+                                Cradit List</a></li>
                         <li class="nav-item"><a href="{{ route('payment.index') }}"
                                 class="nav-link {{ request()->routeIs('payment.index') ? 'active' : '' }}">
                                 Payment system</a></li>
@@ -96,18 +96,18 @@
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
                         icon-cash"></i>
-                        <span>Expense</span></a>
+                        <span>Debit</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                         <li class="nav-item"><a href="{{ route('expenselist.create') }}"
-                                class="nav-link  @if (request()->routeIs('expenselist.create')) active @endif ">Add Expense</a>
+                                class="nav-link  @if (request()->routeIs('expenselist.create')) active @endif ">Add Debit</a>
                         </li>
                         <li class="nav-item"><a href="{{ route('expenselist.index') }}"
                                 class="nav-link @if (request()->routeIs('expenselist.index')) active @endif">View
-                                Expense</a></li>
+                                Debit</a></li>
                         <li class="nav-item"><a href="{{ route('expense.index') }}"
                                 class="nav-link @if (request()->routeIs('expense.index')) active @endif">
-                                Expences Type</a></li>
+                                Debit Type</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('assettype.index', 'asset.index', 'asset.create')) nav-item-expanded nav-item-open @endif">
@@ -122,6 +122,25 @@
                         <li class="nav-item"><a href="{{ route('asset.index') }}"
                                 class="nav-link @if (request()->routeIs('asset.index') || request()->routeIs('asset.create')) active @endif">Equipment</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('position.index', 'employee-information.index', 'employee-information.create')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="
+                        icon-users4"></i>
+                        <span>Employee</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{ route('position.index') }}"
+                                class="nav-link @if (request()->routeIs('position.index')) active @endif">Position</a>
+                        </li>
+                        <li class="nav-item"><a href="{{route('employee-information.index') }}" class="nav-link @if (request()->routeIs('employee-information.index')) active @endif ">Employee</a>
+
+                            <ul class="nav nav-group-sub @if (request()->routeIs( 'employee-information.index', 'employee-information.create')) nav-item-expanded nav-item-open @endif">
+                                <li class="nav-item"><a href="{{route('employee-information.create')}}" class="nav-link  @if (request()->routeIs('employee-information.create')) active @endif">Add Employee</a></li>
+                                <li class="nav-item"><a href="{{route('employee-information.index')}}" class="nav-link  @if (request()->routeIs('employee-information.index')) active @endif">view Employee</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('bank.index','bank.create')) nav-item-expanded nav-item-open @endif">
@@ -159,7 +178,7 @@
 
                 </li>
 
-                {{-- <li class="nav-item nav-item-submenu">
+                <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link"><i class="icon-copy"></i> <span>Layouts</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -169,7 +188,7 @@
                         </li>
 
                     </ul>
-                </li> --}}
+                </li>
                 <!-- /page kits -->
 
             </ul>

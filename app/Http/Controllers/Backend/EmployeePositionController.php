@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Position;
 use Illuminate\Http\Request;
 
 class EmployeePositionController extends Controller
@@ -14,7 +15,8 @@ class EmployeePositionController extends Controller
      */
     public function index()
     {
-        //
+            $positions = Position::latest()->get();
+            return view('backend.employee.position.position-view',compact('positions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class EmployeePositionController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.employee.position.position');
     }
 
     /**
@@ -35,7 +37,19 @@ class EmployeePositionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate([
+        'position'    => 'required',
+        'description' => 'required',
+       ],[
+           'position.required'    => 'Please enter position',
+           'description.required' => 'Please enter description',
+       ]);
+
+       Position::create([
+        'position'    => $request->position,
+        'description' => $request->description,
+       ]);
+       return redirect()->route('position.index')->with('success','Successfully data added');
     }
 
     /**
@@ -57,7 +71,9 @@ class EmployeePositionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $position = Position::findOrFail($id);
+        // return $positions;
+        return view('backend.employee.position.position-edit',compact('position'));
     }
 
     /**
@@ -69,7 +85,11 @@ class EmployeePositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Position::findOrFail($id)->update([
+            'position'    => $request->position,
+            'description' => $request->description,
+        ]);
+        return redirect()->route('position.index')->with('update','Successfully data Updated');
     }
 
     /**
@@ -80,6 +100,7 @@ class EmployeePositionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Position::findOrFail($id)->delete();
+        return redirect()->route('position.index')->with('delete', 'Successfully Data delete');
     }
 }

@@ -15,6 +15,8 @@ use App\Http\Controllers\Backend\AssetListFilterController;
 use App\Http\Controllers\Backend\BalanceController;
 use App\Http\Controllers\Backend\BankController;
 use App\Http\Controllers\Backend\Setting\SettingController;
+use App\Http\Controllers\Backend\EmployeePositionController;
+use App\Http\Controllers\Backend\EmployeeInformationController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -101,7 +103,8 @@ Route::prefix('admin')->group(function () {
 
 
         // -------------------------------------Employee--------------------------------------------------------
-        Route::resource('employee', UserController::class);
+        Route::resource('position', EmployeePositionController::class);
+        Route::resource('employee-information', EmployeeInformationController::class);
 
 
     });
