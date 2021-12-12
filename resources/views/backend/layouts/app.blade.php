@@ -43,6 +43,7 @@
     white-space: nowrap;
 }
     </style>
+    <link rel="stylesheet" href="{{asset('assets/css/fontawsome.css')}}">
 	<!-- /theme JS files -->
     @stack('css')
 

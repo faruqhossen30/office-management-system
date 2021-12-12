@@ -5,12 +5,12 @@
             <div class="col-md-12">
                 <div class="card mt-2">
                     <div class="card-header header-elements-inline ">
-                        <h5 class="card-title">Deposite Table</h5>
+                        <h5 class="card-title">Cradit Table</h5>
                         <div class="header-elements">
                             <div>
                                 <a href="{{ route('deposit') }}" type="button"
                                     class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                            class="icon-plus3"></i></b>Add Deposite</a>
+                                            class="icon-plus3"></i></b>Add Cradit</a>
                             </div>
                         </div>
                     </div>
@@ -35,13 +35,17 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
                             <ul class="list-group list-group-horizontal">
-                                <a href="{{route('deposit.view')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view') ) active @endif">All TIme</a>
-                                <a href="{{route('deposit.view.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week') ) active @endif">This week</a>
-                                <a href="{{route('deposit.view.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month') ) active @endif">This Month</a>
-                              </ul>
-                              <div>
-                                <button class="btn btn-primary btn-lg mt-1">Total: {{$total}} TK</button>
-                              </div>
+                                <a href="{{ route('deposit.view') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view')) active @endif">All TIme</a>
+                                <a href="{{ route('deposit.view.week') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week')) active @endif">This week</a>
+                                <a href="{{ route('deposit.view.month') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month')) active @endif">This
+                                    Month</a>
+                            </ul>
+                            <div>
+                                <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
+                            </div>
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -61,13 +65,15 @@
 
                                     @foreach ($deposits as $deposit)
                                         <tr>
-                                            <th scope="row">{{ $deposits->firstItem()+$loop->index}}</th>
+                                            <th scope="row">{{ $deposits->firstItem() + $loop->index }}</th>
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name }}</td>
                                             <td>{{ $deposit->office->name }}</td>
                                             <td>{{ $deposit->author->name }}</td>
-                                            <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>  {{-- Deposite date  --}}
-                                            <td>{{ Carbon\Carbon::parse($deposit->created_at)->diffForHumans() }}</td> {{-- Deposite date  --}}
+                                            <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>
+                                            {{-- Deposite date --}}
+                                            <td>{{ Carbon\Carbon::parse($deposit->created_at)->diffForHumans() }}</td>
+                                            {{-- Deposite date --}}
 
 
                                             <td>

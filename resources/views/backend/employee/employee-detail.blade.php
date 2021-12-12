@@ -25,17 +25,19 @@
 
                                     <ul class="list-inline mb-0">
                                         <h6> <b>{{ $employees->name }}</b></h6>
-                                        <h6> <b>{{ $employees->department}}</b></h6>
+                                        <h6> <b>{{ $employees->department }}</b></h6>
                                         <h6> <b>{{ $employees->position->position }}</b></h6>
 
                                         <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                         <strong></strong></p>
+                                            <strong></strong>
+                                        </p>
                                         <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                            <strong></strong></p>
+                                            <strong></strong>
+                                        </p>
                                         <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                          <strong></strong></p>
-                                          <li class="list-inline-item"><a href="#"
-
+                                            <strong></strong>
+                                        </p>
+                                        <li class="list-inline-item"><a href="#"
                                                 class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
                                                 <i class="icon-phone"></i></a>
                                         </li>
@@ -52,85 +54,89 @@
                             </div>
                             <!------------profile------------------>
                             <!-----------------Positional Information-------------->
+
                             <div class="col-md-8">
-                                <table class="table table-hover" width="100%">
+                                <div class="card card-body bg-light text-center">
+                                    <table class="table table-hover" width="100%">
 
-                                    <h1 class="text-center">Positional Information</h1>
-                                    <caption class="resumecaption">Positional Information</caption>
-                                    <tbody>
-                                        <tr>
-                                            <th>Department</th>
-                                            <td>{{ $employees->department }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Position</th>
-                                            <td>{{ $employees->position->position }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Hire Date</th>
-                                            <td>{{ $employees->join_date }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Office</th>
-                                            <td>{{ $employees->office->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Covid Vaccine</th>
-                                            <td>{{ $employees->covid_vaccine }}</td>
-                                        </tr>
+                                        <h1 class="text-center">Positional Information</h1>
+                                        <caption class="resumecaption">Positional Information</caption>
+                                        <tbody>
+                                            <tr>
+                                                <th>Department</th>
+                                                <td>{{ $employees->department }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Position</th>
+                                                <td>{{ $employees->position->position }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Hire Date</th>
+                                                <td>{{ $employees->join_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Office</th>
+                                                <td>{{ $employees->office->name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Covid Vaccine</th>
+                                                <td>{{ $employees->covid_vaccine }}</td>
+                                            </tr>
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <!-----------------Positional Information-------------->
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
+                                <div class="card card-body bg-light text-center">
+                                    <div class="card-content-languages">
+                                        <div class="card-content-languages-group"></div>
+                                        <div class="card-content-languages-group">
+                                            <table class="table table-hover" width="100%">
+                                                <h1 class="text-center">Personal Information</h1>
+                                                <caption class="resumecaption">Personal Information</caption>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <td> {{ $employees->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Phone</th>
+                                                        <td> {{ $employees->phone }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Email Address</th>
+                                                        <td> {{ $employees->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Country</th>
+                                                        <td>{{ $employees->country}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>City</th>
+                                                        <td> {{ $employees->city }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Zip Code</th>
+                                                        <td> {{ $employees->zip_code }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Nid No</th>
+                                                        <td> {{ $employees->nid_no }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
 
-                                <div class="card-content-languages">
-                                    <div class="card-content-languages-group"></div>
-                                    <div class="card-content-languages-group">
-                                        <table class="table table-hover" width="100%">
-                                            <h1 class="text-center">Personal Information</h1>
-                                            <caption class="resumecaption">Personal Information</caption>
-                                            <tbody>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <td> {{ $employees->name }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Phone</th>
-                                                    <td> {{ $employees->phone }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Email Address</th>
-                                                    <td> {{ $employees->email }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Country</th>
-                                                    <td>Bangladesh</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>City</th>
-                                                    <td> {{ $employees->city }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Zip Code</th>
-                                                    <td> {{ $employees->zip_code }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Nid No</th>
-                                                    <td> {{ $employees->nid_no}}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-8">
+                                <div class="card card-body bg-light text-center">
                                 <table class="table table-hover" width="100%">
 
                                     <h1 class="text-center">Emergency Contact</h1>
@@ -142,11 +148,11 @@
                                         </tr>
                                         <tr>
                                             <th><b>Alternative phone number</b></th>
-                                            <td>{{ $employees->position->position }}</td>
+                                            <td>{{ $employees->phone_alt}}</td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td>{{ $employees->email}}</td>
+                                            <td>{{ $employees->email }}</td>
                                         </tr>
                                         <tr>
                                             <th>Office</th>
@@ -160,10 +166,11 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                        </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
+                                <div class="card card-body bg-light text-center">
                                 <table class="table table-hover" width="100%">
                                     <h1>Bio-Graphical Information</h1>
                                     <caption class="resumecaption">Bio-Graphical Information</caption>
@@ -178,23 +185,26 @@
                                         </tr>
                                         <tr>
                                             <th>Marital Status</th>
-                                            <td>Married</td>
+                                            <td>{{ $employees->marital_status }}</td>
                                         </tr>
 
                                     </tbody>
                                 </table>
                             </div>
+                            </div>
                             <div class="col-md-8">
+                                <div class="card card-body bg-light text-center">
                                 <table class="table table-hover" width="100%">
                                     <h1 class="text-center">Extra Information</h1>
                                     <caption class="resumecaption">Extra Information</caption>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $employees->description}}</td>
+                                            <td>{{ $employees->description }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
                         </div>
 
                     </div>

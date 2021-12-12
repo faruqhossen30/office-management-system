@@ -99,6 +99,7 @@ Route::prefix('admin')->group(function () {
         // -------------------------------------------Setting-----------------------------------------------
         Route::get('setting',[SettingController::class,'settingView'])->name('setting');
         Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
+        Route::post('setting/mobilebanking',[SettingController::class,'mobileBankingSetting'])->name('mobilebanking.setting');
 
 
 
@@ -111,3 +112,4 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);

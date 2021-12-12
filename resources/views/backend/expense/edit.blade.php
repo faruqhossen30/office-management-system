@@ -5,13 +5,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Add Expense
+                        Add Debit
                     </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
                         <div class="card">
                             <div>
-                                <a href="{{ route('expense.index') }}" class="btn btn-primary btn-sm m-2">All Expense
+                                <a href="{{ route('expense.index') }}" class="btn btn-primary btn-sm m-2">All Debit
                                     List</a>
                             </div>
                             <div class="card-body">

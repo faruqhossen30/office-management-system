@@ -6,7 +6,7 @@
             <div class="col-md-8 offset-2 ">
                 <div class="card mt-1 ">
                     <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
-                        <h6 class="font-weight-semibold">Edit Expense information</h6>
+                        <h6 class="font-weight-semibold">Edit Debit information</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('expenselist.update', $expense_list->id) }}" method="POST">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="text">Expense Type:</label>
+                                            <label class="text">Debit Type:</label>
                                             <div class="form-group mt-2 mr-1">
                                                 <select class="form-control @error('expense_id') is-invalid @enderror"
                                                     name="expense_id">

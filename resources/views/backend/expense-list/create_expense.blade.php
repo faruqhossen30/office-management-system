@@ -6,7 +6,7 @@
             <div class="col-md-8 offset-2 ">
                 <div class="card mt-1 ">
                     <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
-                        <h6 class="font-weight-semibold">Expense information</h6>
+                        <h6 class="font-weight-semibold">Debit information</h6>
                         <a href="{{ route('expenselist.index') }}" type="button"
                             class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
                                     class="icon-menu7"></i></b>List</a>
@@ -52,11 +52,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="text">Expense Type:</label>
+                                            <label class="text">Debit Type:</label>
                                             <div class="form-group mt-2 mr-1">
                                                 <select class="form-control @error('expense_id') is-invalid @enderror"
                                                     name="expense_id">
-                                                    <option value="">Select expense type</option>
+                                                    <option value="">Select Debit type</option>
                                                     @foreach ($expenses as $item)
                                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                     @endforeach
@@ -155,7 +155,7 @@
                                 </div>
 
                                 <div class="d-flex justify-content-between border-top pt-2">
-                                    <button type="submit" class="btn bg-blue"><i class="icon-plus2 mr-2"></i>Add Expanse
+                                    <button type="submit" class="btn bg-blue"><i class="icon-floppy-disk mr-2"></i>Add Debit
                                     </button>
                                     <button type="submit" class="btn btn-danger">Cancel</button>
                                 </div>

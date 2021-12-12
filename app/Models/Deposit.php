@@ -15,6 +15,10 @@ class Deposit extends Model
         'office_id',
         'date',
         'bank_id',
+        'phone',
+        'transaction',
+        'source',
+        'remarks',
     ];
 
     protected $dates = ['date'];

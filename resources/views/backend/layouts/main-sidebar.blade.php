@@ -178,7 +178,7 @@
 
                 </li>
 
-                <li class="nav-item nav-item-submenu">
+                {{-- <li class="nav-item nav-item-submenu">
                     <a href="#" class="nav-link"><i class="icon-copy"></i> <span>Layouts</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
@@ -188,7 +188,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li> --}}
                 <!-- /page kits -->
 
             </ul>

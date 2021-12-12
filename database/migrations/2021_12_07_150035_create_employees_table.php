@@ -20,6 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone');
             $table->string('phone_alt');
             $table->string('address');
+            $table->string('country');
             $table->string('city');
             $table->integer('zip_code');
             $table->string('gender');
@@ -30,6 +31,7 @@ class CreateEmployeesTable extends Migration
             $table->string('photo');
             $table->string('department');
             $table->string('description');
+            $table->string('marital_status');
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('office_id')->nullable();
             $table->timestamps();

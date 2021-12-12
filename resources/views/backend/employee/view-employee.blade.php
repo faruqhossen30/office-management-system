@@ -10,7 +10,7 @@
                             <div>
                                 <a href="{{ route('employee-information.create') }}" type="button"
                                     class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                            class="icon-plus3"></i></b>Add Position</a>
+                                            class="icon-plus3"></i></b>Add Employee information</a>
                             </div>
                         </div>
                     </div>
@@ -90,3 +90,14 @@
         </div>
     </div>
 @endsection
+@push('css')
+    <style>
+        .table td,
+        .table th {
+            padding: .55rem .55rem .55rem .75rem;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+@endpush
