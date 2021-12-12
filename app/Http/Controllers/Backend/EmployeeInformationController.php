@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Office;
 use App\Models\Position;
@@ -17,11 +18,13 @@ class EmployeeInformationController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('position', 'office')->latest()->get();
-        // return $employee ;
+        $employees = Employee::with('position', 'office','department')->latest()->get();
+        // return $employees ;
         $positions = Position::latest()->get();
         // return $positions;
-        return view('backend.employee.view-employee', compact('employees', 'positions'));
+        $departments = Department::latest()->get();
+        // return $departments;
+        return view('backend.employee.view-employee', compact('employees', 'positions','departments'));
     }
 
     /**
@@ -35,7 +38,9 @@ class EmployeeInformationController extends Controller
         // return $offices;
         $positions = Position::all();
         // return $positions;
-        return view('backend.employee.add-employee', compact('positions', 'offices'));
+        $departments = Department::latest()->get();
+        // return $departments;
+        return view('backend.employee.add-employee', compact('positions', 'offices', 'departments'));
     }
 
     /**
@@ -64,7 +69,7 @@ class EmployeeInformationController extends Controller
             'covid_vaccine'  => 'required',
             'join_date'      => 'required',
             'photo'          => 'required|mimes:png,jpg,gif,bmp|max:4048',
-            'department'     => 'required',
+            'department_id'     => 'required',
             'marital_status' => 'required',
             'description'    => 'required',
             'position_id'      => 'required',
@@ -85,7 +90,7 @@ class EmployeeInformationController extends Controller
             'covid_vaccine.required' => 'please enter your covid_vaccine',
             'join_date.required'     => 'please enter your join_date',
             'photo.required'         => 'please enter your photo',
-            'department.required'    => 'please enter your department',
+            'department_id.required'    => 'please enter your department',
             'marital_status.required'    => 'please enter your marital_status',
             'description.required'   => 'please enter your description',
                'position_id.required'   => 'please enter your position_id',
@@ -114,7 +119,7 @@ class EmployeeInformationController extends Controller
                 'photo'          => $imageName,
                 'covid_vaccine'  => $request->covid_vaccine,
                 'join_date'      => $request->join_date,
-                'department'     => $request->department,
+                'department_id'     => $request->department_id,
                 'marital_status' => $request->marital_status,
                 'description'    => $request->description,
                 'position_id'    => $request->position_id,

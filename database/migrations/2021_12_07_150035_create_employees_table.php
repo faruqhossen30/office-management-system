@@ -29,7 +29,7 @@ class CreateEmployeesTable extends Migration
             $table->string('covid_vaccine');
             $table->dateTime('join_date');
             $table->string('photo');
-            $table->string('department');
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->string('description');
             $table->string('marital_status');
             $table->unsignedBigInteger('position_id')->nullable();

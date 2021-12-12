@@ -57,8 +57,8 @@
                                             <td>
                                                 <img src ="{{asset('/employee/photo/'.$employee->photo)}}" width="100px" height="100px" alt="photo">
                                             </td>
-                                            <td>{{ $employee->department }}</td>
-                                            <td>{{ $employee->position->position }}</td>
+                                            <td>{{ $employee->department->department_name }}</td>
+                                            <td>{{ $employee->position->position ?? 'No Position' }}</td>
                                             <td>{{ $employee->office->name}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">

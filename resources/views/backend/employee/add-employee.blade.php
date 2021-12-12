@@ -106,14 +106,14 @@
                                                 <label class="text">Department<span
                                                         class="text-danger">*</span></label>
                                                 <div class="form-group">
-                                                    <select class="form-control @error('department') is-invalid @enderror"
-                                                        name="department">
+                                                    <select class="form-control @error('department_id') is-invalid @enderror"
+                                                        name="department_id">
                                                         <option value="">Select your department </option>
-                                                        <option value="IT">IT</option>
-                                                        <option value="Marketing">Marketing</option>
-                                                        <option value="other">other</option>
+                                                        @foreach ($departments as $department)
+                                                        <option value="{{$department->id}}">{{$department->department_name}}</option>
+                                                        @endforeach
                                                     </select>
-                                                    <x-error name='department' />
+                                                    <x-error name='department_id' />
                                                 </div>
                                             </div>
                                         </div>

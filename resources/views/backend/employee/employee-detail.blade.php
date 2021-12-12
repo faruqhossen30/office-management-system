@@ -25,7 +25,7 @@
 
                                     <ul class="list-inline mb-0">
                                         <h6> <b>{{ $employees->name }}</b></h6>
-                                        <h6> <b>{{ $employees->department }}</b></h6>
+                                        <h6> <b>{{$employees->department->department_name  }}</b></h6>
                                         <h6> <b>{{ $employees->position->position }}</b></h6>
 
                                         <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
                                         <tbody>
                                             <tr>
                                                 <th>Department</th>
-                                                <td>{{ $employees->department }}</td>
+                                                <td>{{ $employees->department->department_name  }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Position</th>

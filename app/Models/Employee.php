@@ -23,7 +23,7 @@ class Employee extends Model
         'covid_vaccine',
         'join_date',
         'photo',
-        'department',
+        'department_id',
         'marital_status',
         'description',
         'position_id',
@@ -40,6 +40,10 @@ class Employee extends Model
     public function office()
     {
         return $this->hasOne(Office::class, 'id', 'office_id');
+    }
+    public function department()
+    {
+        return $this->hasOne(Department::class, 'id', 'department_id');
     }
 
 }
