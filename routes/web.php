@@ -15,6 +15,9 @@ use App\Http\Controllers\Backend\AssetListFilterController;
 use App\Http\Controllers\Backend\BalanceController;
 use App\Http\Controllers\Backend\BankController;
 use App\Http\Controllers\Backend\Setting\SettingController;
+use App\Http\Controllers\Backend\EmployeePositionController;
+use App\Http\Controllers\Backend\EmployeeInformationController;
+use App\Http\Controllers\Backend\DepartmentController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -97,14 +100,23 @@ Route::prefix('admin')->group(function () {
         // -------------------------------------------Setting-----------------------------------------------
         Route::get('setting',[SettingController::class,'settingView'])->name('setting');
         Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
+        Route::post('setting/mobilebanking',[SettingController::class,'mobileBankingSetting'])->name('mobilebanking.setting');
 
 
 
         // -------------------------------------Employee--------------------------------------------------------
-        Route::resource('employee', UserController::class);
+        Route::resource('position', EmployeePositionController::class);
+        Route::resource('employee-information', EmployeeInformationController::class);
+
+        // -------------------------------------------------Department------------------------------------------------
+        Route::resource('department', DepartmentController::class);
+
+
+
 
 
     });
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);

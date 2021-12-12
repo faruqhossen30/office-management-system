@@ -5,12 +5,12 @@
             <div class="col-md-12">
                 <div class="card mt-2">
                     <div class="card-header header-elements-inline">
-                        <h5 class="card-title">Expense information</h5>
+                        <h5 class="card-title">Debit information</h5>
                         <div class="header-elements">
                             <div>
                                 <a href="{{ route('expenselist.create') }}" type="button"
                                     class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                            class="icon-plus3"></i></b>Add Expense</a>
+                                            class="icon-plus3"></i></b>Add Debit</a>
                             </div>
                         </div>
                     </div>

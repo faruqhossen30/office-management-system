@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Position;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class EmployeePositionController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class EmployeePositionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-            $positions = Position::latest()->get();
-            return view('backend.employee.position.position-view',compact('positions'));
+    {   $departments = Department::get();
+        // return $departments;
+        return view('backend.employee.department.view-department', compact('departments'));
     }
 
     /**
@@ -26,7 +26,7 @@ class EmployeePositionController extends Controller
      */
     public function create()
     {
-        return view('backend.employee.position.position');
+       return view('backend.employee.department.add-department');
     }
 
     /**
@@ -37,19 +37,16 @@ class EmployeePositionController extends Controller
      */
     public function store(Request $request)
     {
-       $request->validate([
-        'position'    => 'required',
-        'description' => 'required',
-       ],[
-           'position.required'    => 'Please enter position',
-           'description.required' => 'Please enter description',
-       ]);
+        $request->validate([
+            'department_name' => 'required',
+        ],[
+            'department_name.required' =>'please enter your department name'
+        ]);
 
-       Position::create([
-        'position'    => $request->position,
-        'description' => $request->description,
-       ]);
-       return redirect()->route('position.index')->with('success','Successfully data added');
+        Department::Create([
+            'department_name' => $request->department_name,
+        ]);
+        return redirect()->route('department.index')->with('success','successfully data added');
     }
 
     /**
@@ -71,9 +68,8 @@ class EmployeePositionController extends Controller
      */
     public function edit($id)
     {
-        $position = Position::findOrFail($id);
-        // return $positions;
-        return view('backend.employee.position.position-edit',compact('position'));
+        $departments = Department::findOrFail($id);
+        return view('backend.employee.department.edit-department' ,compact('departments'));
     }
 
     /**
@@ -85,11 +81,10 @@ class EmployeePositionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Position::findOrFail($id)->update([
-            'position'    => $request->position,
-            'description' => $request->description,
+        Department::findOrFail($id)->update([
+            'department_name' => $request->department_name,
         ]);
-        return redirect()->route('position.index')->with('update','Successfully data Updated');
+        return redirect()->route('department.index')->with('update', 'Successfully Data Updated');
     }
 
     /**
@@ -100,7 +95,7 @@ class EmployeePositionController extends Controller
      */
     public function destroy($id)
     {
-        Position::findOrFail($id)->delete();
-        return redirect()->route('position.index')->with('delete', 'Successfully Data delete');
+        Department::findOrFail($id)->delete();
+        return redirect()->route('department.index')->with('delete', 'Successfully Data delete');
     }
 }

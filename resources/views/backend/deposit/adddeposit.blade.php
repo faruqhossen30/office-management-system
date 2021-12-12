@@ -5,7 +5,7 @@
             <div class="col-md-6 offset-3">
                 <div class="card mt-4">
                     <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
-                        <h6 class="font-weight-semibold">Add Deposite Information</h6>
+                        <h6 class="font-weight-semibold">Add Cradit Information</h6>
                         <a href="{{ route('deposit.view') }}" type="button"
                             class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
                                     class="icon-menu7"></i></b>List</a>
@@ -23,6 +23,17 @@
                                         class="form-control  @error('amount')is-invalid @enderror " placeholder="1,000 TK"
                                         value="{{ old('amount') }}">
                                     @error('amount')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Cradit Source:</label>
+                                    <input name="source" type="text"
+                                        class="form-control  @error('source')is-invalid @enderror " placeholder="please enter your cradit source"
+                                        value="{{ old('source') }}">
+                                    @error('source')
                                         <div class="invalid-feedback">
                                             {{ $message }}
                                         </div>
@@ -47,6 +58,35 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="row" id="mobile_div">
+                                    <div class="col-md-6">
+                                             <div class="form-group">
+                                                 <label>Mobile:</label>
+                                                 <input name="phone" type="text"
+                                                     class="form-control  @error('phone')is-invalid @enderror " placeholder="Please enter your phone number"
+                                                     value="{{ old('phone') }}">
+                                                 @error('phone')
+                                                     <div class="invalid-feedback">
+                                                         {{ $message }}
+                                                     </div>
+                                                 @enderror
+                                            </div>
+                                       </div>
+                                       <div class="col-md-6">
+                                         <div class="form-group">
+                                             <label>Transaction id:</label>
+                                             <input name="transaction" type="text"
+                                                 class="form-control  @error('transaction')is-invalid @enderror " placeholder="Please enter your tranjection id"
+                                                 value="{{ old('transaction') }}">
+                                             @error('transaction')
+                                                 <div class="invalid-feedback">
+                                                     {{ $message }}
+                                                 </div>
+                                             @enderror
+                                        </div>
+                                       </div>
+                                 </div>
+
 
                                 <div class="form-group" id="bank_div">
                                     <label class="text">Bank </label>
@@ -93,6 +133,15 @@
                                         </div>
                                     @enderror
                                 </div>
+                                <div class="form-group ml-1 mr-1">
+                                    <label>
+                                        <h6>Remarks<span class="text-danger">*</span></h6>
+                                    </label>
+                                    <textarea name="remarks" type="text"
+                                        class="form-control @error('remarks')is-invalid @enderror" rows="3"
+                                        placeholder="Enter your remarks">{{ old('remarks') }}</textarea>
+                                    <x-error name='remarks' />
+                                </div>
                                 <div class="d-flex justify-content-start align-items-center">
                                     <button type="submit" class="btn bg-blue "> <i class="icon-floppy-disk mr-2"></i>Save
                                     </button>
@@ -105,14 +154,15 @@
             </div>
         </div>
     </div>
+ 
 
 @endsection
 @push('script')
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
     <script>
+        // Bank for Check
         var bank_div = $('#bank_div');
         bank_div.hide();
-
         var bankselectId = $('input[name="bankselectId"]').val();
 
         $(document).on('change', 'select[name="payment_system_id"]', function() {
@@ -125,5 +175,35 @@
             }
 
         });
+
+        // Mobile Banking
+        var mobile_div = $('#mobile_div');
+        mobile_div.hide();
+
+        $(document).on('change', 'select[name="payment_system_id"]', function() {
+            var payment_system_id = $('select[name="payment_system_id"]').val();
+            mobile_div.hide();
+            $.get('/mobilebankingdata', function(data){
+                if(data){
+                    data.map(function(d){
+                        if(d.paymentsystem_id == payment_system_id){
+                            mobile_div.show();
+                        }
+
+                    });
+                }
+            });
+
+
+
+        });
+
+
+
+
+
+
+
+
     </script>
 @endpush
