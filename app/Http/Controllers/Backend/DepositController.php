@@ -35,20 +35,20 @@ class DepositController extends Controller
             'payment_system_id' => 'required',
             'office_id'         => 'required',
             // 'transaction'       => 'required',
-            'phone'             => 'required',
+            // 'phone'             => 'required',
             'source'            => 'required',
             'date'              => 'required',
-            'remarks'           => 'required',
+            // 'remarks'           => 'required',
 
         ], [
             'amount.required'            => 'Please input your amount ',
             'payment_system_id.required' => 'Please select your Payment System.',
             'office_id.required'         => 'Please select your office name ',
-            'transaction.required'       => 'Please select your transaction id ',
+            // 'transaction.required'       => 'Please select your transaction id ',
             'source.required'            => 'Please select your credit source',
-            'phone.required'             => 'Please select your phone ',
+            // 'phone.required'             => 'Please select your phone ',
             'date.required'              => 'Please input your date ',
-            'remarks.required'           => 'Please input your remarks ',
+            // 'remarks.required'           => 'Please input your remarks ',
         ]);
         $Data = [
             'amount'            => $request->amount,

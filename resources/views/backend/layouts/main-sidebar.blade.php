@@ -140,6 +140,14 @@
                                 <li class="nav-item"><a href="{{route('employee-information.index')}}" class="nav-link  @if (request()->routeIs('employee-information.index')) active @endif">view Employee</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a href="{{route('department.index') }}" class="nav-link @if (request()->routeIs('department.index')) active @endif ">Department</a>
+
+                            <ul class="nav nav-group-sub @if (request()->routeIs( 'department.index', 'department.create')) nav-item-expanded nav-item-open @endif">
+                                <li class="nav-item"><a href="{{route('department.create')}}" class="nav-link  @if (request()->routeIs('department.index')) active @endif">Add department</a></li>
+                                <li class="nav-item"><a href="{{route('department.index')}}" class="nav-link  @if (request()->routeIs('department.index')) active @endif">view department</a></li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item"><a href="#" class="nav-link"></a></li>
                     </ul>
                 </li>
@@ -158,21 +166,6 @@
 
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('department.index','department.create')) nav-item-expanded nav-item-open @endif">
-                    <a href="#" class="nav-link"><i class="
-                        icon-library2"></i>
-                        <span>Department</span></a>
-
-                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{ route('department.create') }}"
-                                class="nav-link @if (request()->routeIs('department.create')) active @endif">Add Department</a>
-                        </li>
-                        <li class="nav-item"><a href="{{ route('department.index') }}"
-                                class="nav-link @if (request()->routeIs('department.index')) active @endif">Department list</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
-                    </ul>
-                </li>
-
                <li class="nav-item nav-item-submenu @if (request()->routeIs('setting')) nav-item-expanded nav-item-open @endif">
                     <a href="{{route('setting')}}" class="nav-link"><i class="icon-cog3"></i> <span>Setting</span></a>
                 </li>

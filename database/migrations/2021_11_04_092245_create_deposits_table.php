@@ -19,10 +19,10 @@ class CreateDepositsTable extends Migration
             $table->unsignedBigInteger('payment_system_id');
             $table->unsignedBigInteger('author_id');
             $table->unsignedBigInteger('office_id');
-            $table->unsignedBigInteger('bank_id');
-            $table->string('phone');
-            $table->string('transaction');
-            $table->string('source');
+            $table->unsignedBigInteger('bank_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('transaction')->nullable();
+            $table->string('source')->nullable();
             $table->timestamp('date');
             $table->string('remarks');
             $table->timestamps();
