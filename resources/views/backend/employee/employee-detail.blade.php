@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-2">
-                    <div class="card-body">
+                    <div class="card-body"><!----------------card-body------------------->
                         <div class="row">
                             <div class="col-md-4">
                                 <!------------profile------------------>
@@ -90,6 +90,7 @@
                             <!-----------------Positional Information-------------->
                         </div>
 
+                        <!----------------------------------Personal Information---------------------------->
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card card-body bg-light text-center">
@@ -168,7 +169,8 @@
                             </div>
                         </div>
                         </div>
-                        <div class="row">
+                         <!----------------------------------Personal Information---------------------------->
+                        <div class="row"><!-----------------------Bio-Graphical Information------------------->
                             <div class="col-md-4">
                                 <div class="card card-body bg-light text-center">
                                 <table class="table table-hover" width="100%">
@@ -181,7 +183,7 @@
                                         </tr>
                                         <tr>
                                             <th>Gender</th>
-                                            <td>Male</td>
+                                            <td>{{ $employees->gender}}</td>
                                         </tr>
                                         <tr>
                                             <th>Marital Status</th>
@@ -191,8 +193,43 @@
                                     </tbody>
                                 </table>
                             </div>
-                            </div>
-                            <div class="col-md-8">
+                            </div><!----------------------Bio-Graphical Information-------------------------->
+                            <div class="col-md-8"><!-----------------Extra Information----------------------->
+                                <div class="card card-body bg-light text-center">
+                                <table class="table table-hover" width="100%">
+                                    <h1 class="text-center">Salary Information</h1>
+                                    <caption class="resumecaption">Extra Information</caption>
+                                    <tbody>
+                                        <tr>
+                                            <th>Basic Salary</th>
+                                            <td>{{ $employees->basic_salary }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>House Allowance</th>
+                                            <td>{{ $employees->house_allowance}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Medical Allowance</th>
+                                            <td>{{ $employees->medical_allowance }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Conveyance Allowance</th>
+                                            <td>{{ $employees->conveyance_allowance }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Other Allowance</th>
+                                            <td>{{ $employees->other_allowance }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Gross Galary</th>
+                                            <td>{{ $employees->gross_salary }}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div><!-----------------Extra Information----------------------->
+                        </div>
+                            <div class="col-md-12"><!-----------------Extra Information----------------------->
                                 <div class="card card-body bg-light text-center">
                                 <table class="table table-hover" width="100%">
                                     <h1 class="text-center">Extra Information</h1>
@@ -203,16 +240,17 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div><!-----------------Extra Information----------------------->
                         </div>
                         </div>
 
-                    </div>
+                    </div><!----------------------------card-body--------------------->
 
                 </div>
 
             </div> {{-- row --}}
 
-        </div> {{-- container --}}
+        </div>
 
+    </div> {{-- container --}}
     @endsection

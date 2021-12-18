@@ -34,6 +34,12 @@ class CreateEmployeesTable extends Migration
             $table->string('marital_status');
             $table->unsignedBigInteger('position_id')->nullable();
             $table->unsignedBigInteger('office_id')->nullable();
+            $table->integer('basic_salary');
+            $table->integer('house_allowance');
+            $table->integer('medical_allowance');
+            $table->integer('conveyance_allowance');
+            $table->integer('other_allowance');
+            $table->integer('gross_salary');
             $table->timestamps();
         });
     }

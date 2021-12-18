@@ -28,6 +28,12 @@ class Employee extends Model
         'description',
         'position_id',
         'office_id',
+        'basic_salary',
+        'house_allowance',
+        'medical_allowance',
+        'conveyance_allowance',
+        'other_allowance',
+        'gross_salary'
     ];
     protected $dates = ['date'];
 
