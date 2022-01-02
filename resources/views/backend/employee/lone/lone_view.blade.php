@@ -4,13 +4,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card mt-2">
-                    <div class="card-header header-elements-inline">
-                        <h5 class="card-title">Position list Information</h5>
+                    <div class="card-header header-elements-inline ">
+                        <h5 class="card-title">Lone Table</h5>
                         <div class="header-elements">
                             <div>
-                                <a href="{{ route('employee-information.create') }}" type="button"
+                                <a href="{{ route('lone.create') }}" type="button"
                                     class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                            class="icon-plus3"></i></b>Add Employee information</a>
+                                            class="icon-plus3"></i></b>Add Lone</a>
                             </div>
                         </div>
                     </div>
@@ -31,40 +31,56 @@
                         </div>
                     @endif
                     <div class="card-body">
+                        {{-- <div class="d-flex justify-content-between">
+                            <ul class="list-group list-group-horizontal">
+                                <a href="{{ route('deposit.view') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view')) active @endif">All TIme</a>
+                                <a href="{{ route('deposit.view.week') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week')) active @endif">This week</a>
+                                <a href="{{ route('deposit.view.month') }}"
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month')) active @endif">This
+                                    Month</a>
+                            </ul>
+                            <div>
+                                <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
+                            </div>
+                        </div> --}}
+                        {{-- table-start --}}
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Sl</th>
-                                        <th>Name</th>
-                                        <th>Phone</th>
-                                        <th>Photo</th>
-                                        <th>Department</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Action</th>
+                                        <th>Employee Name</th>
+                                        <th>approve_date</th>
+                                        <th class="text-center">apply_date</th>
+                                        <th class="text-center">repayment_from</th>
+                                        <th class="text-center">amount</th>
+                                        <th class="text-center">Installment</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                         $serial = 1;
+                                    @endphp
 
-                                    @foreach ($employees as $employee)
+                                    @foreach ($lones as $lone)
                                         <tr>
-                                            <th scope="row">{{ $employees->firstItem()+ $loop->index }}</th>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->phone }}</td>
-                                            <td>
-                                                <img src ="{{asset('/employee/photo/'.$employee->photo)}}" width="100px" height="100px" alt="photo">
-                                            </td>
-                                            <td>{{ $employee->department->department_name }}</td>
-                                            <td>{{ $employee->position->position ?? 'No Position' }}</td>
-                                            <td>{{ $employee->office->name}}</td>
+                                            <th scope="row">{{$serial++ }}</th>
+                                            <td>{{ $lone->employee->name }}</td>
+                                            <td>{{ $lone->approve_date }}</td>
+                                            <td>{{ $lone->apply_date }}</td>
+                                            <td>{{ $lone->repayment_from }}</td>
+                                            <td>{{ $lone->amount }}</td>
+                                            <td>{{ $lone->Installment }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="{{route('employee-information.show',$employee->id)}}" class="btn btn-success btn-xm icon-eye "></a>
+                                                    <a href="#" class="btn btn-success btn-xm icon-eye "></a>
                                                     <a href="#"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>
-                                                    <form action="{{route('employee-information.destroy',$employee->id)}}"
+                                                    <form action="{{ route('lone.destroy', $lone->id) }}"
                                                         method="POST" style="display: inline-flex">
                                                         @csrf
                                                         @method('DELETE')
@@ -73,15 +89,15 @@
                                                             class="btn btn-danger btn-xm ml-1  icon-trash"></button>
                                                     </form>
                                                 </div>
-                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="my-3">
-                                {{ $employees->links() }}
-                            </div>
+                            {{-- <div class="my-3">
+                                {{ $lones->links() }}
+                            </div> --}}
                         </div>
+                        {{-- end table --}}
                     </div>
                 </div>
             </div>
@@ -90,15 +106,6 @@
             <!-- /bordered table -->
         </div>
     </div>
-@endsection
-@push('css')
-    <style>
-        .table td,
-        .table th {
-            padding: .55rem .55rem .55rem .75rem;
-            vertical-align: top;
-            border-top: 1px solid #ddd;
-        }
 
-    </style>
-@endpush
+@endsection
+

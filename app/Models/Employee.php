@@ -18,6 +18,7 @@ class Employee extends Model
         'city',
         'zip_code',
         'gender',
+        'blood_group',
         'nid_no',
         'date_of_birth',
         'covid_vaccine',
@@ -28,6 +29,12 @@ class Employee extends Model
         'description',
         'position_id',
         'office_id',
+        'basic_salary',
+        'house_allowance',
+        'medical_allowance',
+        'conveyance_allowance',
+        'other_allowance',
+        'gross_salary'
     ];
     protected $dates = ['date'];
 

@@ -18,10 +18,17 @@ use App\Http\Controllers\Backend\Setting\SettingController;
 use App\Http\Controllers\Backend\EmployeePositionController;
 use App\Http\Controllers\Backend\EmployeeInformationController;
 use App\Http\Controllers\Backend\DepartmentController;
+use App\Http\Controllers\Backend\SalarySetupController;
+use App\Http\Controllers\Backend\SalaryController;
+use App\Http\Controllers\Backend\AdvanceSalaryController;
+use App\Http\Controllers\Backend\EmployeeSalaryAPI;
+use App\Http\Controllers\Backend\LoneController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
 use App\Models\ExpenseList;
+use App\Models\SalarySetUp;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,17 +108,24 @@ Route::prefix('admin')->group(function () {
         Route::get('setting',[SettingController::class,'settingView'])->name('setting');
         Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
         Route::post('setting/mobilebanking',[SettingController::class,'mobileBankingSetting'])->name('mobilebanking.setting');
+        // -----------------------------SalarySetUp---------------------------------------------
 
-
+         Route::resource('salary-setup', SalarySetupController::class);
+         Route::resource('salary', SalaryController::class);
 
         // -------------------------------------Employee--------------------------------------------------------
         Route::resource('position', EmployeePositionController::class);
         Route::resource('employee-information', EmployeeInformationController::class);
+        Route::get('employee/salaryinfo', [EmployeeSalaryAPI::class, 'showInfoAndSalary'])->name('showinfoandsalary');
+
 
         // -------------------------------------------------Department------------------------------------------------
         Route::resource('department', DepartmentController::class);
 
-
+        //---------------------advance salary------------------------------------
+        Route::resource('advance-salary',AdvanceSalaryController::class);
+        // ----------------------------Lone------------------------------------------------
+        Route::resource('lone',LoneController::class);
 
 
 

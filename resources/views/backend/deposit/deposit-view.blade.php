@@ -22,8 +22,6 @@
                             </button>
                         </div>
                     @endif
-
-
                     @if (session('delete'))
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>{{ session('delete') }}</strong>
@@ -47,6 +45,7 @@
                                 <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
                             </div>
                         </div>
+                        {{-- table-start --}}
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -67,7 +66,7 @@
                                         <tr>
                                             <th scope="row">{{ $deposits->firstItem() + $loop->index }}</th>
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
-                                            <td>{{ $deposit->paymentsystem->name }}</td>
+                                            <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
                                             <td>{{ $deposit->author->name }}</td>
                                             <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>
@@ -94,6 +93,7 @@
                                 {{ $deposits->links() }}
                             </div>
                         </div>
+                        {{-- end table --}}
                     </div>
                 </div>
             </div>
