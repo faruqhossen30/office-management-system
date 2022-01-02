@@ -169,6 +169,7 @@
                         <li class="nav-item"><a href="#" class="nav-link"></a></li>
                     </ul>
                 </li>
+
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('bank.index', 'bank.create')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
                         icon-library2"></i>
@@ -180,6 +181,36 @@
                         </li>
                         <li class="nav-item"><a href="{{ route('bank.index') }}"
                                 class="nav-link @if (request()->routeIs('bank.index')) active @endif">bank list</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('lone.index', 'lone.create')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="
+                        icon-cash2"></i>
+                        <span>Loan</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{ route('lone.create') }}"
+                                class="nav-link @if (request()->routeIs('lone.create')) active @endif">Add Loan</a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('lone.index') }}"
+                                class="nav-link @if (request()->routeIs('lone.index')) active @endif">Loan list</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('salary-setup.create', 'salary-setup.index')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="
+                        icon-credit-card2"></i>
+                        <span>Payroll</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{ route('salary-setup.create') }}"
+                                class="nav-link @if (request()->routeIs('salary-setup.create')) active @endif">Salary Genarate</a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('salary.index') }}"
+                                class="nav-link @if (request()->routeIs('salary.index')) active @endif">View Salary</a></li>
                         <li class="nav-item"><a href="#" class="nav-link"></a></li>
 
                     </ul>

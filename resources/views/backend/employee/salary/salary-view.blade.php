@@ -39,9 +39,9 @@
                                     <th>Employee Name</th>
                                     <th>Position</th>
                                     <th>Department</th>
-                                    <th>office</th>
-                                    <th>basic</th>
-                                    <th>grow_salary</th>
+                                    <th>Office</th>
+                                    <th>Basic</th>
+                                    <th>Grow_salary</th>
                                     <th>Payment_date</th>
                                     <th>Action</th>
                                 </tr>
@@ -50,23 +50,23 @@
                                 @php
                                     $serial = 1;
                                 @endphp
-                                @foreach ($salary_set_ups as $salary_set_up)
+                                @foreach ($salaries as $salary)
                                     <tr>
-                                        <th scope="row">{{ $serial++ }}</th>
-                                        <td>{{$salary_set_up->employee->name}}</td>
-                                        <td>{{ $salary_set_up->position->position ?? 'Not found'}}</td>
-                                        <td>{{ $salary_set_up->department->department_name }}</td>
-                                        <td>{{ $salary_set_up->offices->name}}</td>
-                                        <td>{{ $salary_set_up->basic}}</td>
-                                        <td>{{ $salary_set_up->grow_salary}}</td>
-                                        <td>{{ $salary_set_up->Payment_date}}</td>
+                                        <th scope="row">{{$serial++}}</th>
+                                        <td>{{$salary->employee->name}}</td>
+                                        <td>{{ $salary->employee->position->position}}</td>
+                                        <td>{{ $salary->employee->department->department_name}}</td>
+                                        <td>{{ $salary->employee->office->name}}</td>
+                                        <td>{{ $salary->basic_salary}}</td>
+                                        <td>{{ $salary->gross_salary}}</td>
+                                        <td>{{ $salary->payment_date}}</td>
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <a href="#" class="btn btn-success btn-xm icon-eye "></a>
                                                 <a href="#"
                                                     class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                 </a>
-                                                <form action="#"
+                                                <form action="{{route('salary-setup.destroy',$salary->id)}}"
                                                     method="POST" style="display: inline-flex">
                                                     @csrf
                                                     @method('DELETE')
@@ -80,6 +80,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- <div class="my-3">
+                            {{ $salary_set_ups->links() }}
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -90,3 +93,4 @@
     </div>
 </div>
 @endsection
+{{-- {{ $salary_set_ups->firstItem() + $loop->index }} --}}

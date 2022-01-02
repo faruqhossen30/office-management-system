@@ -173,6 +173,27 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
+                                                <label class="text">Blood Group<span
+                                                        class="text-danger">*</span></label>
+                                                <div class="form-group">
+                                                    <select
+                                                        class="form-control @error('blood_group') is-invalid @enderror"
+                                                        name="blood_group">
+                                                        <option value="">Select your blood_group </option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="O+">O-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value=" AB-">AB-</option>
+                                                    </select>
+                                                    <x-error name='blood_group' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
                                                 <label>Date of Birth<span class="text-danger">*</span></label>
                                                 <input name="date_of_birth" type="date"
                                                     class="form-control  @error('date_of_birth')is-invalid @enderror"
@@ -341,7 +362,7 @@
                                                     class="form-control dropify  @error('photo')is-invalid @enderror"
                                                     data-show-errors="true" data-errors-position="outside"
                                                     data-allowed-file-extensions="jpg jpeg png bmp"
-                                                    data-max-file-size-preview="1M">
+                                                    data-max-file-size-preview="6M">
                                             </div>
                                             <x-error name='photo' />
                                         </div>
@@ -423,7 +444,7 @@
             let totalSalary = parseInt(basic.val()) + parseInt(house_tk.text()) + parseInt(medical_tk.text()) + parseInt(conveyance_tk.text()) + parseInt(other_tk.text());
             grossSalary.val(totalSalary);
         }
-        
+
 
 
     </script>

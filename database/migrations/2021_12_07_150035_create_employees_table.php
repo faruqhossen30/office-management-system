@@ -24,6 +24,7 @@ class CreateEmployeesTable extends Migration
             $table->string('city');
             $table->integer('zip_code');
             $table->string('gender');
+            $table->string('blood_group');
             $table->string('nid_no');
             $table->dateTime('date_of_birth');
             $table->string('covid_vaccine');

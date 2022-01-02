@@ -9,7 +9,7 @@
                     <div class="card">
                         <div class="card-header bg-light d-flex justify-content-between p-2 pl-3">
                             <h6 class="font-weight-semibold"> Advance Salary information</h6>
-                            <a href="{{ route('department.index') }}" type="button"
+                            <a href="{{ route('advance-salary.index') }}" type="button"
                                 class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
                                         class="icon-menu7"></i></b>List</a>
                         </div>

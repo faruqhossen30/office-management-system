@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdvanceSalary;
 use App\Models\Department;
 use App\Models\Employee;
+use App\Models\Lone;
 use App\Models\Office;
 use App\Models\Position;
 use App\Models\SalarySetUp;
@@ -19,11 +21,11 @@ class SalarySetupController extends Controller
      */
     public function index()
     {
-        $salary_set_ups = SalarySetUp::with('employee', 'position','department','offices')->latest()->get();
+        $salary_set_ups = SalarySetUp::with('employee', 'position','department','offices')->latest()->paginate(5);
         // return  $salary_set_ups ;
-        
 
-       return view('backend.employee.salary.salary-view',compact('salary_set_ups'));
+
+       return view('backend.employee.salary.salary-view',compact('salary_set_ups',));
     }
 
     /**
@@ -36,7 +38,11 @@ class SalarySetupController extends Controller
         $positions = Position::all();
         $employees = Employee::all();
         $departments = Department::all();
-        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices'));
+        $advance_salaries = AdvanceSalary::all();
+        $lones = Lone::all();
+        // return $lones;
+        // return $advance_salaries;
+        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices','advance_salaries', 'lones'));
     }
 
     /**
@@ -120,6 +126,7 @@ class SalarySetupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        SalarySetUp::findOrFail($id)->delete();
+        return redirect()->route('salary-setup.index')->with('delete', 'Successfully Data delete');
     }
 }

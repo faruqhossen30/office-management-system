@@ -59,7 +59,7 @@ class DepositController extends Controller
             'office_id'         => $request->office_id,
             'author_id'         => Auth::user()->id,
             'date'              => $request->date,
-            'bank_id'           => $request->bank_id,
+            // 'bank_id'           => $request->bank_id,
             'remarks'           => $request->remarks,
         ];
         Deposit::create($Data);
@@ -70,6 +70,7 @@ class DepositController extends Controller
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->latest()->paginate(6);
         $total = Deposit::sum('amount');
         // return $test;
+        // return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
@@ -110,6 +111,7 @@ class DepositController extends Controller
             'transaction'       => $request->transaction,
             'source'            => $request->source,
             'phone'             => $request->phone,
+            // 'bank_id'           => $request->bank_id,
             'office_name'       => $request->office_name,
             'office_id'         => $request->office_id,
             'date'              => $request->date,

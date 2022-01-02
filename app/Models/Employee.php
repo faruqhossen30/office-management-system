@@ -18,6 +18,7 @@ class Employee extends Model
         'city',
         'zip_code',
         'gender',
+        'blood_group',
         'nid_no',
         'date_of_birth',
         'covid_vaccine',

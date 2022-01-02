@@ -18,7 +18,7 @@ class EmployeeInformationController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('position', 'office','department')->latest()->get();
+        $employees = Employee::with('position', 'office','department')->latest()->paginate(4);
         // return $employees ;
         $positions = Position::latest()->get();
         // return $positions;
@@ -64,6 +64,7 @@ class EmployeeInformationController extends Controller
             'city'                 => 'required',
             'zip_code'             => 'required',
             'gender'               => 'required',
+            'blood_group'          => 'required',
             'nid_no'               => 'required',
             'date_of_birth'        => 'required',
             'covid_vaccine'        => 'required',
@@ -90,6 +91,7 @@ class EmployeeInformationController extends Controller
             'city.required'                 => 'please enter your city',
             'zip_code.required'             => 'please enter your zip_code',
             'gender.required'               => 'please enter your gender',
+            'blood_group.required'          => 'please enter your blood_group',
             'nid_no.required'               => 'please enter your nid_no',
             'date_of_birth.required'        => 'please enter your date_of_birth',
             'covid_vaccine.required'        => 'please enter your covid_vaccine',
@@ -116,31 +118,32 @@ class EmployeeInformationController extends Controller
             $photo->move('employee/photo', $imageName);
 
             Employee::create([
-                'name'              => $request->name,
-                'email'             => $request->email,
-                'phone'             => $request->phone,
-                'phone_alt'         => $request->phone_alt,
-                'country'           => $request->country,
-                'address'           => $request->address,
-                'city'              => $request->city,
-                'zip_code'          => $request->zip_code,
-                'gender'            => $request->gender,
-                'nid_no'            => $request->nid_no,
-                'date_of_birth'     => $request->date_of_birth,
-                'photo'             => $imageName,
-                'covid_vaccine'     => $request->covid_vaccine,
-                'join_date'         => $request->join_date,
-                'department_id'     => $request->department_id,
-                'marital_status'    => $request->marital_status,
-                'description'       => $request->description,
-                'position_id'       => $request->position_id,
-                'office_id'         => $request->office_id,
-                'basic_salary'      => $request->basic_salary,
-                'house_allowance'   => $request->house_allowance,
-                'medical_allowance' => $request->medical_allowance,
+                'name'                 => $request->name,
+                'email'                => $request->email,
+                'phone'                => $request->phone,
+                'phone_alt'            => $request->phone_alt,
+                'country'              => $request->country,
+                'address'              => $request->address,
+                'city'                 => $request->city,
+                'zip_code'             => $request->zip_code,
+                'gender'               => $request->gender,
+                'blood_group'          => $request->blood_group,
+                'nid_no'               => $request->nid_no,
+                'date_of_birth'        => $request->date_of_birth,
+                'photo'                => $imageName,
+                'covid_vaccine'        => $request->covid_vaccine,
+                'join_date'            => $request->join_date,
+                'department_id'        => $request->department_id,
+                'marital_status'       => $request->marital_status,
+                'description'          => $request->description,
+                'position_id'          => $request->position_id,
+                'office_id'            => $request->office_id,
+                'basic_salary'         => $request->basic_salary,
+                'house_allowance'      => $request->house_allowance,
+                'medical_allowance'    => $request->medical_allowance,
                 'conveyance_allowance' => $request->conveyance_allowance,
-                'other_allowance'   => $request->other_allowance,
-                'gross_salary'      => $request->gross_salary,
+                'other_allowance'      => $request->other_allowance,
+                'gross_salary'         => $request->gross_salary,
             ]);
             return redirect()->route('employee-information.index')->with('success','Successfully data added');
         }

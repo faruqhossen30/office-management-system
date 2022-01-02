@@ -19,7 +19,10 @@ use App\Http\Controllers\Backend\EmployeePositionController;
 use App\Http\Controllers\Backend\EmployeeInformationController;
 use App\Http\Controllers\Backend\DepartmentController;
 use App\Http\Controllers\Backend\SalarySetupController;
+use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AdvanceSalaryController;
+use App\Http\Controllers\Backend\EmployeeSalaryAPI;
+use App\Http\Controllers\Backend\LoneController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -108,17 +111,21 @@ Route::prefix('admin')->group(function () {
         // -----------------------------SalarySetUp---------------------------------------------
 
          Route::resource('salary-setup', SalarySetupController::class);
+         Route::resource('salary', SalaryController::class);
 
         // -------------------------------------Employee--------------------------------------------------------
         Route::resource('position', EmployeePositionController::class);
         Route::resource('employee-information', EmployeeInformationController::class);
+        Route::get('employee/salaryinfo', [EmployeeSalaryAPI::class, 'showInfoAndSalary'])->name('showinfoandsalary');
+
 
         // -------------------------------------------------Department------------------------------------------------
         Route::resource('department', DepartmentController::class);
 
         //---------------------advance salary------------------------------------
         Route::resource('advance-salary',AdvanceSalaryController::class);
-
+        // ----------------------------Lone------------------------------------------------
+        Route::resource('lone',LoneController::class);
 
 
 
