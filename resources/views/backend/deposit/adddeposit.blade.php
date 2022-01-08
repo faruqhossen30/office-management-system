@@ -18,7 +18,7 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <label>Amount:</label>
+                                    <label>Amount<span class="text-danger">*</span></label>
                                     <input name="amount" type="number"
                                         class="form-control  @error('amount')is-invalid @enderror " placeholder="1,000 TK"
                                         value="{{ old('amount') }}">
@@ -29,7 +29,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Cradit Source:</label>
+                                    <label>Cradit Source<span class="text-danger">*</span></label>
                                     <input name="source" type="text"
                                         class="form-control  @error('source')is-invalid @enderror " placeholder="please enter your cradit source"
                                         value="{{ old('source') }}">
@@ -42,7 +42,7 @@
 
                                 <input type="hidden" name="bankselectId" value="{{ $bankselectId }}">
                                 <div class="form-group">
-                                    <label class="text">Payment-System:</label>
+                                    <label class="text">Payment-System<span class="text-danger">*</span></label>
                                     <div class="form-group">
                                         <select class="form-control @error('payment_system_id') is-invalid @enderror"
                                             name="payment_system_id">
@@ -61,7 +61,7 @@
                                 <div class="row" id="mobile_div">
                                     <div class="col-md-6">
                                              <div class="form-group">
-                                                 <label>Mobile:</label>
+                                                 <label>Mobile<span class="text-danger">*</span></label>
                                                  <input name="phone" type="text"
                                                      class="form-control  @error('phone')is-invalid @enderror " placeholder="Please enter your phone number"
                                                      value="{{ old('phone') }}">
@@ -86,10 +86,8 @@
                                         </div>
                                        </div>
                                  </div>
-
-
                                 <div class="form-group" id="bank_div">
-                                    <label class="text">Bank </label>
+                                    <label class="text">Bank <span class="text-danger">*</span></label>
                                     <div class="form-group">
                                         <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
                                             <option value="">Select bank </option>
@@ -105,13 +103,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="text">Office-Name:</label>
+                                    <label class="text">Office-Name<span class="text-danger">*</span></label>
                                     <div class="form-group">
                                         <select class="form-control @error('office_id') is-invalid @enderror"
                                             name="office_id">
                                             <option value="">Select Office</option>
                                             @foreach ($offices as $office)
-                                                <option value="{{ $office->id }}">{{ $office->name }}</option>
+                                                <option value="{{ $office->id }}"  >{{ $office->name }}</option>
                                             @endforeach
 
                                         </select>
@@ -123,8 +121,9 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <label>Deposit time:</label>
+                                    <label>Deposit time<span class="text-danger">*</span></label>
                                     <input name="date" type="datetime-local"
                                         class="form-control @error('date')is-invalid @enderror" placeholder="Your date">
                                     @error('date')
@@ -135,7 +134,7 @@
                                 </div>
                                 <div class="form-group ml-1 mr-1">
                                     <label>
-                                        <h6>Remarks<span class="text-danger">*</span></h6>
+                                        <h6>Remarks</h6>
                                     </label>
                                     <textarea name="remarks" type="text"
                                         class="form-control @error('remarks')is-invalid @enderror" rows="3"
@@ -154,7 +153,7 @@
             </div>
         </div>
     </div>
- 
+
 
 @endsection
 @push('script')
@@ -193,17 +192,6 @@
                     });
                 }
             });
-
-
-
         });
-
-
-
-
-
-
-
-
     </script>
 @endpush

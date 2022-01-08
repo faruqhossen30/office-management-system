@@ -17,6 +17,7 @@ class DepositController extends Controller
 {
     public function create()
     {
+
         $offices = Office::get();
         $paymentSystem = PaymentSystem::all();
         $banks = Bank::all();
@@ -59,7 +60,7 @@ class DepositController extends Controller
             'office_id'         => $request->office_id,
             'author_id'         => Auth::user()->id,
             'date'              => $request->date,
-            // 'bank_id'           => $request->bank_id,
+            'bank_id'           => $request->bank_id,
             'remarks'           => $request->remarks,
         ];
         Deposit::create($Data);
@@ -97,8 +98,10 @@ class DepositController extends Controller
     {
         $deposit =  Deposit::findOrFail($id);
         $offices =  Office::all();
+        $banks = Bank::all();
         $paymentSystem = PaymentSystem::get();
-        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem'));
+        // return
+        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem','banks'));
     }
 
     //    --------------------deposit update-------------------------
@@ -111,7 +114,7 @@ class DepositController extends Controller
             'transaction'       => $request->transaction,
             'source'            => $request->source,
             'phone'             => $request->phone,
-            // 'bank_id'           => $request->bank_id,
+            'bank_id'           => $request->bank_id,
             'office_name'       => $request->office_name,
             'office_id'         => $request->office_id,
             'date'              => $request->date,

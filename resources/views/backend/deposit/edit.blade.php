@@ -14,7 +14,7 @@
                                 <form action="{{ route('deposit.update', $deposit->id) }}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label>Amount:</label>
+                                        <label>Amount <span class="text-danger">*</span></label>
                                         <input name="amount" type="text"
                                             class="form-control  @error('amount')is-invalid @enderror"
                                             value="{{ $deposit->amount }}">
@@ -25,7 +25,7 @@
                                         @enderror
                                     </div>
                                          <div class="form-group">
-                                    <label>Cradit Source:</label>
+                                    <label>Cradit Source <span class="text-danger">*</span></label>
                                     <input name="source" type="text"
                                         class="form-control  @error('source')is-invalid @enderror " placeholder="please enter your cradit source"
                                         value="{{$deposit->source}}">
@@ -36,7 +36,7 @@
                                     @enderror
                                 </div>
                                     <div class="form-group">
-                                        <label class="text">Payment-System:</label>
+                                        <label class="text">Payment-System <span class="text-danger">*</span></label>
                                         <div class="form-group">
                                             <select class="form-control @error('payment_system_id') is-invalid @enderror"
                                                 name="payment_system_id">
@@ -52,10 +52,11 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @if ($deposit->phone )
                                     <div class="row" id="mobile_div">
                                         <div class="col-md-6">
                                                  <div class="form-group">
-                                                     <label>Mobile:</label>
+                                                     <label>Mobile <span class="text-danger">*</span></label>
                                                      <input name="phone" type="text"
                                                          class="form-control  @error('phone')is-invalid @enderror " placeholder="Please enter your phone number"
                                                          value="{{$deposit->phone}}">
@@ -68,7 +69,7 @@
                                            </div>
                                            <div class="col-md-6">
                                              <div class="form-group">
-                                                 <label>Transaction id:</label>
+                                                 <label>Transaction id</label>
                                                  <input name="transaction" type="text"
                                                      class="form-control  @error('transaction')is-invalid @enderror " placeholder="Please enter your tranjection id"
                                                      value="{{$deposit->transaction}}">
@@ -80,24 +81,27 @@
                                             </div>
                                            </div>
                                      </div>
-                                     {{-- <div class="form-group" id="bank_div">
-                                        <label class="text">Bank </label>
-                                        <div class="form-group">
-                                            <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
-                                                <option value="">Select bank </option>
-                                                @foreach ($banks as $bank)
-                                                    <option value="{{ $bank->id }}" @if ($bank->id == $deposit->bank_id) selected @endif>{{ $bank->name}}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('bank_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                    @endif
+                                     @if ($deposit->bank_id)
+                                        <div class="form-group" id="bank_div">
+                                            <label class="text">Bank<span class="text-danger">*</span></label>
+                                            <div class="form-group">
+                                                <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
+                                                    <option value="">Select bank </option>
+                                                    @foreach ($banks as $bank)
+                                                        <option value="{{ $bank->id }}" @if ($bank->id == $deposit->bank_id) selected @endif>{{ $bank->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                                @error('bank_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
                                         </div>
-                                    </div> --}}
+                                     @endif
                                     <div class="form-group">
-                                        <label class="text">Office-Name:</label>
+                                        <label class="text">Office-Name <span class="text-danger">*</span></label>
                                         <div class="form-group">
                                             <select class="form-control @error('office_id') is-invalid @enderror"
                                                 name="office_id">
@@ -117,19 +121,20 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Date:</label>
+                                        <label>Date <span class="text-danger">*</span></label>
                                         <input name="date" type="datetime-local"
                                             class="form-control @error('date')is-invalid @enderror"
-                                            value="{{ $deposit->date }}">
+                                            value="{{$deposit->date->format('m/d/Y  h:m A')}}">
                                         @error('date')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+                                    {{-- <h1>{{ $deposit->date->format('m/d/Y  h:m A') }}</h1> --}}
                                     <div class="form-group ml-1 mr-1">
                                         <label>
-                                            <h6>Remarks<span class="text-danger">*</span></h6>
+                                            <h6>Remarks</h6>
                                         </label>
                                         <textarea name="remarks" type="text"
                                             class="form-control @error('remarks')is-invalid @enderror" rows="3"

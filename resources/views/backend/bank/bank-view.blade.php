@@ -33,23 +33,14 @@
                     </div>
                 @endif
                 <div class="card-body">
-                    {{-- <div class="d-flex justify-content-between">
-                        <ul class="list-group list-group-horizontal">
-                            <a href="{{route('deposit.view')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view') ) active @endif">All TIme</a>
-                            <a href="{{route('deposit.view.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week') ) active @endif">This week</a>
-                            <a href="{{route('deposit.view.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month') ) active @endif">This Month</a>
-                          </ul>
-                          <div>
-                            <button class="btn btn-primary btn-lg mt-1">Total: {{$total}} TK</button>
-                          </div>
-                    </div> --}}
+
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th>Sl</th>
                                     <th>Bank Name</th>
-                                    <th>Iformation</th>
+                                    {{-- <th>Iformation</th> --}}
                                     <th>Account Number</th>
                                     <th>Account holder</th>
                                     <th class="text-center">Mobile Number</th>
@@ -66,18 +57,18 @@
                                     <tr>
                                         <th scope="row">{{$serial++}}</th>
                                         <td>{{ $bank->name }}</td>
-                                        <td>{{ $bank->information }}</td>
+                                        {{-- <td>{{ $bank->information }}</td> --}}
                                         <td>{{ $bank->account_number }}</td>
                                         <td>{{ $bank->account_holder }}</td>
-                                        <td>{{ $bank->branch_name }}</td>
                                         <td>{{ $bank->mobile }}</td>
+                                        <td>{{ $bank->branch_name }}</td>
                                         <td>{{ $bank->address }}</td>
 
 
 
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary icon-eye"></a>
-                                            <a href="#"
+                                            <a href="{{route('bank.edit',$bank->id)}}"
                                                 class="btn btn-sm btn-info icon-pencil7"></a>
                                                 <form action="{{ route('bank.destroy', $bank->id) }}"
                                                     method="POST" style="display: inline-flex">

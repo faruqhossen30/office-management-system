@@ -21,9 +21,12 @@ class CreateExpenseListsTable extends Migration
             $table->unsignedBigInteger('payment_system_id');
             $table->unsignedBigInteger('office_id');
             $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('bank_id');
+            $table->string('phone');
+            $table->string('transaction')->nullable();
             $table->timestamp('date');
-            $table->string('description', 1000);
-            $table->string('remarks');
+            $table->string('description', 1000)->nullable();
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

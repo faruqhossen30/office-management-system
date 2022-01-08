@@ -68,7 +68,7 @@
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
-                                            <td>{{ $deposit->author->name }}</td>
+                                            <td>{{ $deposit->author->name ?? '' }}</td>
                                             <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($deposit->created_at)->diffForHumans() }}</td>

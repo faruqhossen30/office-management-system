@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+
 use App\Http\Controllers\Controller;
+use App\Models\Bank;
 use App\Models\Expense;
 use App\Models\ExpenseList;
 use App\Models\Office;
+use App\Models\Setting\BankSetting;
+use App\Models\Setting\MobileBankingSetting;
 use App\Models\PaymentSystem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +22,10 @@ class ExpenseListController extends Controller
      */
     public function index()
     {
-        $expense_lists = ExpenseList::with('office','expencetype', 'paymentsystem', 'author')->latest()->paginate(6);
+        $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author')->latest()->paginate(6);
         // return $expense_lists;
         $total = ExpenseList::sum('amount');
-        return view('backend.expense-list.expense_view',compact('expense_lists','total'));
+        return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
     }
 
 
@@ -34,9 +38,12 @@ class ExpenseListController extends Controller
     {
         $expenses = Expense::get();
         $offices = Office::all();
+        $banks = Bank::all();
+        $bankselectId = BankSetting::first()->bank_id;
+        // return $bankselectId;
         $paymentsystems = PaymentSystem::orderBy('name', 'asc')->get();
         // return $expenses;
-        return view('backend.expense-list.create_expense', compact('expenses', 'offices', 'paymentsystems'));
+        return view('backend.expense-list.create_expense', compact('expenses', 'offices', 'banks', 'paymentsystems', 'bankselectId'));
     }
 
     /**
@@ -48,26 +55,22 @@ class ExpenseListController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
-        $request->validate([
-            'amount'            => 'required',
-            'office_id'         => 'required',
-            'expense_id'        => 'required',
-            'payment_system_id' => 'required',
-            'date'              => 'required',
-            'description'       => 'required',
-            // 'voucher_no'        => 'required',
-            'remarks'           => 'required',
-        ]
-        ,[
-            'amount.required'            => 'Please enter your date',
-            'office_id.required'         => 'Please enter your office name',
-            'expense_id.required'        => 'Please enter your description',
-            'payment_system_id.required' => 'Please enter your payment system',
-            'date.required'              => 'Please enter your date',
-            'description.required'       => 'Please enter your description',
-            // 'voucher_no.required'        => 'Please enter your remarks',
-            'remarks.required'           => 'Please enter your remarks',
-        ]);
+        $request->validate(
+            [
+                'amount'            => 'required',
+                'office_id'         => 'required',
+                'expense_id'        => 'required',
+                'payment_system_id' => 'required',
+                'date'              => 'required',
+            ],
+            [
+                'amount.required'            => 'Please enter your date',
+                'office_id.required'         => 'Please enter your office name',
+                'expense_id.required'        => 'Please enter your description',
+                'payment_system_id.required' => 'Please enter your payment system',
+                'date.required'              => 'Please enter your date',
+            ]
+        );
         ExpenseList::Create([
             'amount'            => $request->amount,
             'office_id'         => $request->office_id,
@@ -75,11 +78,14 @@ class ExpenseListController extends Controller
             'expense_id'        => $request->expense_id,
             'voucher_no'        => $request->voucher_no,
             'payment_system_id' => $request->payment_system_id,
+            'bank_id'           => $request->bank_id,
+            'phone'             => $request->phone,
+            'transaction'       => $request->transaction,
             'date'              => $request->date,
             'description'       => $request->description,
             'remarks'           => $request->remarks,
         ]);
-        return redirect()->route('expenselist.index')->with('success','Successfully data added');
+        return redirect()->route('expenselist.index')->with('success', 'Successfully data added');
     }
 
     /**
@@ -90,7 +96,6 @@ class ExpenseListController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -102,12 +107,15 @@ class ExpenseListController extends Controller
     public function edit($id)
     {
         $expense_list = ExpenseList::findOrFail($id);
-        $expenses =Expense::all();
+        $expenses = Expense::all();
+        // return  $expenses;
         $offices = Office::all();
+        $bankselectId = BankSetting::first()->bank_id;
+        // return $bankselectId;
         $paymentsystems = PaymentSystem::get();
+        $banks = Bank::all();
         // return $expense_list;
-        return view('backend.expense-list.edit_expense',compact('expense_list','expenses','offices','paymentsystems'));
-
+        return view('backend.expense-list.edit_expense', compact('banks', 'expense_list', 'expenses', 'offices', 'paymentsystems', 'bankselectId'));
     }
 
     /**
@@ -119,19 +127,23 @@ class ExpenseListController extends Controller
      */
     public function update(Request $request, $id)
     {
-      ExpenseList::findOrFail($id)->update([
-        'date'         => $request->date,
-        'expense_type' => $request->expense_type,
-        'description'  => $request->description,
-        'voucher_no'   => $request->voucher_no,
-        'amount'       => $request->amount,
-        'payment_type' => $request->payment_type,
-        'remarks'      => $request->remarks,
-        'office_id'    => $request->office_id,
-      ]);
+        ExpenseList::findOrFail($id)->update([
+            'amount'            => $request->amount,
+            'office_id'         => $request->office_id,
+            'author_id'         => Auth::user()->id,
+            'expense_id'        => $request->expense_id,
+            'voucher_no'        => $request->voucher_no,
+            'payment_system_id' => $request->payment_system_id,
+            'bank_id'           => $request->bank_id,
+            'phone'             => $request->phone,
+            'transaction'       => $request->transaction,
+            'date'              => $request->date,
+            'description'       => $request->description,
+            'remarks'           => $request->remarks,
+        ]);
 
 
-      return redirect()->route('expenselist.index')->with('update', 'Successfully Data Updated');
+        return redirect()->route('expenselist.index')->with('update', 'Successfully Data Updated');
     }
 
     /**
@@ -144,5 +156,12 @@ class ExpenseListController extends Controller
     {
         ExpenseList::findOrFail($id)->delete();
         return redirect()->route('expenselist.index')->with('delete', 'Successfully Data delete');
+    }
+
+    // Mobile Baking data
+    public function mobibleBankingData()
+    {
+        $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
+        return $data;
     }
 }

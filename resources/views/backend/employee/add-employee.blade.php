@@ -157,15 +157,15 @@
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="text">Marital Status<span
+                                                <label for="exampleSelectRounded0">Marital Status<span
                                                         class="text-danger">*</span></label>
                                                 <div class="form-group">
                                                     <select
                                                         class="form-control @error('marital_status') is-invalid @enderror"
-                                                        name="marital_status">
+                                                     id="exampleSelectRounded0"   name="marital_status">
                                                         <option value="">Select your marital status </option>
-                                                        <option value="married">married</option>
-                                                        <option value="Unmarid">Unmarid</option>
+                                                        <option value="married">Married</option>
+                                                        <option value="unmarid">Unmarid</option>
                                                     </select>
                                                     <x-error name='marital_status' />
                                                 </div>
@@ -173,20 +173,20 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="text">Blood Group<span
+                                                <label for="exampleSelectRounded0">Blood Group<span
                                                         class="text-danger">*</span></label>
                                                 <div class="form-group">
                                                     <select
                                                         class="form-control @error('blood_group') is-invalid @enderror"
-                                                        name="blood_group">
+                                                    id="exampleSelectRounded0"    name="blood_group">
                                                         <option value="">Select your blood_group </option>
-                                                        <option value="A+">A+</option>
-                                                        <option value="A-">A-</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="B-">B-</option>
-                                                        <option value="O+">O-</option>
-                                                        <option value="AB+">AB+</option>
-                                                        <option value=" AB-">AB-</option>
+                                                        <option value="1">A+</option>
+                                                        <option value="2">A-</option>
+                                                        <option value="3">B+</option>
+                                                        <option value="4">B-</option>
+                                                        <option value="5">O-</option>
+                                                        <option value="6">AB+</option>
+                                                        <option value=" 7">AB-</option>
                                                     </select>
                                                     <x-error name='blood_group' />
                                                 </div>
@@ -195,7 +195,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Date of Birth<span class="text-danger">*</span></label>
-                                                <input name="date_of_birth" type="date"
+                                                <input name="date_of_birth" type="datetime-local"
                                                     class="form-control  @error('date_of_birth')is-invalid @enderror"
                                                     placeholder=" date of birth" value="{{ old('date_of_birth') }}">
                                                 <x-error name='date_of_birth' />
@@ -203,14 +203,14 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Gender<span class="text-danger">*</span></label>
+                                                <label for="exampleSelectRounded0">Gender<span class="text-danger">*</span></label>
                                                 <div class="form-group">
                                                     <select class="form-control @error('gender') is-invalid @enderror"
-                                                        name="gender">
+                                                       id="exampleSelectRounded0" name="gender">
                                                         <option value="">Select your gender </option>
-                                                        <option value="male">male</option>
-                                                        <option value="female">female</option>
-                                                        <option value="other">other</option>
+                                                        <option value="1">male</option>
+                                                        <option value="2">female</option>
+                                                        <option value="3">other</option>
                                                     </select>
                                                     <x-error name='gender' />
                                                 </div>
@@ -234,17 +234,17 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Covid-19 Vaccine</label>
+                                                <label for="exampleSelectRounded0">Covid-19 Vaccine</label>
                                                 <div class="form-group">
                                                     <select
                                                         class="form-control @error('covid_vaccine') is-invalid @enderror"
-                                                        name="covid_vaccine">
+                                                    id="exampleSelectRounded0"    name="covid_vaccine">
                                                         <option value="">Select your Vaccine </option>
-                                                        <option value="Oxford–AstraZeneca3">Oxford–AstraZeneca3</option>
-                                                        <option value="Pfizer–BioNTech">Pfizer–BioNTech</option>
-                                                        <option value="Sinopharm-BIBP7"> Sinopharm BIBP7</option>
-                                                        <option value="Sputnik-V"> Sputnik V</option>
-                                                        <option value="Moderna">Moderna</option>
+                                                        <option value="1">Oxford–AstraZeneca3</option>
+                                                        <option value="2">Pfizer–BioNTech</option>
+                                                        <option value="3"> Sinopharm BIBP7</option>
+                                                        <option value="4"> Sputnik V</option>
+                                                        <option value="5">Moderna</option>
                                                     </select>
                                                     <x-error name='covid_vaccine' />
                                                 </div>
@@ -366,7 +366,7 @@
                                             </div>
                                             <x-error name='photo' />
                                         </div>
-
+                                    </div>
                                         <div class="form-group ml-1 mr-1">
                                             <label>
                                                 <h6>Description <span class="text-danger">*</span></h6>

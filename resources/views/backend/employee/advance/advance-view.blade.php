@@ -11,7 +11,7 @@
                         <div>
                             <a href="{{ route('advance-salary.create') }}" type="button"
                                 class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
-                                        class="icon-plus3"></i></b>Add advance information</a>
+                                        class="icon-plus3"></i></b>Update advance information</a>
                         </div>
                     </div>
                 </div>
@@ -41,8 +41,6 @@
                                     <th>Amount</th>
                                     <th>Payment date</th>
                                     <th>Deduct month</th>
-                                    {{-- <th>cause</th>
-                                    <th>remarks</th> --}}
                                     <th>Action</th>
 
                                 </tr>
@@ -64,7 +62,7 @@
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <a href="#" class="btn btn-success btn-xm icon-eye "></a>
-                                                <a href="#"
+                                                <a href="{{route('advance-salary.edit',$advance_salarie->id)}}"
                                                     class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                 </a>
                                                 <form action="{{route('advance-salary.update',$advance_salarie->id)}}"
@@ -81,7 +79,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+
                     </div>
                 </div>
             </div>

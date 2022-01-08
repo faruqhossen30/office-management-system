@@ -18,13 +18,13 @@ class EmployeeInformationController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('position', 'office','department')->latest()->paginate(4);
+        $employees = Employee::with('position', 'office', 'department')->latest()->paginate(4);
         // return $employees ;
         $positions = Position::latest()->get();
         // return $positions;
         $departments = Department::latest()->get();
         // return $departments;
-        return view('backend.employee.view-employee', compact('employees', 'positions','departments'));
+        return view('backend.employee.view-employee', compact('employees', 'positions', 'departments'));
     }
 
     /**
@@ -109,8 +109,8 @@ class EmployeeInformationController extends Controller
             'other_allowance.required'      => 'please enter your other allowance',
             // 'gross_salary.required'         => 'please enter your other gross salary',
         ]);
-            $photo =  $request->file('photo');
-            if ($photo) {
+        $photo =  $request->file('photo');
+        if ($photo) {
             // For Create Database Name
             $extention =  $photo->getClientOriginalExtension();
             $imageName = time() . '.' . $extention;
@@ -145,7 +145,7 @@ class EmployeeInformationController extends Controller
                 'other_allowance'      => $request->other_allowance,
                 'gross_salary'         => $request->gross_salary,
             ]);
-            return redirect()->route('employee-information.index')->with('success','Successfully data added');
+            return redirect()->route('employee-information.index')->with('success', 'Successfully data added');
         }
     }
 
@@ -159,8 +159,7 @@ class EmployeeInformationController extends Controller
     {
         $employees = Employee::Where('id', $id)->first();
         // return $employees;
-
-        return view('backend.employee.employee-detail',compact('employees'));
+        return view('backend.employee.employee-detail', compact('employees'));
     }
 
     /**
@@ -171,7 +170,12 @@ class EmployeeInformationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee    = Employee::findOrFail($id);
+        // return   $user;
+        $departments = Department::all();
+        $positions   = Position::all();
+        $offices     = Office::all();
+        return view('backend.employee.employee-edit', compact('employee', 'departments', 'positions', 'offices'));
     }
 
     /**
@@ -183,7 +187,46 @@ class EmployeeInformationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $photo = $request->file('photo');
+
+        if ($photo) {
+            // For Create Database Name
+            $extention =  $photo->getClientOriginalExtension();
+            $imageName = time() . '.' . $extention;
+            //  For Saving upload folder
+            $photo->move('employee/photo/', $imageName);
+
+            //  return $request->all();
+            Employee::findOrFail($id)->update([
+                'name'                 => $request->name,
+                'email'                => $request->email,
+                'phone'                => $request->phone,
+                'phone_alt'            => $request->phone_alt,
+                'country'              => $request->country,
+                'address'              => $request->address,
+                'city'                 => $request->city,
+                'zip_code'             => $request->zip_code,
+                'gender'               => $request->gender,
+                'blood_group'          => $request->blood_group,
+                'nid_no'               => $request->nid_no,
+                'date_of_birth'        => $request->date_of_birth,
+                'photo'                => $imageName,
+                'covid_vaccine'        => $request->covid_vaccine,
+                'join_date'            => $request->join_date,
+                'department_id'        => $request->department_id,
+                'marital_status'       => $request->marital_status,
+                'description'          => $request->description,
+                'position_id'          => $request->position_id,
+                'office_id'            => $request->office_id,
+                'basic_salary'         => $request->basic_salary,
+                'house_allowance'      => $request->house_allowance,
+                'medical_allowance'    => $request->medical_allowance,
+                'conveyance_allowance' => $request->conveyance_allowance,
+                'other_allowance'      => $request->other_allowance,
+                'gross_salary'         => $request->gross_salary,
+            ]);
+            return redirect()->route('employee-information.index')->with('update', 'Successfully Data Updated');
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AssetController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendDashboardController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AdvanceSalaryController;
 use App\Http\Controllers\Backend\EmployeeSalaryAPI;
 use App\Http\Controllers\Backend\LoneController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -126,6 +128,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('advance-salary',AdvanceSalaryController::class);
         // ----------------------------Lone------------------------------------------------
         Route::resource('lone',LoneController::class);
+
+
+        //----------------------Admin-Route-------------------------------------
+        Route::resource('user-admin',AdminController::class);
+
+
 
 
 

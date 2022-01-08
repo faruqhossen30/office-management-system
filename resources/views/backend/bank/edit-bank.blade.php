@@ -13,32 +13,47 @@
                     <!-- Left aligned buttons -->
 
                     <div class="card-body">
-                        <form action="{{route('bank.update', $bank->id)}}" method="POST">
+                        <form action="{{route('bank.update',$bank->id)}}" method="POST">
                             @csrf
+                            @method('PUT')
+                            <h4 class="card-title text-center">Bank Information</h4>
+                            <hr>
                             <div class="form-group">
                                 <label><b>Bank Name:</b></label>
-                                <input name="bank_name" type="text"
-                                    class="form-control  @error('bank_name')is-invalid @enderror "
-                                    placeholder="Enter your bank name" value="{{$bank->bank_name}}">
-                                @error('bank_name')
+                                <input name="name" type="text"
+                                    class="form-control  @error('name')is-invalid @enderror "
+                                    placeholder="Enter your bank name" value="{{$bank->name}}">
+                                @error('name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>
-                                    <h6><b>Iformation :</b></h6>
-                                </label>
-                                <textarea  name="information" type="text"
-                                    class="form-control @error('information')is-invalid @enderror" rows="3"
-                                    placeholder="Enter your bank information">{{$bank->information}}</textarea>
-                                @error('information')
+                                <label><b>Branch name :</b></label>
+                                <input name="branch_name" type="text"
+                                    class="form-control  @error('branch_name')is-invalid @enderror "
+                                    placeholder="Enter your bank name" value="{{$bank->branch_name}}">
+                                @error('branch_name')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label><b>Address :</b></label>
+                                <input name="address" type="text"
+                                    class="form-control  @error('address')is-invalid @enderror "
+                                    placeholder="Enter your bank address" value="{{$bank->address}}">
+                                @error('address')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <h4 class="card-title text-center">Account Information</h4>
+                            <hr>
                             <div class="form-group">
                                 <label><b>Account Number :</b></label>
                                 <input name="account_number" type="text"
@@ -73,30 +88,21 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label><b>Branch name :</b></label>
-                                <input name="branch_name" type="text"
-                                    class="form-control  @error('branch_name')is-invalid @enderror "
-                                    placeholder="Enter your bank name" value="{{$bank->branch_name}}">
-                                @error('branch_name')
+                                <label>
+                                    <h6><b>Information :</b></h6>
+                                </label>
+                                <textarea  name="information" type="text"
+                                    class="form-control @error('information')is-invalid @enderror" rows="3"
+                                    placeholder="Enter your bank information">{{$bank->information}}</textarea>
+                                @error('information')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label><b>Address :</b></label>
-                                <input name="address" type="text"
-                                    class="form-control  @error('address')is-invalid @enderror "
-                                    placeholder="Enter your bank address" value="{{$bank->address}}">
-                                @error('address')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
                             <div class="d-flex justify-content-start align-items-center">
-                                <button type="submit" class="btn bg-blue "> <i class="icon-file-upload mr-2"></i>Update
+                                <button type="submit" class="btn bg-blue "> <i class="icon-floppy-disk mr-2"></i>Update
                                 </button>
                             </div>
                         </form>

@@ -8,7 +8,9 @@
 
                     <div class="card-body">
                         <div>
-                            <a href="{{route('expense.create')}}" type="button" class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-plus3"></i></b>Add Debit</a>
+                            <a href="{{ route('expense.create') }}" type="button"
+                                class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                        class="icon-plus3"></i></b>Add Debit</a>
                         </div>
                         @if (session('delete'))
                             <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -59,8 +61,10 @@
                             <td>{{ $item->author->name }}</td>
                             <td class="text-center">
 
-                                <a href="{{ route('expense.show', $item->id) }}" class="btn btn-success btn-sm icon-eye"></a>
-                                <a href="{{ route('expense.edit', $item->id) }}" class="btn btn-warning btn-sm icon-pencil7">
+                                <a href="{{ route('expense.show', $item->id) }}"
+                                    class="btn btn-success btn-sm icon-eye"></a>
+                                <a href="{{ route('expense.edit', $item->id) }}"
+                                    class="btn btn-warning btn-sm icon-pencil7">
                                 </a>
 
                                 <form action="{{ route('expense.destroy', $item->id) }}" method="POST"
