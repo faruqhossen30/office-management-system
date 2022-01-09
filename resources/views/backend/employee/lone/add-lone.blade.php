@@ -35,12 +35,7 @@
                                     <input name="permitted_by" type="text"
                                         class="form-control  @error('permitted_by')is-invalid @enderror " placeholder="employee name"
                                         value="{{ old('permitted_by') }}">
-                                    @error('permitted_by')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-
-                                        </div>
-                                    @enderror
+                                        <x-error name='permitted_by' />
                                 </div>
                                 <div class="form-group">
                                     <label>
@@ -57,11 +52,7 @@
                                             <label>Repayment_from: <span class="text-danger">*</span></label>
                                             <input name="repayment_from" type="datetime-local"
                                                 class="form-control @error('repayment_from')is-invalid @enderror" value="{{ old('repayment_from') }}">
-                                            @error('repayment_from')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                                <x-error name='repayment_from'/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -69,11 +60,7 @@
                                             <label>Approve_date: <span class="text-danger">*</span></label>
                                             <input name="approve_date" type="datetime-local"
                                                 class="form-control @error('approve_date')is-invalid @enderror"  value="{{ old('approve_date') }}">
-                                            @error('approve_date')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                                <x-error name='approve_date'/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -81,11 +68,7 @@
                                             <label>Apply_date: <span class="text-danger">*</span></label>
                                             <input name="apply_date" type="datetime-local"
                                                 class="form-control @error('apply_date')is-invalid @enderror"  value="{{ old('apply_date') }}">
-                                            @error('apply_date')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                                <x-error name='apply_date'/>
                                         </div>
                                     </div>
                                 </div>
@@ -93,31 +76,19 @@
                                     <label>Amount: <span class="text-danger">*</span></label>
                                     <input name="amount" type="number"
                                         class="form-control @error('amount')is-invalid @enderror" placeholder="amount" value="{{ old('amount') }}">
-                                    @error('amount')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                        <x-error name='amount'/>
                                 </div>
                                 <div class="form-group">
                                     <label>installment_period <span class="text-danger">*</span></label>
                                     <input name="installment_period" type="number"
                                         class="form-control @error('installment_period')is-invalid @enderror" placeholder="installment_period"value="{{ old('installment_period') }}">
-                                    @error('installment_period')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                        <x-error name='installment_period'/>
                                 </div>
                                 <div class="form-group">
                                     <label>Installment: <span class="text-danger">*</span></label>
                                     <input name="Installment" type="number"
                                         class="form-control @error('Installment')is-invalid @enderror" placeholder="Installment"value="{{ old('Installment') }}">
-                                    @error('Installment')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                        <x-error name='Installment'/>
                                 </div>
                                 <div class="d-flex justify-content-start align-items-center">
                                     <button type="reset" class="btn btn-light">reset</button>

@@ -16,6 +16,9 @@ class ExpenseList extends Model
         'payment_system_id',
         'office_id',
         'author_id',
+        'bank_id',
+        'phone',
+        'transaction',
         'date',
         'description',
         'remarks'
@@ -38,4 +41,10 @@ class ExpenseList extends Model
     {
         return $this->hasOne(User::class, 'id', 'author_id');
     }
+    public function bank()
+    {
+        return $this->hasOne(User::class, 'id', 'bank_id');
+    }
+
+
 }

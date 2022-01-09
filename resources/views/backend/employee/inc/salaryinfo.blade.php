@@ -29,12 +29,7 @@
                     {{ $employee->phone }}
                 </td>
             </tr>
-            {{-- <tr>
-                <th>Grow salary</th>
-                <td>
-                    {{ $employee->gross_salary }}
-                </td>
-            </tr> --}}
+
             <tr>
                 <th><strong> Payment date: </strong></th>
                 <td>
@@ -119,12 +114,14 @@
                 </td>
 
             </tr>
+            @if ($loan)
             <tr>
                 <th><strong>Deduct For Loan: </strong></th>
                 <td>
                     <input type="number" name="Installment" id="" value="{{$loan->Installment}}" style="border: none; font-weight:bolder">
                 </td>
             </tr>
+            @endif
             <tr>
             <tr>
                 <th><strong>Other Deduction : </strong></th>
@@ -157,4 +154,5 @@
         </button>
     </div>
 </div>
+
 

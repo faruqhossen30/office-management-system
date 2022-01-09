@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdvanceSalary;
+use App\Models\Employee;
+use App\Models\Lone;
 use App\Models\Position;
 use App\Models\Salary;
 use App\Models\SalarySetUp;
@@ -114,8 +117,12 @@ class SalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   $loan = Lone::all();
+        $advance  =AdvanceSalary::all();
+        $employees = Employee::all();
+        $salary = Salary::findOrFail($id);
+        // return   $user;
+        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','loan'));
     }
 
     /**

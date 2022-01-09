@@ -28,8 +28,9 @@ class BankController extends Controller
      */
     public function create()
     {
-
-        return view('backend.bank.bank');
+        $banks = Bank::get();
+        // return $banks;
+        return view('backend.bank.bank',compact('banks'));
     }
 
     /**
@@ -42,7 +43,7 @@ class BankController extends Controller
     {
         //    return $request->all();
         $request->validate([
-            'name'      => 'required',
+            'name'           => 'required',
             'information'    => 'required',
             'account_number' => 'required',
             'account_holder' => 'required',
@@ -51,7 +52,7 @@ class BankController extends Controller
             'address'        => 'required',
 
         ], [
-            'name.required'      => 'Please enter your bank name ',
+            'name.required'           => 'Please enter your bank name ',
             'information.required'    => 'Please enter your bank information',
             'account_number.required' => 'Please enter your account number ',
             'account_holder.required' => 'Please enter your account holder name ',
@@ -104,7 +105,16 @@ class BankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Bank::findOrFail($id)->update([
+            'name'           => $request->name,
+            'information'    => $request->information,
+            'account_number' => $request->account_number,
+            'account_holder' => $request->account_holder,
+            'branch_name'    => $request->branch_name,
+            'mobile'         => $request->mobile,
+            'address'        => $request->address,
+        ]);
+        return redirect()->route('bank.index')->with('update', 'Successfully Data Updated');
     }
 
     /**

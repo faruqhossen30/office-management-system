@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\AssetController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackendDashboardController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AdvanceSalaryController;
 use App\Http\Controllers\Backend\EmployeeSalaryAPI;
 use App\Http\Controllers\Backend\LoneController;
+use App\Http\Controllers\DashboardController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -60,6 +62,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/deposit-view', [DepositController::class, 'deposit_view'])->name('deposit.view');
         Route::get('/deposit-view/week', [DepositController::class, 'depositeListThisWeek'])->name('deposit.view.week');
         Route::get('/deposit-view/month', [DepositController::class, 'depositeListThisMonth'])->name('deposit.view.month');
+        // <------------------------------deposit-show---------------------------------------->
+        Route::get('/deposit-show/show/{id}', [DepositController::class, 'show'])->name('deposit.show');
         // -----------------------------------------edit deposit------------------------------------------------------
         Route::get('deposit/edit/{id}', [DepositController::class, 'edit'])->name('deposit.edit');
         // ------------------------------------------update update----------------------------------------------------
@@ -126,6 +130,12 @@ Route::prefix('admin')->group(function () {
         Route::resource('advance-salary',AdvanceSalaryController::class);
         // ----------------------------Lone------------------------------------------------
         Route::resource('lone',LoneController::class);
+
+
+        //----------------------Admin-Route-------------------------------------
+        Route::resource('user-admin',AdminController::class);
+
+
 
 
 

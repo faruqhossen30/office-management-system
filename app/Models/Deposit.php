@@ -35,4 +35,8 @@ class Deposit extends Model
     {
         return $this->hasOne(PaymentSystem::class, 'id', 'payment_system_id');
     }
+    public function bank()
+    {
+        return $this->hasOne(PaymentSystem::class, 'id', 'bank_id');
+    }
 }

@@ -88,7 +88,10 @@ class AdvanceSalaryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $advance_salary = AdvanceSalary::findOrFail($id);
+        $employees = Employee::get();
+        // return   $user;
+        return view('backend.employee.advance.advance-edit' ,compact('advance_salary','employees'));
     }
 
     /**
@@ -100,7 +103,15 @@ class AdvanceSalaryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        AdvanceSalary::findOrFail($id)->update([
+            'employee_id'  => $request->employee_id,
+            'amount'       => $request->amount,
+            'payment_date' => $request->payment_date,
+            'deduct_month' => $request->deduct_month,
+            'cause'        => $request->cause,
+            'remarks'      => $request->remarks,
+        ]);
+        return redirect()->route('advance-salary.index')->with('update', 'Successfully Data Updated');
     }
 
     /**

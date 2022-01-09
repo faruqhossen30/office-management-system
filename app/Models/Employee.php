@@ -36,7 +36,7 @@ class Employee extends Model
         'other_allowance',
         'gross_salary'
     ];
-    protected $dates = ['date'];
+    protected $dates = ['date','join_date','date_of_birth' ];
 
 
     public function position()

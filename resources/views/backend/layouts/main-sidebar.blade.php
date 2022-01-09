@@ -215,6 +215,20 @@
 
                     </ul>
                 </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('user-admin.create', 'user-admin.index')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="icon-users"></i>
+                        <span>User</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="{{ route('user-admin.create') }}"
+                                class="nav-link @if (request()->routeIs('user-admin.create')) active @endif">Add Users</a>
+                        </li>
+                        <li class="nav-item"><a href="{{ route('user-admin.index') }}"
+                                class="nav-link @if (request()->routeIs('user-admin.index')) active @endif">Users list</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+
+                    </ul>
+                </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('setting')) nav-item-expanded nav-item-open @endif">
                     <a href="{{ route('setting') }}" class="nav-link"><i class="icon-cog3"></i>
                         <span>Setting</span></a>

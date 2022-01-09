@@ -24,7 +24,7 @@ class CreateDepositsTable extends Migration
             $table->string('transaction')->nullable();
             $table->string('source')->nullable();
             $table->timestamp('date');
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
             $table->timestamps();
         });
     }

@@ -99,7 +99,11 @@ class LoneController extends Controller
      */
     public function edit($id)
     {
-        //
+        $lone = Lone::findOrFail($id);
+        // return $loan;
+        $employees = Employee::get();
+        return view('backend.employee.lone.edit-loan',compact('lone','employees'));
+
     }
 
     /**
@@ -111,7 +115,20 @@ class LoneController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Lone::findOrFail($id)->update([
+            'employee_id'        => $request->employee_id,
+            'permitted_by'       => $request->permitted_by,
+            'loan_details'       => $request->loan_details,
+            'approve_date'       => $request->approve_date,
+            'apply_date'         => $request->apply_date,
+            'repayment_from'     => $request->repayment_from,
+            'installment_period' => $request->installment_period,
+            'amount'             => $request->amount,
+            'Installment'        => $request->Installment,
+        ]);
+
+
+        return redirect()->route('lone.index')->with('update', 'Successfully Data Updated');
     }
 
     /**

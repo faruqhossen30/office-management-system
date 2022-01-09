@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Buy Date*</label>
                                 <input name="buy_date" class="col-xm-9 form-control  @error('buy_date')is-invalid @enderror"
-                                    type="datetime-local"  placeholder="Enter your price ">
+                                    type="datetime-local" value="{{$assets->buy_date->format('Y-m-d')."T".$assets->buy_date->format('H:i')}}">
                                 @error('buy_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -67,7 +67,7 @@
                                 <label class="col-xm-3">Expiry Date*</label>
                                 <input name="expiry_date"
                                     class="col-xm-9 form-control @error('expiry_date')is-invalid @enderror" type="datetime-local"
-                                    placeholder="Enter your price ">
+                                    placeholder="Enter your price " value="{{$assets->expiry_date->format('Y-m-d')."T".$assets->expiry_date->format('H:i')}}">
                                 @error('expiry_date')
                                     <div class="invalid-feedback">
                                         {{ $message }}

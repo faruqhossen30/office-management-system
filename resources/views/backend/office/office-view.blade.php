@@ -56,7 +56,7 @@
 
                                         <td>
                                             <div class="d-flex justify-content-start">
-                                                <a href="#" class="btn btn-success btn-xm icon-eye "></a>
+                                                {{-- <a href="#" class="btn btn-success btn-xm icon-eye "></a> --}}
                                                 <a href="{{ route('office.edit', $office->id) }}"
                                                     class="btn btn-sm btn-info ml-1 mr-1 icon-pencil7"><a>
                                                         <a href="{{ route('office.destroy', $office->id) }}"

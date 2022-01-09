@@ -28,8 +28,8 @@ class PaymentSystemController extends Controller
      */
     public function create()
     {
-
-        return view('backend.payment.create_payment');
+        $paymentsystems = PaymentSystem::all();
+        return view('backend.payment.create_payment',compact('paymentsystems'));
     }
 
     /**

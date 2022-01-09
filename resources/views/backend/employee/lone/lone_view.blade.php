@@ -31,21 +31,7 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        {{-- <div class="d-flex justify-content-between">
-                            <ul class="list-group list-group-horizontal">
-                                <a href="{{ route('deposit.view') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view')) active @endif">All TIme</a>
-                                <a href="{{ route('deposit.view.week') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week')) active @endif">This week</a>
-                                <a href="{{ route('deposit.view.month') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month')) active @endif">This
-                                    Month</a>
-                            </ul>
-                            <div>
-                                <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
-                            </div>
-                        </div> --}}
-                        {{-- table-start --}}
+
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -77,7 +63,7 @@
                                             <td>
                                                 <div class="d-flex justify-content-start">
                                                     <a href="#" class="btn btn-success btn-xm icon-eye "></a>
-                                                    <a href="#"
+                                                    <a href="{{route('lone.edit',$lone->id)}}"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>
                                                     <form action="{{ route('lone.destroy', $lone->id) }}"
@@ -109,3 +95,16 @@
 
 @endsection
 
+
+
+@push('css')
+    <style>
+        .table td,
+        .table th {
+            padding: .55rem .55rem .55rem .75rem;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+@endpush

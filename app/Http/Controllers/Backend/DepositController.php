@@ -15,8 +15,18 @@ use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
+    public function deposit_view()
+    {
+        $deposits = Deposit::with('office', 'author', 'paymentsystem','bank')->latest()->paginate(6);
+        $total = Deposit::sum('amount');
+        // return $test;
+        // return $deposits;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+    }
+
     public function create()
     {
+
         $offices = Office::get();
         $paymentSystem = PaymentSystem::all();
         $banks = Bank::all();
@@ -59,20 +69,61 @@ class DepositController extends Controller
             'office_id'         => $request->office_id,
             'author_id'         => Auth::user()->id,
             'date'              => $request->date,
-            // 'bank_id'           => $request->bank_id,
+            'bank_id'           => $request->bank_id,
             'remarks'           => $request->remarks,
         ];
         Deposit::create($Data);
         return redirect()->route('deposit.view');
     }
-    public function deposit_view()
+    public function show($id)
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->latest()->paginate(6);
-        $total = Deposit::sum('amount');
-        // return $test;
-        // return $deposits;
-        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+        $banks = Bank::all();
+        $deposit = Deposit::Where('id',$id)->first();
+        // return $deposit;
+        return view('backend.deposit.deposit-show',compact('deposit','banks'));
+
     }
+
+    // ---------------------deposit_edit--------------------
+    public function edit($id)
+    {
+        $deposit =  Deposit::findOrFail($id);
+        $offices =  Office::all();
+        $banks = Bank::all();
+        $paymentSystem = PaymentSystem::get();
+        // return
+        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem','banks'));
+    }
+
+    //    --------------------deposit update-------------------------
+    public function update(Request $request, $id)
+    {
+           return $request->all();
+        Deposit::findOrFail($id)->update([
+            'amount'            => $request->amount,
+            'payment_system_id' => $request->payment_system_id,
+            'transaction'       => $request->transaction,
+            'source'            => $request->source,
+            'phone'             => $request->phone,
+            'bank_id'           => $request->bank_id,
+            'office_name'       => $request->office_name,
+            'office_id'         => $request->office_id,
+            'date'              => $request->date,
+            'remarks'           => $request->remarks,
+        ]);
+        return redirect()->route('deposit.view')->with('update', 'Successfully Data Updated');
+    }
+    //    -------------------------deposit delete---------------------------
+    public function destroy($id)
+    {
+
+        Deposit::findOrFail($id)->delete();
+        return redirect()->back()->with('delete', 'Successfully Data delete');
+    }
+
+
+
+
 
     public function depositeListThisWeek()
     {
@@ -92,45 +143,11 @@ class DepositController extends Controller
         //    return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
-    // ---------------------deposit_edit--------------------
-    public function edit($id)
-    {
-        $deposit =  Deposit::findOrFail($id);
-        $offices =  Office::all();
-        $paymentSystem = PaymentSystem::get();
-        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem'));
-    }
 
-    //    --------------------deposit update-------------------------
-    public function update(Request $request, $id)
-    {
-        //    return $request->all();
-        Deposit::findOrFail($id)->update([
-            'amount'            => $request->amount,
-            'payment_system_id' => $request->payment_system_id,
-            'transaction'       => $request->transaction,
-            'source'            => $request->source,
-            'phone'             => $request->phone,
-            // 'bank_id'           => $request->bank_id,
-            'office_name'       => $request->office_name,
-            'office_id'         => $request->office_id,
-            'date'              => $request->date,
-            'remarks'           => $request->remarks,
-        ]);
-        return redirect()->route('deposit.view')->with('update', 'Successfully Data Updated');
-    }
-    //    -------------------------deposit delete---------------------------
-    public function destroy($id)
-    {
-
-        Deposit::findOrFail($id)->delete();
-        return redirect()->back()->with('delete', 'Successfully Data delete');
-    }
-
-    // Mobile Baking data
-    public function mobibleBankingData()
-    {
-       $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
-        return $data;
-    }
+     // Mobile Baking data
+     public function mobibleBankingData()
+     {
+        $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
+         return $data;
+     }
 }

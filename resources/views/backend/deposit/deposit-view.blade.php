@@ -68,7 +68,7 @@
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
-                                            <td>{{ $deposit->author->name }}</td>
+                                            <td>{{ $deposit->author->name ?? '' }}</td>
                                             <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($deposit->created_at)->diffForHumans() }}</td>
@@ -76,7 +76,7 @@
 
 
                                             <td>
-                                                <a href="" class="btn btn-sm btn-primary icon-eye"></a>
+                                                <a href="{{route('deposit.show',$deposit->id)}}" class="btn btn-sm btn-primary icon-eye"></a>
                                                 <a href="{{ route('deposit.edit', $deposit->id) }}"
                                                     class="btn btn-sm btn-info icon-pencil7"></a>
                                                 <a href="{{ route('deposit.destroy', $deposit->id) }}"

@@ -61,7 +61,7 @@
                                             <td>
                                                 <div class="d-flex justify-content-start">
                                                     <a href="{{route('employee-information.show',$employee->id)}}" class="btn btn-success btn-xm icon-eye "></a>
-                                                    <a href="#"
+                                                    <a href="{{route('employee-information.edit',$employee->id)}}"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>
                                                     <form action="{{route('employee-information.destroy',$employee->id)}}"
