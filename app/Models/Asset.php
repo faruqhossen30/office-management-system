@@ -20,12 +20,12 @@ class Asset extends Model
             'remarks',
             'author_id',
     ];
-    protected $dates = ['date'];
+    protected $dates = ['date','buy_date','expiry_date'];
 
     public function assettype()
     {
         return $this->hasOne(AssetType::class, 'id', 'assettype_id');
     }
-    
+
 
 }

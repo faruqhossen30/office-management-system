@@ -76,7 +76,7 @@
 
 
                                             <td>
-                                                <a href="" class="btn btn-sm btn-primary icon-eye"></a>
+                                                <a href="{{route('deposit.show',$deposit->id)}}" class="btn btn-sm btn-primary icon-eye"></a>
                                                 <a href="{{ route('deposit.edit', $deposit->id) }}"
                                                     class="btn btn-sm btn-info icon-pencil7"></a>
                                                 <a href="{{ route('deposit.destroy', $deposit->id) }}"

@@ -141,10 +141,10 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Join Date<span class="text-danger">*</span></label>
-                                                <input name="join_date" type="date"
+                                                <input name="join_date" type="datetime-local"
                                                     class="form-control  @error('join_date')is-invalid @enderror"
                                                     placeholder="please enter your date of birth"
-                                                    value="{{$employee->join_date}}">
+                                                    value="{{$employee->join_date->format('Y-m-d')."T".$employee->join_date->format('H:i')}}">
                                                 <x-error name='join_date' />
                                             </div>
                                         </div>
@@ -182,18 +182,17 @@
                                                     <select
                                                         class="form-control @error('blood_group') is-invalid @enderror"
                                                         id="exampleSelectRounded0" name="blood_group">
-                                                        @if ($employee->blood_group)
-                                                        <option value="{{$employee->blood_group}}" selected>{{$employee->blood_group}}</option>
-                                                        @else
+
                                                         <option value="">Select your blood_group </option>
-                                                        <option value="1">A+</option>
-                                                        <option value="2">A-</option>
-                                                        <option value="3">B+</option>
-                                                        <option value="4">B-</option>
-                                                        <option value="5">O-</option>
-                                                        <option value="6">AB+</option>
-                                                        <option value="7">AB-</option>
-                                                        @endif
+                                                        <option value="{{$employee->blood_group}}" selected>{{$employee->blood_group}}</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="O-">O-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
+
                                                     </select>
                                                     <x-error name='blood_group' />
                                                 </div>
@@ -204,7 +203,7 @@
                                                 <label>Date of Birth<span class="text-danger">*</span></label>
                                                 <input name="date_of_birth" type="datetime-local"
                                                     class="form-control  @error('date_of_birth')is-invalid @enderror"
-                                                    placeholder=" date of birth" value="{{ Carbon\Carbon::parse($employee->date_of_birth)->format('Y-m-d H:i:s')}}" name="date_of_birth">
+                                                    placeholder=" date of birth" value="{{$employee->date_of_birth->format('Y-m-d')."T".$employee->date_of_birth->format('H:i')}}" name="date_of_birth">
                                                 <x-error name='date_of_birth' />
 
 
@@ -216,14 +215,14 @@
                                                 <div class="form-group">
                                                     <select class="form-control @error('gender') is-invalid @enderror"
                                                     id="exampleSelectRounded0"  name="gender">
-                                                    @if ($employee->gender)
-                                                    <option value="{{$employee->gender}}" selected>{{$employee->gender}}</option>
-                                                    @else
+
                                                     <option value="">Select your gender </option>
-                                                    <option value="1">male</option>
-                                                    <option value="2">female</option>
-                                                    <option value="3">other</option>
-                                                    @endif
+                                                    <option value="{{$employee->gender}}" selected>{{$employee->gender}}</option>
+
+                                                    <option value="male">male</option>
+                                                    <option value="female">female</option>
+                                                    <option value="other">other</option>
+
                                                     </select>
                                                     <x-error name='gender' />
                                                 </div>
@@ -252,16 +251,16 @@
                                                     <select
                                                         class="form-control @error('covid_vaccine') is-invalid @enderror" id="exampleSelectRounded0"
                                                         name="covid_vaccine">
-                                                        @if ($employee->covid_vaccine)
+
+                                                        <option value="">Select your Vaccine </option>
                                                         <option value="{{$employee->covid_vaccine}}" selected>{{$employee->covid_vaccine}}</option>
-                                                        @else
-                                                        <option value="">Select vaccine</option>
-                                                        <option value="1">Oxford–AstraZeneca3</option>
-                                                        <option value="2">Pfizer–BioNTech</option>
-                                                        <option value="3"> Sinopharm BIBP7</option>
-                                                        <option value="4"> Sputnik V</option>
-                                                        <option value="5">Moderna</option>
-                                                        @endif
+
+                                                        <option value="Oxford–AstraZeneca3">Oxford–AstraZeneca3</option>
+                                                        <option value="Pfizer–BioNTech">Pfizer–BioNTech</option>
+                                                        <option value=" Sinopharm BIBP7"> Sinopharm BIBP7</option>
+                                                        <option value="Sputnik V"> Sputnik V</option>
+                                                        <option value="Moderna">Moderna</option>
+
                                                     </select>
                                                     <x-error name='covid_vaccine' />
                                                 </div>

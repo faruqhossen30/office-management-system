@@ -22,7 +22,7 @@ class ExpenseListController extends Controller
      */
     public function index()
     {
-        $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author')->latest()->paginate(6);
+        $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author','bank')->latest()->paginate(6);
         // return $expense_lists;
         $total = ExpenseList::sum('amount');
         return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
@@ -96,6 +96,10 @@ class ExpenseListController extends Controller
      */
     public function show($id)
     {
+
+        $expense_lists = ExpenseList::Where('id', $id)->first();
+        // return $employees;
+        return view('backend.expense-list.expense_show', compact('expense_lists'));
     }
 
     /**

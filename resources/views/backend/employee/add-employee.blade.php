@@ -180,13 +180,13 @@
                                                         class="form-control @error('blood_group') is-invalid @enderror"
                                                     id="exampleSelectRounded0"    name="blood_group">
                                                         <option value="">Select your blood_group </option>
-                                                        <option value="1">A+</option>
-                                                        <option value="2">A-</option>
-                                                        <option value="3">B+</option>
-                                                        <option value="4">B-</option>
-                                                        <option value="5">O-</option>
-                                                        <option value="6">AB+</option>
-                                                        <option value=" 7">AB-</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="O-">O-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
                                                     </select>
                                                     <x-error name='blood_group' />
                                                 </div>
@@ -208,9 +208,9 @@
                                                     <select class="form-control @error('gender') is-invalid @enderror"
                                                        id="exampleSelectRounded0" name="gender">
                                                         <option value="">Select your gender </option>
-                                                        <option value="1">male</option>
-                                                        <option value="2">female</option>
-                                                        <option value="3">other</option>
+                                                        <option value="male">male</option>
+                                                        <option value="female">female</option>
+                                                        <option value="other">other</option>
                                                     </select>
                                                     <x-error name='gender' />
                                                 </div>
@@ -240,11 +240,11 @@
                                                         class="form-control @error('covid_vaccine') is-invalid @enderror"
                                                     id="exampleSelectRounded0"    name="covid_vaccine">
                                                         <option value="">Select your Vaccine </option>
-                                                        <option value="1">Oxford–AstraZeneca3</option>
-                                                        <option value="2">Pfizer–BioNTech</option>
-                                                        <option value="3"> Sinopharm BIBP7</option>
-                                                        <option value="4"> Sputnik V</option>
-                                                        <option value="5">Moderna</option>
+                                                        <option value="Oxford–AstraZeneca3">Oxford–AstraZeneca3</option>
+                                                        <option value="Pfizer–BioNTech">Pfizer–BioNTech</option>
+                                                        <option value=" Sinopharm BIBP7"> Sinopharm BIBP7</option>
+                                                        <option value="Sputnik V"> Sputnik V</option>
+                                                        <option value="Moderna">Moderna</option>
                                                     </select>
                                                     <x-error name='covid_vaccine' />
                                                 </div>

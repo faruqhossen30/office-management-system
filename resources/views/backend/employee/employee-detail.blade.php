@@ -114,14 +114,7 @@
                                                         <th>Email Address</th>
                                                         <td> {{ $employees->email }}</td>
                                                     </tr>
-                                                    {{-- <tr>
-                                                        <th>Country</th>
-                                                        <td>{{ $employees->country }}</td>
-                                                    </tr> --}}
-                                                    {{-- <tr>
-                                                        <th>City</th>
-                                                        <td> {{ $employees->city }}</td>
-                                                    </tr> --}}
+                                                 
                                                     <tr>
                                                         <th>Zip Code</th>
                                                         <td> {{ $employees->zip_code }}</td>

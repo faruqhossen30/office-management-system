@@ -82,6 +82,7 @@
                                            </div>
                                      </div>
                                     @endif
+
                                      @if ($deposit->bank_id)
                                         <div class="form-group" id="bank_div">
                                             <label class="text">Bank<span class="text-danger">*</span></label>
@@ -124,7 +125,8 @@
                                         <label>Date <span class="text-danger">*</span></label>
                                         <input name="date" type="datetime-local"
                                             class="form-control @error('date')is-invalid @enderror"
-                                            value="{{$deposit->date->format('m/d/Y  h:m A')}}">
+                                            value="{{$deposit->date->format('Y-m-d')."T".$deposit->date->format('H:i')}}"
+                                            >
                                         @error('date')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

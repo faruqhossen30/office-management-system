@@ -75,7 +75,7 @@
         $(document).on("change", "select[name='employee_id'], input[name='month']", function() {
             let id = employee_id.val();
             let monthvalue = month.val();
-            console.log(monthvalue);
+            // console.log(monthvalue);
             salary_info.html('')
             if (id && monthvalue) {
 
@@ -110,12 +110,13 @@
             var other_deduction = $("input[name='other_deduction']");
             var installment = $("input[name='Installment']");
             var advance = $("input[name='total_advance']");
+            // var advance = $("input[name='total_advance']");
             let paybleSalary = parseInt(gross_salary.val()) - (parseInt(advance.val()) + parseInt(installment
             .val()) + parseInt(other_deduction.val()));
             totalsalary.val(paybleSalary);
 
             // console.log(parseInt( advance.val() ) + parseInt( installment.val() ) +  parseInt( other_deduction.val() ) );
             //    console.log(PaybleSalary);
-        });;
+        });
     </script>
 @endpush

@@ -111,7 +111,7 @@
                                         </label>
                                         <input name="date" type="datetime-local"
                                             class="form-control  @error('date')is-invalid @enderror "
-                                            value="{{ $expense_list->date }}">
+                                            value="{{$expense_list->date->format('Y-m-d')."T".$expense_list->date->format('H:i')}}">
                                         @error('date')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -167,7 +167,9 @@
                                         <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
                                             <option value="">Select bank </option>
                                             @foreach ($banks as $bank)
-                                                <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                                <option value="{{ $bank->id }}"@if ( $bank->id ==$expense_list->bank_id )
+
+                                              selected  @endif>{{ $bank->name }}</option>
                                             @endforeach
                                         </select>
                                         @error('bank_id')

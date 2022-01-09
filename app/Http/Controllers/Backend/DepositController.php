@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DepositController extends Controller
 {
+    public function deposit_view()
+    {
+        $deposits = Deposit::with('office', 'author', 'paymentsystem','bank')->latest()->paginate(6);
+        $total = Deposit::sum('amount');
+        // return $test;
+        // return $deposits;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+    }
+
     public function create()
     {
 
@@ -66,33 +75,15 @@ class DepositController extends Controller
         Deposit::create($Data);
         return redirect()->route('deposit.view');
     }
-    public function deposit_view()
+    public function show($id)
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->latest()->paginate(6);
-        $total = Deposit::sum('amount');
-        // return $test;
-        // return $deposits;
-        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+        $banks = Bank::all();
+        $deposit = Deposit::Where('id',$id)->first();
+        // return $deposit;
+        return view('backend.deposit.deposit-show',compact('deposit','banks'));
+
     }
 
-    public function depositeListThisWeek()
-    {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->latest()->paginate(7);
-
-        $total = $deposits->sum('amount');
-        // return $total;
-        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
-    }
-
-    public function depositeListThisMonth()
-    {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereMonth('date', Carbon::now()->month)->latest()->paginate(7);
-
-        $total = $deposits->sum('amount');
-        // $total = 2300;
-        //    return $deposits;
-        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
-    }
     // ---------------------deposit_edit--------------------
     public function edit($id)
     {
@@ -107,7 +98,7 @@ class DepositController extends Controller
     //    --------------------deposit update-------------------------
     public function update(Request $request, $id)
     {
-        //    return $request->all();
+           return $request->all();
         Deposit::findOrFail($id)->update([
             'amount'            => $request->amount,
             'payment_system_id' => $request->payment_system_id,
@@ -130,10 +121,33 @@ class DepositController extends Controller
         return redirect()->back()->with('delete', 'Successfully Data delete');
     }
 
-    // Mobile Baking data
-    public function mobibleBankingData()
+
+
+
+
+    public function depositeListThisWeek()
     {
-       $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
-        return $data;
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->latest()->paginate(7);
+
+        $total = $deposits->sum('amount');
+        // return $total;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
+
+    public function depositeListThisMonth()
+    {
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereMonth('date', Carbon::now()->month)->latest()->paginate(7);
+
+        $total = $deposits->sum('amount');
+        // $total = 2300;
+        //    return $deposits;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+    }
+
+     // Mobile Baking data
+     public function mobibleBankingData()
+     {
+        $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
+         return $data;
+     }
 }

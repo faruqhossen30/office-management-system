@@ -50,6 +50,7 @@
                                         <th>Expense Type</th>
                                         <th class="text-center">Expense Date</th>
                                         <th class="text-center">Entry Date</th>
+                                        <th class="text-center">Bank</th>
                                         <th>Author</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -66,12 +67,13 @@
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }}
                                             </td>
+                                            <td>{{ $expense_list->bank_id}}</td>
                                             <td>{{ $expense_list->author->name}}</td>
                                             {{-- <td>{{$office->author_id}}</td> --}}
 
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="#" class="btn btn-sm btn-info mr-1 icon-eye"></a>
+                                                    <a href="{{route('expenselist.show',$expense_list->id)}}" class="btn btn-sm btn-info mr-1 icon-eye"></a>
                                                     <a href="{{ route('expenselist.edit', $expense_list->id) }}"
                                                         class="btn btn-sm btn-success mr-1 icon-pencil7"></a>
                                                     <form action="{{ route('expenselist.destroy', $expense_list->id) }}"

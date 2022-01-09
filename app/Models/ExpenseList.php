@@ -41,6 +41,10 @@ class ExpenseList extends Model
     {
         return $this->hasOne(User::class, 'id', 'author_id');
     }
+    public function bank()
+    {
+        return $this->hasOne(User::class, 'id', 'bank_id');
+    }
 
 
 }

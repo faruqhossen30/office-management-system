@@ -31,7 +31,7 @@
                         </div>
                     @endif
                     <div class="card-body">
-                       
+
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -95,3 +95,16 @@
 
 @endsection
 
+
+
+@push('css')
+    <style>
+        .table td,
+        .table th {
+            padding: .55rem .55rem .55rem .75rem;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
+
+    </style>
+@endpush
