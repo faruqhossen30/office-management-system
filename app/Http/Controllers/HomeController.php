@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Deposit;
+use App\Models\ExpenseList;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard');
+        $totalDeposite = Deposit::sum('amount');
+        // return $totalDeposite;
+        $totalExpense = ExpenseList::sum('amount');
+        // return $totalExpense;
+        $totalbalance = ($totalDeposite - $totalExpense);
+        // return $totalbalance;
+
+        return view('backend.dashboard', compact('totalbalance'));
     }
 }
