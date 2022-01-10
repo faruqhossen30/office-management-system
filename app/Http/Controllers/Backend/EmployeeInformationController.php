@@ -227,7 +227,7 @@ class EmployeeInformationController extends Controller
             ]);
             return redirect()->route('employee-information.index')->with('update', 'Successfully Data Updated');
         }else{
-            return $request->all();
+            // return $request->all();
             Employee::findOrFail($id)->update([
                 'name'                 => $request->name,
                 'email'                => $request->email,
