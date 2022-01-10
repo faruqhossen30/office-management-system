@@ -77,7 +77,10 @@ class AdvanceSalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = AdvanceSalary::Where('id', $id)->first();
+        // return $employees;
+
+        return view('backend.user.show-user',compact('users'));
     }
 
     /**

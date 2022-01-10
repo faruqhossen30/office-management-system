@@ -43,7 +43,8 @@ use App\Models\SalarySetUp;
 */
 
 Route::get('/', function () {
-    return view('backend.dashboard');
+    // return view('backend.dashboard');
+    return redirect()->route('dashboard');
 })->middleware('auth');
 
 Auth::routes();

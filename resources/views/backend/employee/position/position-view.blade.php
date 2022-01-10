@@ -52,7 +52,7 @@
                                             <td>{{ $position->description }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="#" class="btn btn-success btn-xm icon-eye "></a>
+                                                   
                                                     <a href="{{ route('position.edit', $position->id) }}"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>

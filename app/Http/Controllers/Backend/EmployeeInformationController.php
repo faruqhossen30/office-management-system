@@ -226,6 +226,37 @@ class EmployeeInformationController extends Controller
                 'gross_salary'         => $request->gross_salary,
             ]);
             return redirect()->route('employee-information.index')->with('update', 'Successfully Data Updated');
+        }else{
+            // return $request->all();
+            Employee::findOrFail($id)->update([
+                'name'                 => $request->name,
+                'email'                => $request->email,
+                'phone'                => $request->phone,
+                'phone_alt'            => $request->phone_alt,
+                'country'              => $request->country,
+                'address'              => $request->address,
+                'city'                 => $request->city,
+                'zip_code'             => $request->zip_code,
+                'gender'               => $request->gender,
+                'blood_group'          => $request->blood_group,
+                'nid_no'               => $request->nid_no,
+                'date_of_birth'        => $request->date_of_birth,
+                'covid_vaccine'        => $request->covid_vaccine,
+                'join_date'            => $request->join_date,
+                'department_id'        => $request->department_id,
+                'marital_status'       => $request->marital_status,
+                'description'          => $request->description,
+                'position_id'          => $request->position_id,
+                'office_id'            => $request->office_id,
+                'basic_salary'         => $request->basic_salary,
+                'house_allowance'      => $request->house_allowance,
+                'medical_allowance'    => $request->medical_allowance,
+                'conveyance_allowance' => $request->conveyance_allowance,
+                'other_allowance'      => $request->other_allowance,
+                'gross_salary'         => $request->gross_salary,
+            ]);
+            return redirect()->route('employee-information.index')->with('update', 'Successfully Data Updated');
+
         }
     }
 

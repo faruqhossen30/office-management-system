@@ -81,7 +81,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Covid Vaccine</th>
-                                                <td>{{ $employees->covid_vaccine }}</td>
+                                                <td>{{ $employees->covid_vaccine ?? ''}}</td>
                                             </tr>
 
                                         </tbody>
@@ -114,7 +114,7 @@
                                                         <th>Email Address</th>
                                                         <td> {{ $employees->email }}</td>
                                                     </tr>
-                                                 
+
                                                     <tr>
                                                         <th>Zip Code</th>
                                                         <td> {{ $employees->zip_code }}</td>

@@ -215,10 +215,8 @@
                                                 <div class="form-group">
                                                     <select class="form-control @error('gender') is-invalid @enderror"
                                                     id="exampleSelectRounded0"  name="gender">
-
                                                     <option value="">Select your gender </option>
                                                     <option value="{{$employee->gender}}" selected>{{$employee->gender}}</option>
-
                                                     <option value="male">male</option>
                                                     <option value="female">female</option>
                                                     <option value="other">other</option>

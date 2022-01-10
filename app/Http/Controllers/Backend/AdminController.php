@@ -135,6 +135,16 @@ class AdminController extends Controller
             'roll'     => $request->roll,
         ]);
         return redirect()->route('user-admin.index')->with('update', 'Successfully Data Updated');
+    }else{
+
+        User::findOrFail($id)->update([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => $request->password,
+            'phone'    => $request->phone,
+            'roll'     => $request->roll,
+        ]);
+        return redirect()->route('user-admin.index')->with('update', 'Successfully Data Updated');
     }
     }
     /**
