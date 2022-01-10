@@ -5,17 +5,6 @@
             <div class="col-md-12">
                 <div class="card mt-2">
                     <div class="card-body">
-
-                        {{-- 'amount',
-                        'payment_system_id',
-                        'author_id',
-                        'office_id',
-                        'date',
-                        'bank_id',
-                        'phone',
-                        'transaction',
-                        'source',
-                        'remarks', --}}
                         <!----------------------------------Personal Information---------------------------->
                         <div class="row">
 
@@ -52,7 +41,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Bank</th>
-                                                <td>{{$deposit->bank->name}}</td>
+                                                <td>{{$deposit->banks->name?? ''}}</td>
                                             </tr>
                                             <tr>
                                                 <th>Phone</th>

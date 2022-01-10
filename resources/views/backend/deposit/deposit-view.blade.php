@@ -54,6 +54,7 @@
                                         <th>Amount</th>
                                         <th>Payment Type</th>
                                         <th>Office</th>
+                                        <th>Bank</th>
                                         <th>Author</th>
                                         <th class="text-center">Deposite Date</th>
                                         <th class="text-center">Entry Date</th>
@@ -68,6 +69,7 @@
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
+                                            <td>{{ optional( $deposit->banks)->name}}</td>
                                             <td>{{ $deposit->author->name ?? '' }}</td>
                                             <td>{{ Carbon\Carbon::parse($deposit->date)->diffForHumans() }}</td>
                                             {{-- Deposite date --}}

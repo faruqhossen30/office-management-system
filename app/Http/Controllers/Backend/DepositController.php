@@ -17,7 +17,7 @@ class DepositController extends Controller
 {
     public function deposit_view()
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem','bank')->latest()->paginate(6);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem', 'banks')->latest()->paginate(6);
         $total = Deposit::sum('amount');
         // return $test;
         // return $deposits;
@@ -34,7 +34,7 @@ class DepositController extends Controller
 
         // $mobilebanking = MobileBankingSetting::get();
         // return $mobilebanking;
-        return view('backend.deposit.adddeposit', compact('offices', 'paymentSystem', 'banks', 'bankselectId', ));
+        return view('backend.deposit.adddeposit', compact('offices', 'paymentSystem', 'banks', 'bankselectId',));
     }
 
     public function store(Request $request)
@@ -44,21 +44,14 @@ class DepositController extends Controller
             'amount'            => 'required',
             'payment_system_id' => 'required',
             'office_id'         => 'required',
-            // 'transaction'       => 'required',
-            // 'phone'             => 'required',
             'source'            => 'required',
             'date'              => 'required',
-            // 'remarks'           => 'required',
-
         ], [
             'amount.required'            => 'Please input your amount ',
             'payment_system_id.required' => 'Please select your Payment System.',
             'office_id.required'         => 'Please select your office name ',
-            // 'transaction.required'       => 'Please select your transaction id ',
             'source.required'            => 'Please select your credit source',
-            // 'phone.required'             => 'Please select your phone ',
             'date.required'              => 'Please input your date ',
-            // 'remarks.required'           => 'Please input your remarks ',
         ]);
         $Data = [
             'amount'            => $request->amount,
@@ -77,11 +70,10 @@ class DepositController extends Controller
     }
     public function show($id)
     {
-        $banks = Bank::all();
-        $deposit = Deposit::Where('id',$id)->first();
+        // $banks = Bank::all();
+        $deposit = Deposit::Where('id', $id)->first();
         // return $deposit;
-        return view('backend.deposit.deposit-show',compact('deposit','banks'));
-
+        return view('backend.deposit.deposit-show', compact('deposit'));
     }
 
     // ---------------------deposit_edit--------------------
@@ -92,13 +84,13 @@ class DepositController extends Controller
         $banks = Bank::all();
         $paymentSystem = PaymentSystem::get();
         // return
-        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem','banks'));
+        return view('backend.deposit.edit', compact('deposit', 'offices', 'paymentSystem', 'banks'));
     }
 
     //    --------------------deposit update-------------------------
     public function update(Request $request, $id)
     {
-           return $request->all();
+        //    return $request->all();
         Deposit::findOrFail($id)->update([
             'amount'            => $request->amount,
             'payment_system_id' => $request->payment_system_id,
@@ -121,10 +113,6 @@ class DepositController extends Controller
         return redirect()->back()->with('delete', 'Successfully Data delete');
     }
 
-
-
-
-
     public function depositeListThisWeek()
     {
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->latest()->paginate(7);
@@ -144,10 +132,10 @@ class DepositController extends Controller
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
-     // Mobile Baking data
-     public function mobibleBankingData()
-     {
+    // Mobile Baking data
+    public function mobibleBankingData()
+    {
         $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
-         return $data;
-     }
+        return $data;
+    }
 }

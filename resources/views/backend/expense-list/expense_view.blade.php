@@ -67,7 +67,7 @@
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }}
                                             </td>
-                                            <td>{{ $expense_list->bank_id}}</td>
+                                            <td>{{ $expense_list->bank->name ?? ''}}</td>
                                             <td>{{ $expense_list->author->name}}</td>
                                             {{-- <td>{{$office->author_id}}</td> --}}
 
