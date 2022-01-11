@@ -13,28 +13,44 @@ class SettingController extends Controller
 {
     public function settingView()
     {
+
         $paymentsytems = PaymentSystem::orderBy('name', 'asc')->get();
-        $bankselectId = BankSetting::first()->bank_id;
-        //  return $bankselectId;
+        // $bankselectId = PaymentSystem::orderBy('name', 'asc')->get();
+        // //  return $bankselectId;
         $mobilebanking = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
+        $banking = BankSetting::select('paymentsystem_id')->get()->toArray();
 
-        // return $mobilebanking;
 
-
-        return view('backend.setting.setting', compact('paymentsytems', 'bankselectId', 'mobilebanking'));
+        return view('backend.setting.setting', compact('paymentsytems', 'banking', 'mobilebanking',));
     }
 
+
+    // Mobile Banking Setting
     public function bankSetting(Request $request)
     {
-        $request->validate([
-            'bank_id' => 'required'
-        ]);
 
-        $update = BankSetting::first()->update(['bank_id' => $request->bank_id]);
+        $banking = $request->banking;
+        $olddata = BankSetting::get();
 
-        return redirect()->route('setting');
+        // return $request->all();
+
+        if (!empty($banking)) {
+
+            if (!empty($olddata)) {
+                BankSetting::truncate();
+            }
+
+            foreach ($banking as $bank) {
+                BankSetting::create([
+                   'paymentsystem_id' => $bank
+               ]);
+            }
+
+            return redirect()->route('setting');
+
+        }
     }
-    // Mobile Banking Setting
+
     public function mobileBankingSetting(Request $request)
     {
 

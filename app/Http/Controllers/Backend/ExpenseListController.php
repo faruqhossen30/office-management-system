@@ -168,4 +168,11 @@ class ExpenseListController extends Controller
         $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
         return $data;
     }
+
+    // --------------for banking----------------
+    public function bankingData()
+    {
+        $data = BankSetting::select('paymentsystem_id')->get()->toArray();
+        return $data;
+    }
 }

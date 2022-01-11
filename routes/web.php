@@ -63,6 +63,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/deposit-view', [DepositController::class, 'deposit_view'])->name('deposit.view');
         Route::get('/deposit-view/week', [DepositController::class, 'depositeListThisWeek'])->name('deposit.view.week');
         Route::get('/deposit-view/month', [DepositController::class, 'depositeListThisMonth'])->name('deposit.view.month');
+
+
+
         // <------------------------------deposit-show---------------------------------------->
         Route::get('/deposit-show/show/{id}', [DepositController::class, 'show'])->name('deposit.show');
         // -----------------------------------------edit deposit------------------------------------------------------
@@ -144,4 +147,12 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);
+ // <!---------------------------banking-------------------------------------------------->
+ Route::get('/bankingdata', [DepositController::class, 'bankingData']);
+
+ // <!---------------------------mobile-banking-------------------------------------------------->
+ Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);
+ // <-------------------------------mobile-banking--------------------------------->
+ Route::get('/mobilebankingdata', [ExpenseListController::class, 'mobibleBankingData']);
+ // <-------------------------------banking--------------------------------->
+ Route::get('/bankingdata', [ExpenseListController::class, 'bankingData']);
