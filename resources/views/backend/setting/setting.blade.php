@@ -29,17 +29,24 @@
                                         <hr>
                                         <form action="{{route('bank.setting')}}" method="POST">
                                             @csrf
+
                                             <div class="form-group row">
-                                                <label class="col-form-label col-lg-2">Select For Bank</label>
-                                                <div class="col-lg-8">
-                                                    <select class="form-control" name="bank_id">
-                                                        <option value="">Default select box</option>
-                                                        @foreach ($paymentsytems as $paymentsytem)
-                                                            <option value="{{$paymentsytem->id}}" @if ($paymentsytem->id == $bankselectId) selected @endif>{{$paymentsytem->name}}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <label class="col-form-label col-lg-2"> Banking</label>
+                                                <div class="col-lg-10">
+                                                    @foreach ($paymentsytems as $paymentsytem)
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input name="banking[]" value="{{$paymentsytem->id}}" type="checkbox" class="form-check-input"
+                                                            @if ( in_array( ['paymentsystem_id' => $paymentsytem->id],  $banking )  ) checked @endif
+                                                            >
+                                                            {{$paymentsytem->name}}
+                                                        </label>
+                                                    </div>
+
+                                                    @endforeach
+
                                                 </div>
-                                                <div class="col-lg-2">
+                                                <div class="col-lg-2 offset-2 mt-2">
                                                     <button type="submit" class="btn btn-primary"><i
                                                             class="icon-floppy-disk mr-2"></i>Save</button>
                                                 </div>

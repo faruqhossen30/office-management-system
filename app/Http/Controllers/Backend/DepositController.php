@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
-
 use App\Http\Controllers\Controller;
 use App\Models\Bank;
 use App\Models\Deposit;
@@ -136,6 +135,12 @@ class DepositController extends Controller
     public function mobibleBankingData()
     {
         $data = MobileBankingSetting::select('paymentsystem_id')->get()->toArray();
+        return $data;
+    }
+    //  Baking data
+    public function bankingData()
+    {
+        $data =BankSetting::select('paymentsystem_id')->get()->toArray();
         return $data;
     }
 }

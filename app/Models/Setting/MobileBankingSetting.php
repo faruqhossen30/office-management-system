@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MobileBankingSetting extends Model
 {
     use HasFactory;
-    protected $fillable = ['paymentsystem_id'];
+    protected $fillable = [
+        'paymentsystem_id'
+    ];
 }

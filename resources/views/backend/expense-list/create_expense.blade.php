@@ -112,6 +112,22 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group" id="bank_div">
+                                <label class="text">Bank<span class="text-danger">*</span> </label>
+                                <div class="form-group">
+                                    <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
+                                        <option value="">Select bank </option>
+                                        @foreach ($banks as $bank)
+                                            <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('bank_id')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row" id="mobile_div">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -142,22 +158,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group" id="bank_div">
-                                <label class="text">Bank<span class="text-danger">*</span> </label>
-                                <div class="form-group">
-                                    <select class="form-control @error('bank_id') is-invalid @enderror" name="bank_id">
-                                        <option value="">Select bank </option>
-                                        @foreach ($banks as $bank)
-                                            <option value="{{ $bank->id }}">{{ $bank->name }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('bank_id')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
+
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>
@@ -221,21 +222,24 @@
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
     <script>
         // Bank for Check
+        //  Banking
         var bank_div = $('#bank_div');
         bank_div.hide();
-        var bankselectId = $('input[name="bankselectId"]').val();
 
         $(document).on('change', 'select[name="payment_system_id"]', function() {
             var payment_system_id = $('select[name="payment_system_id"]').val();
-            if (bankselectId == payment_system_id) {
-                bank_div.show();
-            }
-            if (bankselectId != payment_system_id) {
-                bank_div.hide();
-            }
+            bank_div.hide();
+            $.get('/bankingdata', function(data){
+                if(data){
+                    data.map(function(d){
+                        if(d.paymentsystem_id == payment_system_id){
+                            bank_div.show();
+                        }
 
+                    });
+                }
+            });
         });
-
 
         // Mobile Banking
         var mobile_div = $('#mobile_div');

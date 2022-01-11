@@ -21,5 +21,4 @@ class BackendDashboardController extends Controller
         return view('backend.dashboard',compact('totalDeposite','totalExpense','totalbalance','totalEmployee'));
     }
 
-
 }

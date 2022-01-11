@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BankSetting extends Model
 {
     use HasFactory;
-    protected $fillable = ['bank_id', 'bank_name'];
+    protected $fillable = [
+        'paymentsystem_id'
+    ];
 }
