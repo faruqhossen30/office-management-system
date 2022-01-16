@@ -10,6 +10,12 @@
 
                             <div class="col-md-12">
                                 <div class="card card-body bg-light">
+                                    <div class="col-md-2">
+
+                                        <a href="{{ route('deposit.view') }}" type="button"
+                                        class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                                class="icon-menu7"></i></b>List</a>
+                                    </div>
                                     <table class="table table-hover" width="100%">
 
                                         <h1 class="text-center">Deposit information</h1>

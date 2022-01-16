@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Models\AssetType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PharIo\Manifest\Author;
 
 class AssetController extends Controller
 {
@@ -17,7 +18,8 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $assets = Asset::with('assettype')->latest()->paginate(6);
+
+        $assets = Asset::with('assettype','author')->latest()->paginate(6);
         $total = Asset::sum('price');
         //    return $assets;
         return view('backend.asset.asset_view', compact('assets', 'total'));
@@ -92,6 +94,11 @@ class AssetController extends Controller
      */
     public function show($id)
     {
+
+        $assets = Asset::Where('id', $id)->first();
+        // return $employees;
+
+        return view('backend.asset.asset-show',compact('assets'));
     }
 
     /**

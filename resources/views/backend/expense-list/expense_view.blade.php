@@ -34,11 +34,31 @@
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expense.list.month')) active @endif">This
                                     Month</a>
                             </ul>
-                            <div>
-                                <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
+                           <form action="{{route('expense.list.date')}}" method="GET">
 
-                            </div>
+                                <div class="row">
+                                    <div class="form-group ml-2">
+                                        <label class="" for="from_date">From</label>
+                                        <input type="date" name="from_date" class="form-control " id="from_date"
+                                            placeholder="From" value="{{$_GET['from_date'] ?? ''}}">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <label class="" for="to_date">To</label>
+                                        <input type="date" name="to_date" class="form-control" id="to_date"
+                                            placeholder="To" value="{{$_GET['to_date'] ?? ''}}">
+                                    </div>
+                                    <div class="mt-4 ml-2">
+                                        <input type="submit" value="search">
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-primary btn-lg mt-4 p-1 ml-4">Total: {{ $total }}
+                                            TK</button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
+
                         <div class="table-responsive">
                             <table class="table table-bordered">
                                 <thead>
@@ -58,7 +78,8 @@
                                 <tbody>
                                     @foreach ($expense_lists as $expense_list)
                                         <tr>
-                                            <th scope="row">{{ $expense_lists->firstItem() + $loop->index }}</th>
+                                            {{-- {{ $expense_lists->firstItem() + $loop->index }} --}}
+                                            <th scope="row"></th>
                                             <td><strong>{{ $expense_list->amount }}Tk</strong></td>
                                             <td>{{ $expense_list->office->name }}</td>
                                             <td>{{ $expense_list->expencetype->name }}</td>
@@ -67,13 +88,14 @@
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }}
                                             </td>
-                                            <td>{{ $expense_list->bank->name ?? ''}}</td>
-                                            <td>{{ $expense_list->author->name}}</td>
+                                            <td>{{ $expense_list->bank->name ?? '' }}</td>
+                                            <td>{{ $expense_list->author->name }}</td>
                                             {{-- <td>{{$office->author_id}}</td> --}}
 
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="{{route('expenselist.show',$expense_list->id)}}" class="btn btn-sm btn-info mr-1 icon-eye"></a>
+                                                    <a href="{{ route('expenselist.show', $expense_list->id) }}"
+                                                        class="btn btn-sm btn-info mr-1 icon-eye"></a>
                                                     <a href="{{ route('expenselist.edit', $expense_list->id) }}"
                                                         class="btn btn-sm btn-success mr-1 icon-pencil7"></a>
                                                     <form action="{{ route('expenselist.destroy', $expense_list->id) }}"
@@ -90,9 +112,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="my-3">
+                            {{-- <div class="my-3">
                                 {{ $expense_lists->links() }}
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

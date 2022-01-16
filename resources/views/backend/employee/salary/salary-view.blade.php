@@ -62,7 +62,7 @@
                                         <td>{{ $salary->payment_date}}</td>
                                         <td>
                                             <div class="d-flex justify-content-start">
-                                                <a href="#" class="btn btn-success btn-xm icon-eye "></a>
+                                                <a href="{{route('salary.show',$salary->id)}}" class="btn btn-success btn-xm icon-eye "></a>
                                                 <a href="{{route('salary.edit',$salary->id)}}"
                                                     class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                 </a>

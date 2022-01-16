@@ -88,7 +88,11 @@ class LoneController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $lones = Lone::Where('id', $id)->first();
+        // return $employees;
+
+        return view('backend.employee.lone.lone-details',compact('lones'));
     }
 
     /**

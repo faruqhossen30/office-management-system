@@ -130,6 +130,15 @@ class DepositController extends Controller
         //    return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
+    public function depositeListThisDate(Request $request)
+    {
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->get();
+
+        $total = $deposits->sum('amount');
+        // $total = 2300;
+        //    return $deposits;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+    }
 
     // Mobile Baking data
     public function mobibleBankingData()

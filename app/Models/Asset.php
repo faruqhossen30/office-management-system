@@ -26,6 +26,10 @@ class Asset extends Model
     {
         return $this->hasOne(AssetType::class, 'id', 'assettype_id');
     }
+    public function author()
+    {
+        return $this->hasOne(AssetType::class, 'id', 'author_id');
+    }
 
 
 }

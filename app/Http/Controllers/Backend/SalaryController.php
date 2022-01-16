@@ -107,7 +107,10 @@ class SalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $salary = Salary::Where('id', $id)->first();
+        // return $employees;
+
+        return view('backend.employee.salary.salary-details',compact('salary'));
     }
 
     /**

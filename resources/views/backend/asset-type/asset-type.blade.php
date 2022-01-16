@@ -59,7 +59,7 @@
                                                 <th scope="row">{{ $serial++ }}</th>
                                                 <td>{{ $asset_type->asset_name }}</td>
                                                 <td class="text-center">
-                                                    <a href="#" class="btn btn-success btn-sm icon-eye"></a>
+                                                    {{-- <a href="#" class="btn btn-success btn-sm icon-eye"></a> --}}
                                                     <a href="{{ route('assettype.edit', $asset_type->id) }}"
                                                         class="btn btn-warning btn-sm icon-pencil7">
                                                     </a>

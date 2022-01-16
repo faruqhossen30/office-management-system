@@ -34,16 +34,37 @@
                         <div class="d-flex justify-content-between">
                             <ul class="list-group list-group-horizontal">
                                 <a href="{{ route('deposit.view') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view')) active @endif">All TIme</a>
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view')) active @endif">All Time</a>
                                 <a href="{{ route('deposit.view.week') }}"
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.week')) active @endif">This week</a>
                                 <a href="{{ route('deposit.view.month') }}"
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month')) active @endif">This
                                     Month</a>
                             </ul>
-                            <div>
-                                <button class="btn btn-primary btn-lg mt-1">Total: {{ $total }} TK</button>
-                            </div>
+                            <form action="{{route('deposit.view.date')}}" method="GET">
+                             
+                                      <div class="row">
+
+                                          <div class="form-group ml-2">
+                                              <label class="" for="from_date">From</label>
+                                              <input type="date" name="from_date" class="form-control " id="from_date"
+                                                  placeholder="From" value="{{$_GET['from_date'] ?? ''}}">
+                                          </div>
+                                          <div class="form-group ml-2">
+                                              <label class="" for="to_date">To</label>
+                                              <input type="date" name="to_date" class="form-control" id="to_date"
+                                                  placeholder="To" value="{{$_GET['from_date'] ?? ''}}">
+                                          </div>
+                                          <div class="mt-4 ml-2">
+                                              <input type="submit" value="search">
+                                          </div>
+                                          <div>
+                                              <button class="btn btn-primary btn-lg mt-4 p-1 ml-4">Total: {{ $total }}
+                                                  TK</button>
+                                          </div>
+                                      </div>
+                                  </form>
+
                         </div>
                         {{-- table-start --}}
                         <div class="table-responsive">
@@ -65,7 +86,8 @@
 
                                     @foreach ($deposits as $deposit)
                                         <tr>
-                                            <th scope="row">{{ $deposits->firstItem() + $loop->index }}</th>
+                                            {{-- {{ $deposits->firstItem() + $loop->index }} --}}
+                                            <th scope="row"></th>
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
@@ -91,9 +113,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="my-3">
+                            {{-- <div class="my-3">
                                 {{ $deposits->links() }}
-                            </div>
+                            </div> --}}
                         </div>
                         {{-- end table --}}
                     </div>
