@@ -106,6 +106,7 @@
 
             var totalsalary = $("input[name='totalsalary']");
             var gross_salary = $("input[name='gross_salary']");
+            var gross_salary = $("input[name='gross_salary']");
 
             var other_deduction = $("input[name='other_deduction']");
             var installment = $("input[name='Installment']");

@@ -33,15 +33,38 @@
                         </div>
                     @endif
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <ul class="list-group list-group-horizontal">
+                        <div class="d-flex justify-content-between p-1">
+                            <ul class="list-group list-group-horizontal " >
                                 <a href="{{route('asset.index')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.index') ) active @endif">All TIme</a>
                                 <a href="{{route('asset.list.week')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.list.week') ) active @endif">This week</a>
                                 <a href="{{route('asset.list.month')}}" class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.list.month') ) active @endif">This Month</a>
-                              </ul>
-                              <div>
-                                <button class="btn btn-primary btn-lg mt-1">Total: {{$total}} TK</button>
-                              </div>
+                            </ul>
+                            <form action="{{route('asset.list.date')}}" method="GET">
+                                {{-- {{csrf_field()}} --}}
+                                      <div class="row">
+
+                                          <div class="form-group ml-2">
+                                              <label class="" for="from_date">From</label>
+                                              {{-- <p>{{$_GET['from_date'] ?? ''}}</p> --}}
+                                              <input type="date" name="from_date" class="form-control " id="from_date"
+                                                  placeholder="From" value="{{$_GET['from_date'] ?? ''}}">
+                                          </div>
+                                          <div class="form-group ml-2">
+                                              <label class="" for="to_date">To</label>
+                                              <input type="date" name="to_date" class="form-control" id="to_date"
+                                                  placeholder="To" value="{{$_GET['to_date'] ?? ''}}">
+                                          </div>
+                                          <div class="mt-4 ml-2">
+                                              <input type="submit" value="search">
+                                          </div>
+                                          <div>
+                                              <button class="btn btn-primary btn-lg mt-4 p-1 ml-4">Total: {{ $total }}
+                                                  TK</button>
+                                          </div>
+                                      </div>
+                                  </form>
+
+
                         </div>
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -64,7 +87,8 @@
 
                                     @foreach ($assets as $asset)
                                         <tr>
-                                            <th scope="row">{{ $assets->firstItem() + $loop->index }}</th>
+                                            {{-- {{ $assets->firstItem() + $loop->index }} --}}
+                                            <th scope="row"></th>
                                             <td>{{ $asset->name }}</td>
                                             <td>{{ $asset->assettype->asset_name }}</td>
                                             <td>{{ $asset->price }}</td>
@@ -78,7 +102,7 @@
 
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="#" class="btn btn-success btn-xm icon-eye "></a>
+                                                    <a href="{{route('asset.show',$asset->id)}}" class="btn btn-success btn-xm icon-eye "></a>
                                                     <a href="{{ route('asset.edit', $asset->id) }}"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>
@@ -97,9 +121,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <div class="my-3">
+                            {{-- <div class="my-3">
                                 {{ $assets->links() }}
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -118,6 +142,10 @@
             vertical-align: top;
             border-top: 1px solid #ddd;
         }
-
+        .ul {
+            padding: .55rem .55rem .55rem .75rem;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
+        }
     </style>
 @endpush

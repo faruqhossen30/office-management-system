@@ -59,7 +59,12 @@
                             <div class="col-md-8">
                                 <div class="card card-body bg-light ">
                                     <table class="table table-hover" width="100%">
+                                        <div class="col-md-2">
 
+                                            <a href="{{ route('employee-information.index') }}" type="button"
+                                            class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
+                                                    class="icon-menu7"></i></b>List</a>
+                                        </div>
                                         <h1 class="text-center">Positional Information</h1>
                                         <caption class="resumecaption">Positional Information</caption>
                                         <tbody>

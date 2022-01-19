@@ -107,7 +107,10 @@ class SalaryController extends Controller
      */
     public function show($id)
     {
-        //
+        $salary = Salary::Where('id', $id)->first();
+        // return $employees;
+
+        return view('backend.employee.salary.salary-details',compact('salary'));
     }
 
     /**
@@ -117,12 +120,13 @@ class SalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $loan = Lone::all();
+    {   $lone = Lone::all();
+        // return $lone;
         $advance  =AdvanceSalary::all();
         $employees = Employee::all();
         $salary = Salary::findOrFail($id);
-        // return   $user;
-        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','loan'));
+        // return   $salary;
+        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','lone'));
     }
 
     /**

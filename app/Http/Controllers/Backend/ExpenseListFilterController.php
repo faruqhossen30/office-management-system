@@ -17,6 +17,14 @@ class ExpenseListFilterController extends Controller
         // return $expense_lists;
         return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
     }
+    public function expenseListeByDate(Request $request)
+    {
+        // return "Just for test";
+        $expense_lists = ExpenseList::with('office','expencetype' ,'paymentsystem','author')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->get();
+        $total = $expense_lists->sum('amount');
+        // return $expense_lists;
+        return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
+    }
 
     public function expenseListeByMonth()
     {

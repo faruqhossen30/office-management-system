@@ -17,6 +17,16 @@ class AssetListFilterController extends Controller
         // return $expense_lists;
         return view('backend.asset.asset_view', compact('assets', 'total'));
     }
+
+    public function assetListByDate(Request $request)
+    {
+        return $request->all();
+        $assets = Asset::with('assettype')->where('buy_date','>=',$request->from_date)->where('buy_date','<=',$request->to_date)->get();
+        $total = $assets->sum('price');
+        // return $expense_lists;
+        return view('backend.asset.asset_view', compact('assets', 'total'));
+    }
+
     public function assetListByMonth(Request $request)
     {
         // return "Just for test";

@@ -62,7 +62,7 @@
                                             <td>{{ $lone->Installment }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="#" class="btn btn-success btn-xm icon-eye "></a>
+                                                    <a href="{{route('lone.show',$lone->id)}}" class="btn btn-success btn-xm icon-eye "></a>
                                                     <a href="{{route('lone.edit',$lone->id)}}"
                                                         class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                     </a>
