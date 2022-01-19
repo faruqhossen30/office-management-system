@@ -120,12 +120,13 @@ class SalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $loan = Lone::all();
+    {   $lone = Lone::all();
+        // return $lone;
         $advance  =AdvanceSalary::all();
         $employees = Employee::all();
         $salary = Salary::findOrFail($id);
-        // return   $user;
-        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','loan'));
+        // return   $salary;
+        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','lone'));
     }
 
     /**
