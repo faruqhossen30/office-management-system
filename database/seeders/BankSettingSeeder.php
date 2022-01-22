@@ -15,8 +15,7 @@ class BankSettingSeeder extends Seeder
     public function run()
     {
         BankSetting::create([
-            'bank_id' => 0,
-            'bank_name' => 'none',
+            'paymentsystem_id' => 0
         ]);
     }
 }
