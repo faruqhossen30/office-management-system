@@ -16,6 +16,7 @@ class CreateAssetsTable extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('sub_asset')->nullable();
             $table->unsignedBigInteger('assettype_id');
             $table->integer('price');
             $table->dateTime('buy_date');

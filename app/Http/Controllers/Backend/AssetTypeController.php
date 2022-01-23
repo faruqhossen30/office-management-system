@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use App\Models\AssetType;
+use App\Models\SubAssetType;
 use Illuminate\Http\Request;
 
 class AssetTypeController extends Controller
@@ -30,6 +31,8 @@ class AssetTypeController extends Controller
      */
     public function create()
     {
+    //    $sub_asset_types= SubAssetType::all();
+
         return view('backend.asset-type.asset-type');
         // return "ok";
     }

@@ -11,4 +11,5 @@ class AssetType extends Model
     protected $fillable =[
         'asset_name',
     ];
+ 
 }

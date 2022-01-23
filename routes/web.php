@@ -24,7 +24,9 @@ use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AdvanceSalaryController;
 use App\Http\Controllers\Backend\EmployeeSalaryAPI;
 use App\Http\Controllers\Backend\LoneController;
+use App\Http\Controllers\Backend\SubAssetTypeController as BackendSubAssetTypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubAssetTypeController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -106,22 +108,25 @@ Route::prefix('admin')->group(function () {
         Route::get('assetlist-filter/month', [AssetListFilterController::class, 'assetListByMonth'])->name('asset.list.month');
         Route::get('assetlist-filter/date', [AssetListFilterController::class, 'assetListByDate'])->name('asset.list.date');
         Route::resource('assettype', AssetTypeController::class);
+        Route::resource('sub-asset-type', BackendSubAssetTypeController::class);
+
+
 
         // -------------------------------------Balance----------------------------------------------
-        Route::get('balance',[BalanceController::class,'balanceView'])->name('balance');
+        Route::get('balance', [BalanceController::class, 'balanceView'])->name('balance');
 
 
         // -------------------------------------Bank----------------------------------------------------
         Route::resource('bank', BankController::class);
 
         // -------------------------------------------Setting-----------------------------------------------
-        Route::get('setting',[SettingController::class,'settingView'])->name('setting');
-        Route::post('setting/bank',[SettingController::class,'bankSetting'])->name('bank.setting');
-        Route::post('setting/mobilebanking',[SettingController::class,'mobileBankingSetting'])->name('mobilebanking.setting');
+        Route::get('setting', [SettingController::class, 'settingView'])->name('setting');
+        Route::post('setting/bank', [SettingController::class, 'bankSetting'])->name('bank.setting');
+        Route::post('setting/mobilebanking', [SettingController::class, 'mobileBankingSetting'])->name('mobilebanking.setting');
         // -----------------------------SalarySetUp---------------------------------------------
 
-         Route::resource('salary-setup', SalarySetupController::class);
-         Route::resource('salary', SalaryController::class);
+        Route::resource('salary-setup', SalarySetupController::class);
+        Route::resource('salary', SalaryController::class);
 
         // -------------------------------------Employee--------------------------------------------------------
         Route::resource('position', EmployeePositionController::class);
@@ -133,28 +138,27 @@ Route::prefix('admin')->group(function () {
         Route::resource('department', DepartmentController::class);
 
         //---------------------advance salary------------------------------------
-        Route::resource('advance-salary',AdvanceSalaryController::class);
+        Route::resource('advance-salary', AdvanceSalaryController::class);
         // ----------------------------Lone------------------------------------------------
-        Route::resource('lone',LoneController::class);
+        Route::resource('lone', LoneController::class);
 
 
         //----------------------Admin-Route-------------------------------------
-        Route::resource('user-admin',AdminController::class);
-
-
-
-
-
+        Route::resource('user-admin', AdminController::class);
     });
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
- // <!---------------------------banking-------------------------------------------------->
- Route::get('/bankingdata', [DepositController::class, 'bankingData']);
+// <!---------------------------banking-------------------------------------------------->
+Route::get('/bankingdata', [DepositController::class, 'bankingData']);
 
- // <!---------------------------mobile-banking-------------------------------------------------->
- Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);
- // <-------------------------------mobile-banking--------------------------------->
- Route::get('/mobilebankingdata', [ExpenseListController::class, 'mobibleBankingData']);
- // <-------------------------------banking--------------------------------->
- Route::get('/bankingdata', [ExpenseListController::class, 'bankingData']);
+// <!---------------------------mobile-banking-------------------------------------------------->
+Route::get('/mobilebankingdata', [DepositController::class, 'mobibleBankingData']);
+// <-------------------------------mobile-banking--------------------------------->
+Route::get('/mobilebankingdata', [ExpenseListController::class, 'mobibleBankingData']);
+// <-------------------------------banking--------------------------------->
+Route::get('/bankingdata', [ExpenseListController::class, 'bankingData']);
+
+use App\Http\Controllers\APIController;
+
+Route::get('subassetbyasset/{id}', [APIController::class, 'assetTypeToSubassetTypeList']);

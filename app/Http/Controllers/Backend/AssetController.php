@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Asset;
 use App\Models\AssetType;
+use App\Models\SubAssetType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use PharIo\Manifest\Author;
@@ -19,7 +20,7 @@ class AssetController extends Controller
     public function index()
     {
 
-        $assets = Asset::with('assettype','author')->latest()->paginate(6);
+        $assets = Asset::with('assettype', 'author')->latest()->paginate(6);
         $total = Asset::sum('price');
         //    return $assets;
         return view('backend.asset.asset_view', compact('assets', 'total'));
@@ -32,9 +33,10 @@ class AssetController extends Controller
      */
     public function create()
     {
+        $sub_asset_types = SubAssetType::all();
         $asset_types = AssetType::get();
         // return $asset_types;
-        return view('backend.asset.create_asset', compact('asset_types'));
+        return view('backend.asset.create_asset', compact('asset_types','sub_asset_types'));
     }
 
     /**
@@ -48,9 +50,10 @@ class AssetController extends Controller
         // return $request->all();
 
         $request->validate([
-            'name'                   => 'required',
-            'assettype_id'           => 'required',
-            'price'                  => 'required',
+            'name'         => 'required',
+            'sub_asset'    => 'required',
+            'assettype_id' => 'required',
+            'price'        => 'required',
             // 'buy_date'               => 'required',
             // 'expiry_date'            => 'required',
             // 'warranty_date'          => 'required',
@@ -60,6 +63,7 @@ class AssetController extends Controller
             // 'author_id'              => 'required',
         ], [
             'name.required'                   => 'Please enter your asset name ',
+            'sub_asset.required'              => 'Please enter your asset name ',
             'assettype_id.required'           => 'Please enter your asset type ',
             'price.required'                  => 'Please enter your asset price ',
             'buy_date.required'               => 'Please enter your asset buy_date ',
@@ -72,6 +76,7 @@ class AssetController extends Controller
         ]);
         Asset::create([
             'name'                   => $request->name,
+            'sub_asset'              => $request->sub_asset,
             'assettype_id'           => $request->assettype_id,
             'price'                  => $request->price,
             'buy_date'               => $request->buy_date,
@@ -98,7 +103,7 @@ class AssetController extends Controller
         $assets = Asset::Where('id', $id)->first();
         // return $employees;
 
-        return view('backend.asset.asset-show',compact('assets'));
+        return view('backend.asset.asset-show', compact('assets'));
     }
 
     /**
@@ -109,9 +114,10 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
+        $sub_asset_types = SubAssetType::all();
         $assets = Asset::findOrFail($id);
         $asset_types = AssetType::get();
-        return view('backend.asset.asset_edit', compact('assets', 'asset_types'));
+        return view('backend.asset.asset_edit', compact('assets', 'asset_types','sub_asset_types'));
     }
 
     /**
@@ -125,6 +131,7 @@ class AssetController extends Controller
     {
         Asset::findOrFail($id)->update([
             'name'                   => $request->name,
+            'sub_asset'              => $request->sub_asset,
             'assettype_id'           => $request->assettype_id,
             'price'                  => $request->price,
             'buy_date'               => $request->buy_date,
