@@ -18,7 +18,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="col-xm-3">Asset Type Name<span class="text-danger">*</span></label>
+                                        <label class="col-xm-3">Asset Type Name<span
+                                                class="text-danger">*</span></label>
                                         <div class="form-group">
                                             <select name="assettype_id"
                                                 class="form-control @error('assettype_id')is-invalid @enderror" type="text">
@@ -28,11 +29,7 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-                                            @error('assettype_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                            <x-error name='assettype_id' />
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +41,6 @@
                                             <select class="form-control @error('sub_asset') is-invalid @enderror"
                                                 name="sub_asset">
                                                 <option>Select asset_types </option>
-
                                             </select>
                                             <x-error name='sub_asset' />
                                         </div>
@@ -56,11 +52,7 @@
                                 <label class="col-xm-4">Asset Name<span class="text-danger">*</span></label>
                                 <input name="name" class="col-xm-8 form-control @error('name')is-invalid @enderror"
                                     type="text" placeholder="Enter your asset name" value="{{ old('name') }}">
-                                @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='name' />
 
                             </div>
 
@@ -68,77 +60,48 @@
                                 <label class="col-xm-3">Price<span class="text-danger">*</span></label>
                                 <input name="price" class="col-xm-9 form-control  @error('price')is-invalid @enderror"
                                     type="number" placeholder="Enter your price" value="{{ old('price') }}">
-                                @error('price')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='price' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Buy Date<span class="text-danger">*</span></label>
                                 <input name="buy_date" class="col-xm-9 form-control  @error('buy_date')is-invalid @enderror"
                                     type="datetime-local" placeholder="Enter your price" value="{{ old('buy_date') }}">
-                                @error('buy_date')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='buy_date' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Expiry Date<span class="text-danger">*</span></label>
                                 <input name="expiry_date"
                                     class="col-xm-9 form-control @error('expiry_date')is-invalid @enderror"
-                                    type="datetime-local" placeholder="Enter your price"
-                                    value="{{ old('expiry_date') }}">
-                                @error('expiry_date')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                    type="datetime-local" placeholder="Enter your price" value="{{ old('expiry_date') }}">
+                                <x-error name='expiry_date' />
                             </div>
                             <div class="form-group">
-                                <label class="col-xm-3">Warranty date/
-                                    guarantee<span class="text-danger">*</span></label>
+                                <label class="col-xm-3">Warranty/
+                                    guarantee <span class="text-danger">*</span></label>
                                 <input name="warranty_date"
                                     class="col-xm-9 form-control @error('warranty_date')is-invalid @enderror" type="text"
                                     placeholder="Enter your Warranty time" value="{{ old('warranty_date') }}">
-                                @error('warranty_date')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='warranty_date' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Serial Number</label>
                                 <input name="serial" class="col-xm-9 form-control @error('serial')is-invalid @enderror"
                                     type="number" placeholder="Enter your serial number" value="{{ old('serial') }}">
-                                @error('serial')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='serial' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Additional information</label>
                                 <textarea name="additional_information" type="text"
                                     class="form-control @error('additional_information')is-invalid @enderror"
                                     rows="3">{{ old('additional_information') }}</textarea>
-                                @error('additional_information')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='additional_information' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Remarks</label>
                                 <textarea name="remarks" type="text"
                                     class="form-control @error('remarks')is-invalid @enderror"
                                     rows="3">{{ old('remarks') }}</textarea>
-                                @error('remarks')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                <x-error name='remarks' />
                             </div>
                             <div class="col-sm mt-3">
 
@@ -165,7 +128,7 @@
 
         $(document).on('change', 'select[name="assettype_id"]', function() {
             assettypeid = assettype_id.val();
-            if(assettypeid){
+            if (assettypeid) {
                 $.ajax({
                     url: `/subassetbyasset/${assettypeid}`,
                     type: 'GET',
@@ -173,8 +136,9 @@
                     success: function(data) {
                         if (data) {
                             sub_assetid.empty()
-                            data.forEach(function(cat){
-                                sub_assetid.append(`<option value="${cat.id}">${cat.name}</option>`)
+                            data.forEach(function(cat) {
+                                sub_assetid.append(
+                                    `<option value="${cat.id}">${cat.name}</option>`)
                             })
                         }
                     },
@@ -186,8 +150,6 @@
                 })
             }
         });
-
-
     </script>
 
 @endpush
