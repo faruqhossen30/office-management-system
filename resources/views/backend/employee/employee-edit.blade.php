@@ -274,9 +274,7 @@
                                                         name="office_id">
                                                         <option value="">Select your office </option>
                                                         @foreach ($offices as $office)
-                                                            <option value="{{ $office->id }}"@if ($office->id == $employee->office_id)
-
-                                                           selected @endif>{{ $office->name }}
+                                                            <option value="{{ $office->id }}"@if ($office->id == $employee->office_id)  selected @endif>{{ $office->name }}
                                                             </option>
                                                         @endforeach
 

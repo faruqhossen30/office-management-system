@@ -110,7 +110,7 @@
                                             name="office_id">
                                             <option value="">Select Office</option>
                                             @foreach ($offices as $office)
-                                                <option value="{{ $office->id }}"  >{{ $office->name }}</option>
+                                                <option value="{{ $office->id }}">{{ $office->name }}</option>
                                             @endforeach
 
                                         </select>

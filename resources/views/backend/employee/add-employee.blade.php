@@ -240,8 +240,8 @@
                                                         class="form-control @error('covid_vaccine') is-invalid @enderror"
                                                     id="exampleSelectRounded0"    name="covid_vaccine">
                                                         <option value="">Select your Vaccine </option>
-                                                        <option value="Oxford–AstraZeneca3">Oxford–AstraZeneca3</option>
-                                                        <option value="Pfizer–BioNTech">Pfizer–BioNTech</option>
+                                                        <option value="Oxford-AstraZeneca3">Oxford-AstraZeneca3</option>
+                                                        <option value="Pfizer-BioNTech">Pfizer-BioNTech</option>
                                                         <option value=" Sinopharm BIBP7"> Sinopharm BIBP7</option>
                                                         <option value="Sputnik V"> Sputnik V</option>
                                                         <option value="Moderna">Moderna</option>
