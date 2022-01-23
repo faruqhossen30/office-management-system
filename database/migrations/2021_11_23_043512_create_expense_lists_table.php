@@ -17,12 +17,12 @@ class CreateExpenseListsTable extends Migration
             $table->id();
             $table->integer('amount');
             $table->unsignedBigInteger('expense_id');
-            $table->integer('voucher_no')->nullable();
+            $table->string('voucher_no')->nullable();
             $table->unsignedBigInteger('payment_system_id');
             $table->unsignedBigInteger('office_id');
             $table->unsignedBigInteger('author_id');
-            $table->unsignedBigInteger('bank_id');
-            $table->string('phone');
+            $table->unsignedBigInteger('bank_id')->nullable();
+            $table->string('phone')->nullable();
             $table->string('transaction')->nullable();
             $table->timestamp('date');
             $table->string('description', 1000)->nullable();
