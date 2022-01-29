@@ -51,7 +51,7 @@ class AssetController extends Controller
 
         $request->validate([
             'name'         => 'required',
-            'sub_asset'    => 'required',
+            'subasset_id'    => 'required',
             'assettype_id' => 'required',
             'price'        => 'required',
             // 'buy_date'               => 'required',
@@ -63,7 +63,7 @@ class AssetController extends Controller
             // 'author_id'              => 'required',
         ], [
             'name.required'                   => 'Please enter your asset name ',
-            'sub_asset.required'              => 'Please enter your asset name ',
+            'subasset_id.required'              => 'Please enter your asset name ',
             'assettype_id.required'           => 'Please enter your asset type ',
             'price.required'                  => 'Please enter your asset price ',
             'buy_date.required'               => 'Please enter your asset buy_date ',
@@ -76,7 +76,7 @@ class AssetController extends Controller
         ]);
         Asset::create([
             'name'                   => $request->name,
-            'sub_asset'              => $request->sub_asset,
+            'subasset_id'              => $request->subasset_id,
             'assettype_id'           => $request->assettype_id,
             'price'                  => $request->price,
             'buy_date'               => $request->buy_date,
@@ -131,7 +131,7 @@ class AssetController extends Controller
     {
         Asset::findOrFail($id)->update([
             'name'                   => $request->name,
-            'sub_asset'              => $request->sub_asset,
+            'subasset_id'              => $request->subasset_id,
             'assettype_id'           => $request->assettype_id,
             'price'                  => $request->price,
             'buy_date'               => $request->buy_date,

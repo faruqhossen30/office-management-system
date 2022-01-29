@@ -10,7 +10,7 @@ class Asset extends Model
     use HasFactory;
     protected $fillable = [
             'name',
-            'sub_asset',
+            'subasset_id',
             'assettype_id',
             'price',
             'buy_date',
