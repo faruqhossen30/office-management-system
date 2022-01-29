@@ -38,11 +38,11 @@
                                         <label class="text">Sub Asset Type<span
                                                 class="text-danger">*</span></label>
                                         <div class="form-group">
-                                            <select class="form-control @error('sub_asset') is-invalid @enderror"
-                                                name="sub_asset">
+                                            <select class="form-control @error('subasset_id') is-invalid @enderror"
+                                                name="subasset_id">
                                                 <option>Select asset_types </option>
                                             </select>
-                                            <x-error name='sub_asset' />
+                                            <x-error name='subasset_id' />
                                         </div>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Serial Number</label>
                                 <input name="serial" class="col-xm-9 form-control @error('serial')is-invalid @enderror"
-                                    type="number" placeholder="Enter your serial number" value="{{ old('serial') }}">
+                                    type="text" placeholder="Enter your serial number" value="{{ old('serial') }}">
                                 <x-error name='serial' />
                             </div>
                             <div class="form-group">
@@ -124,7 +124,7 @@
 @push('script')
     <script>
         var assettype_id = $('select[name="assettype_id"]');
-        var sub_assetid = $('select[name="sub_asset"]');
+        var sub_assetid = $('select[name="subasset_id"]');
 
         $(document).on('change', 'select[name="assettype_id"]', function() {
             assettypeid = assettype_id.val();

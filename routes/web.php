@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\LoneController;
 use App\Http\Controllers\Backend\SubAssetTypeController as BackendSubAssetTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubAssetTypeController;
+use App\Http\Controllers\Backend\SubExpenseController;
 use App\Models\Deposit;
 use App\Models\Office;
 use App\Models\Expense;
@@ -99,7 +100,7 @@ Route::prefix('admin')->group(function () {
         Route::get('expencelist-filter/week', [ExpenseListFilterController::class, 'expenseListeByWeek'])->name('expense.list.week');
         Route::get('expencelist-filter/month', [ExpenseListFilterController::class, 'expenseListeByMonth'])->name('expense.list.month');
         Route::get('expencelist-filter/date', [ExpenseListFilterController::class, 'expenseListeByDate'])->name('expense.list.date');
-
+        Route::resource('sub-expense-type', SubExpenseController::class);
 
 
         // ---------------------Asset-Type---------------------------------------

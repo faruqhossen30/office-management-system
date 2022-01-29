@@ -49,21 +49,21 @@
                                     @endphp
                                     @foreach ($sub_asset_types as $sub_asset)
                                         <tr>
-                                            <th scope="row">{{$serial++}}</th>
-                                            <td>{{$sub_asset->name ?? ''}}</td>
-                                            <td>{{$sub_asset->assettype->asset_name ?? ''}}</td>
+                                            <th scope="row">{{ $serial++ }}</th>
+                                            <td>{{ $sub_asset->name ?? '' }}</td>
+                                            <td>{{ $sub_asset->assettype->asset_name ?? '' }}</td>
                                             <td>
                                                 {{-- <a href="{{route('sub-asset-type.index',$sub_asset->id)}}" class="btn btn-sm btn-primary icon-eye"></a> --}}
-                                                <a href="{{ route('sub-asset-type.edit',$sub_asset->id) }}"
+                                                <a href="{{ route('sub-asset-type.edit', $sub_asset->id) }}"
                                                     class="btn btn-sm btn-info icon-pencil7"></a>
-                                                    <form action="{{ route('sub-asset-type.destroy', $sub_asset->id) }}"
-                                                        method="POST" style="display: inline-flex">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            onclick=" return confirm('Are you  shure to delete?')"
-                                                            class="btn btn-danger btn-sm icon-trash"></button>
-                                                    </form>
+                                                <form action="{{ route('sub-asset-type.destroy', $sub_asset->id) }}"
+                                                    method="POST" style="display: inline-flex">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        onclick=" return confirm('Are you  shure to delete?')"
+                                                        class="btn btn-danger btn-sm icon-trash"></button>
+                                                </form>
                                             </td>
                                         </tr>
 
@@ -96,4 +96,3 @@
 
     </style>
 @endpush
-

@@ -87,12 +87,12 @@
 
                                     @foreach ($assets as $asset)
                                         <tr>
-                                            {{-- {{ $assets->firstItem() + $loop->index }} --}}
-                                            <th scope="row"></th>
+
+                                            <th scope="row">{{ $assets->firstItem() + $loop->index }}</th>
                                             <td>{{ $asset->name }}</td>
                                             <td>{{ $asset->assettype->asset_name }}</td>
                                             <td>{{ $asset->price }}</td>
-                                            <td>{{ Carbon\Carbon::parse($asset->buy_date)->diffForHumans()}}</td>
+                                            <td>{{ Carbon\Carbon::parse($asset->buy_date)->format('d M Y')}}</td>
                                             <td>{{ $asset->expiry_date }}</td>
                                             <td>{{ $asset->warranty_date }}</td>
                                             <td>{{ $asset->serial }}</td>
@@ -121,9 +121,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="my-3">
+                            <div class="my-3">
                                 {{ $assets->links() }}
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>
