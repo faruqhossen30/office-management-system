@@ -20,7 +20,7 @@ class AssetController extends Controller
     public function index()
     {
 
-        $assets = Asset::with('assettype', 'author')->latest()->paginate(6);
+        $assets = Asset::with('assettype', 'author')->latest()->paginate(20);
         $total = Asset::sum('price');
         //    return $assets;
         return view('backend.asset.asset_view', compact('assets', 'total'));

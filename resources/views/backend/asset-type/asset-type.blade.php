@@ -76,6 +76,9 @@
                                         @endforeach
                                     </tbody>
                             </table>
+                            {{-- <div class="my-3">
+                                {{ $expense_lists->links() }}
+                            </div> --}}
                     </div>
                 </div>
             </div>
