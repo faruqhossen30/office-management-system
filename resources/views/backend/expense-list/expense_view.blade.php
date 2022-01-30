@@ -66,30 +66,30 @@
                                         <th>Sl</th>
                                         <th>Amount</th>
                                         <th>Office Name</th>
-                                        <th>Payment Type</th>
                                         <th>Expense Type</th>
+                                        <th>Payment Type</th>
                                         <th class="text-center">Expense Date</th>
                                         <th class="text-center">Entry Date</th>
                                         <th class="text-center">Bank</th>
-                                        <th>Author</th>
+                                        {{-- <th>Author</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($expense_lists as $expense_list)
                                         <tr>
-                                            {{-- {{ $expense_lists->firstItem() + $loop->index }} --}}
-                                            <th scope="row"></th>
+
+                                            <th scope="row">{{ $expense_lists->firstItem() + $loop->index }}</th>
                                             <td><strong>{{ $expense_list->amount }}Tk</strong></td>
                                             <td>{{ $expense_list->office->name }}</td>
-                                            <td>{{ $expense_list->expencetype->name }}</td>
+                                            <td>{{ $expense_list->expencetype->name ?? '' }}</td>
                                             <td>{{ $expense_list->paymentsystem->name }}</td>
                                             <td>{{ Carbon\Carbon::parse($expense_list->date)->diffForHumans() }}</td>
                                             {{-- Deposite date --}}
                                             <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }}
                                             </td>
                                             <td>{{ $expense_list->bank->name ?? '' }}</td>
-                                            <td>{{ $expense_list->author->name }}</td>
+                                            {{-- <td>{{ $expense_list->author->name }}</td> --}}
                                             {{-- <td>{{$office->author_id}}</td> --}}
 
                                             <td>
@@ -112,9 +112,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="my-3">
+                            <div class="my-3">
                                 {{ $expense_lists->links() }}
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 </div>

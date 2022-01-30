@@ -95,7 +95,7 @@
                                 Office List</a></li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index')) nav-item-expanded nav-item-open @endif">
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index','sub-expense-type.index')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
                         icon-cash"></i>
                         <span>Debit</span></a>
@@ -110,6 +110,9 @@
                         <li class="nav-item"><a href="{{ route('expense.index') }}"
                                 class="nav-link @if (request()->routeIs('expense.index')) active @endif">
                                 Debit Type</a></li>
+                        <li class="nav-item"><a href="{{ route('sub-expense-type.index') }}"
+                                class="nav-link @if (request()->routeIs('sub-expense-type.index')) active @endif">
+                              Sub  Debit Type</a></li>
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('sub-asset-type.index', 'sub-asset-type.create')) nav-item-expanded nav-item-open @endif">
@@ -137,8 +140,8 @@
 
                         </li>
                         <li class="nav-item"><a href="{{ route('asset.index') }}"
-                                class="nav-link @if (request()->routeIs('asset.index') || request()->routeIs('asset.create')) active @endif">Equipment</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li>
+                                class="nav-link @if (request()->routeIs('asset.index') || request()->routeIs('asset.create')) active @endif">Add Asset</a></li>
+                        {{-- <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li> --}}
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('position.index', 'advance-salary.index', 'advance-salary.create', 'employee-information.index', 'employee-information.create', 'department.index', 'department.create')) nav-item-expanded nav-item-open @endif">

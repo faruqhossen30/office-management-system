@@ -113,7 +113,4 @@ class SubAssetTypeController extends Controller
         return redirect()->route('sub-asset-type.index')->with('delete', 'Successfully Data delete');
     }
 
-
-
-    
 }

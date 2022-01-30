@@ -22,9 +22,9 @@ class CreateAssetsTable extends Migration
             $table->dateTime('buy_date');
             $table->dateTime('expiry_date');
             $table->string('warranty_date');
-            $table->string('serial');
-            $table->string('additional_information');
-            $table->string('remarks');
+            $table->string('serial')->nullable();
+            $table->string('additional_information')->nullable();
+            $table->string('remarks')->nullable();
             $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });

@@ -13,9 +13,9 @@ class CreateSubExpenseTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub-_expense-_types', function (Blueprint $table) {
+        Schema::create('sub_expense_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sub_expense_type_id');
+            $table->unsignedBigInteger('sub_expense_type_id')->nullable();
             $table->string('name');
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ class CreateSubExpenseTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub-_expense-_types');
+        Schema::dropIfExists('sub_expense_types');
     }
 }

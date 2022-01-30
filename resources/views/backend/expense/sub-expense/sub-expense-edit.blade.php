@@ -5,10 +5,8 @@
             <div class="col-md-6 offset-3">
                 <div class="card mt-2">
                     <div class="card-header  bg-light d-flex justify-content-between">
-                        <h6 class="card-title text-dark">Sub Expense information insert</h6>
-                        <a href="{{ route('sub-expense-type.index') }}" type="button"
-                            class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i class="icon-menu7"></i></b>Sub
-                            Expense List</a>
+                        <h6 class="card-title text-dark">Sub Expense information Edit</h6>
+
                     </div>
                     <div class="card-body">
                         <!-- Left aligned buttons -->
@@ -23,9 +21,9 @@
                         @endif
 
                         <div class="card-body">
-                            <form action="{{ route('sub-expense-type.store') }}" method="POST">
+                            <form action="{{ route('sub-expense-type.update',$sub_expense->id) }}" method="POST">
                                 @csrf
-                                {{-- @method('PUT') --}}
+                                @method('PUT')
                                 <div class="form-group">
                                     <label class="text">Expense Type<span class="text-danger">*</span></label>
                                     <div class="form-group">
@@ -33,7 +31,7 @@
                                             name="sub_expense_type_id">
                                             <option>Select Expense_types </option>
                                             @foreach ($expensetype as $expence)
-                                                <option value="{{ $expence->id }}">{{ $expence->name }}
+                                                <option value="{{ $expence->id }}"@if ($expence->id == $sub_expense->sub_expense_type_id) selected @endif>{{ $expence->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -43,7 +41,7 @@
                                 <div class="form-group">
                                     <label>Sub Expense Type<span class="text-danger">*</span></label>
                                     <input name="name" type="text" class="form-control  @error('name')is-invalid @enderror "
-                                        placeholder="Your sub asset name" value="{{ old('name') }}">
+                                        placeholder="Your sub asset name" value="{{$sub_expense->name}}">
                                     @error('name')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -55,7 +53,7 @@
 
                                 <div class="d-flex justify-content-start align-items-center">
                                     <button type="submit" class="btn btn-light">Cancel</button>
-                                    <button type="submit" class="btn bg-blue ml-2"><i class="icon-plus2 mr-2">Add Sub
+                                    <button type="submit" class="btn bg-blue ml-2"><i class="icon-plus2 mr-2">Update
                                             Expense
                                         </i></button>
                                 </div>
