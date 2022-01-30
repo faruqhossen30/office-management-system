@@ -34,6 +34,10 @@
                                                 <td>{{$expense_lists->expencetype->name}}</td>
                                             </tr>
                                             <tr>
+                                                <th><b>Sub Expense</b></th>
+                                                <td>{{$expense_lists->subexpense->name}}</td>
+                                            </tr>
+                                            <tr>
                                                 <th><b>Voucher No</b></th>
                                                 <td>{{$expense_lists->voucher_no}}</td>
                                             </tr>
