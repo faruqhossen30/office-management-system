@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
 
                                         <label class="text">
@@ -73,6 +73,22 @@
                                                     {{ $message }}
                                                 </div>
                                             @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text">Sub Debit Type<span class="text-danger">*</span></label>
+                                        <div class="form-group">
+                                            <select class="form-control @error('sub_expense_type_id') is-invalid @enderror"
+                                                name="sub_expense_type_id">
+                                                <option>Select Sub Debit Type </option>
+                                                @foreach ($subexpensetype as $expence)
+                                                    <option value="{{ $expence->id }}" @if ($expence->id == $expense_list->sub_expense_type_id) selected @endif>{{ $expence->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                            <x-error name='sub_expense_type_id' />
                                         </div>
                                     </div>
                                 </div>

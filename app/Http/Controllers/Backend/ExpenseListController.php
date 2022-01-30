@@ -10,6 +10,7 @@ use App\Models\Office;
 use App\Models\Setting\BankSetting;
 use App\Models\Setting\MobileBankingSetting;
 use App\Models\PaymentSystem;
+use App\Models\SubExpenseType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class ExpenseListController extends Controller
      */
     public function index()
     {
-        $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author','bank')->latest()->paginate(6);
+        $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author','bank','subexpense')->latest()->paginate(20);
         // return $expense_lists;
         $total = ExpenseList::sum('amount');
         return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
@@ -42,8 +43,10 @@ class ExpenseListController extends Controller
         $bankselectId = BankSetting::first()->bank_id;
         // return $bankselectId;
         $paymentsystems = PaymentSystem::orderBy('name', 'asc')->get();
+        $subexpensetype = SubExpenseType::all();
         // return $expenses;
-        return view('backend.expense-list.create_expense', compact('expenses', 'offices', 'banks', 'paymentsystems', 'bankselectId'));
+        // $expensetype = Expense::all();
+        return view('backend.expense-list.create_expense', compact('expenses', 'offices', 'banks', 'paymentsystems', 'bankselectId','subexpensetype'));
     }
 
     /**
@@ -61,29 +64,32 @@ class ExpenseListController extends Controller
                 'office_id'         => 'required',
                 'expense_id'        => 'required',
                 'payment_system_id' => 'required',
+                'sub_expense_type_id' => 'required',
                 'date'              => 'required',
             ],
             [
                 'amount.required'            => 'Please enter your date',
                 'office_id.required'         => 'Please enter your office name',
                 'expense_id.required'        => 'Please enter your description',
+                'sub_expense_type_id.required'=> 'Please enter your description',
                 'payment_system_id.required' => 'Please enter your payment system',
                 'date.required'              => 'Please enter your date',
             ]
         );
         ExpenseList::Create([
-            'amount'            => $request->amount,
-            'office_id'         => $request->office_id,
-            'author_id'         => Auth::user()->id,
-            'expense_id'        => $request->expense_id,
-            'voucher_no'        => $request->voucher_no,
-            'payment_system_id' => $request->payment_system_id,
-            'bank_id'           => $request->bank_id,
-            'phone'             => $request->phone,
-            'transaction'       => $request->transaction,
-            'date'              => $request->date,
-            'description'       => $request->description,
-            'remarks'           => $request->remarks,
+            'amount'              => $request->amount,
+            'office_id'           => $request->office_id,
+            'author_id'           => Auth::user()->id,
+            'expense_id'          => $request->expense_id,
+            'sub_expense_type_id' => $request->sub_expense_type_id,
+            'voucher_no'          => $request->voucher_no,
+            'payment_system_id'   => $request->payment_system_id,
+            'bank_id'             => $request->bank_id,
+            'phone'               => $request->phone,
+            'transaction'         => $request->transaction,
+            'date'                => $request->date,
+            'description'         => $request->description,
+            'remarks'             => $request->remarks,
         ]);
         return redirect()->route('expenselist.index')->with('success', 'Successfully data added');
     }
@@ -98,6 +104,7 @@ class ExpenseListController extends Controller
     {
 
         $expense_lists = ExpenseList::Where('id', $id)->first();
+
         // return $employees;
         return view('backend.expense-list.expense_show', compact('expense_lists'));
     }
@@ -117,9 +124,10 @@ class ExpenseListController extends Controller
         $bankselectId = BankSetting::first()->bank_id;
         // return $bankselectId;
         $paymentsystems = PaymentSystem::get();
+        $subexpensetype = SubExpenseType::all();
         $banks = Bank::all();
         // return $expense_list;
-        return view('backend.expense-list.edit_expense', compact('banks', 'expense_list', 'expenses', 'offices', 'paymentsystems', 'bankselectId'));
+        return view('backend.expense-list.edit_expense', compact('banks', 'expense_list', 'expenses', 'offices', 'paymentsystems', 'bankselectId','subexpensetype'));
     }
 
     /**
@@ -132,18 +140,19 @@ class ExpenseListController extends Controller
     public function update(Request $request, $id)
     {
         ExpenseList::findOrFail($id)->update([
-            'amount'            => $request->amount,
-            'office_id'         => $request->office_id,
-            'author_id'         => Auth::user()->id,
-            'expense_id'        => $request->expense_id,
-            'voucher_no'        => $request->voucher_no,
-            'payment_system_id' => $request->payment_system_id,
-            'bank_id'           => $request->bank_id,
-            'phone'             => $request->phone,
-            'transaction'       => $request->transaction,
-            'date'              => $request->date,
-            'description'       => $request->description,
-            'remarks'           => $request->remarks,
+            'amount'              => $request->amount,
+            'office_id'           => $request->office_id,
+            'author_id'           => Auth::user()->id,
+            'expense_id'          => $request->expense_id,
+            'sub_expense_type_id' => $request->sub_expense_type_id,
+            'voucher_no'          => $request->voucher_no,
+            'payment_system_id'   => $request->payment_system_id,
+            'bank_id'             => $request->bank_id,
+            'phone'               => $request->phone,
+            'transaction'         => $request->transaction,
+            'date'                => $request->date,
+            'description'         => $request->description,
+            'remarks'             => $request->remarks,
         ]);
 
 

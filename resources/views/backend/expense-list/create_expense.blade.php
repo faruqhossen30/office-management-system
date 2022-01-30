@@ -14,6 +14,7 @@
                     <div class="card-body">
                         <form action="{{ route('expenselist.store') }}" method="POST">
                             @csrf
+                            <div class="row">
 
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -31,27 +32,27 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>
-                                                <h6>Select Office <span class="text-danger">*</span></h6>
-                                            </label>
-                                            <select name="office_id"
-                                                class="form-control @error('office_id') is-invalid @enderror">
-                                                <option value="">Select Office </option>
-                                                @foreach ($offices as $office)
-                                                    <option value="{{ $office->id }}" @if(old('office_id') == $office->id) selected  @endif >{{ $office->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('office_id')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
-                                        </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <h6>Select Office <span class="text-danger">*</span></h6>
+                                        </label>
+                                        <select name="office_id"
+                                            class="form-control @error('office_id') is-invalid @enderror">
+                                            <option value="">Select Office </option>
+                                            @foreach ($offices as $office)
+                                                <option value="{{ $office->id }}" @if(old('office_id') == $office->id) selected  @endif >{{ $office->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('office_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-
+                                </div>
+                            </div>
+                             <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="text">Debit Type<span class="text-danger">*</span></label>
@@ -69,6 +70,22 @@
                                                         {{ $message }}
                                                     </div>
                                                 @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="text">Sub Debit Type<span class="text-danger">*</span></label>
+                                            <div class="form-group">
+                                                <select class="form-control @error('sub_expense_type_id') is-invalid @enderror"
+                                                    name="sub_expense_type_id">
+                                                    <option>Select Sub Debit Type </option>
+                                                    {{-- @foreach ($subexpensetype as $expence)
+                                                        <option value="{{ $expence->id }}">{{ $expence->name }}
+                                                        </option>
+                                                    @endforeach --}}
+                                                </select>
+                                                <x-error name='sub_expense_type_id' />
                                             </div>
                                         </div>
                                     </div>
@@ -158,48 +175,53 @@
                                 </div>
                             </div>
 
+                            <div class="row">
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>
-                                        <h6>Voucher No</h6>
-                                    </label>
-                                    <input name="voucher_no" type="text"
-                                        class="form-control  @error('voucher_no')is-invalid @enderror "
-                                        placeholder="Please enter your voucher no" value="{{ old('voucher_no') }}">
-                                    @error('voucher_no')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>
-                                    <h6>Desription </h6>
-                                </label>
-                                <textarea name="description" type="text"
-                                    class="form-control @error('description')is-invalid @enderror" rows="3"
-                                    placeholder="Enter your description">{{ old('description') }}</textarea>
-                                @error('description')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <h6>Voucher No</h6>
+                                        </label>
+                                        <input name="voucher_no" type="text"
+                                            class="form-control  @error('voucher_no')is-invalid @enderror "
+                                            placeholder="Please enter your voucher no" value="{{ old('voucher_no') }}">
+                                        @error('voucher_no')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                @enderror
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>
-                                        <h6>Remarks</h6>
-                                    </label>
-                                    <textarea name="remarks" type="text"
-                                        class="form-control @error('remarks')is-invalid @enderror" rows="3"
-                                        placeholder="Enter your remarks">{{ old('remarks') }}</textarea>
-                                    @error('remarks')
-                                        <div class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
+                                </div>
+                                <div class="col-md-12">
+
+                                    <div class="form-group">
+                                        <label>
+                                            <h6>Desription </h6>
+                                        </label>
+                                        <textarea name="description" type="text"
+                                            class="form-control @error('description')is-invalid @enderror" rows="3"
+                                            placeholder="Enter your description">{{ old('description') }}</textarea>
+                                        @error('description')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            <h6>Remarks</h6>
+                                        </label>
+                                        <textarea name="remarks" type="text"
+                                            class="form-control @error('remarks')is-invalid @enderror" rows="3"
+                                            placeholder="Enter your remarks">{{ old('remarks') }}</textarea>
+                                        @error('remarks')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -219,7 +241,6 @@
 @endsection
 
 @push('script')
-    <script src="{{ asset('global_assets/js/main/jquery.min.js') }}"></script>
     <script>
         // Bank for Check
         //  Banking
@@ -260,4 +281,39 @@
             });
         });
     </script>
+
+
+<script>
+    var expensetypeid = $('select[name="expense_id"]');
+    var sub_expensetypeid = $('select[name="sub_expense_type_id"]');
+
+    $(document).on('change', 'select[name="expense_id"]', function() {
+        expensetype_id = expensetypeid.val();
+        if(expensetype_id){
+            $.ajax({
+                url: `/subexpensebyexpense/${expensetype_id}`,
+                type: 'GET',
+                // dataType: 'JSON',
+                success: function(data) {
+                    if (data) {
+                        sub_expensetypeid.empty()
+                        data.forEach(function(cat){
+                            sub_expensetypeid.append(`<option value="${cat.id}">${cat.name}</option>`)
+                        })
+                    }
+                },
+                fail: function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            })
+        }
+    });
+
+
+</script>
+
+
+
 @endpush

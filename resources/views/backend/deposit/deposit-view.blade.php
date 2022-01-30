@@ -42,7 +42,7 @@
                                     Month</a>
                             </ul>
                             <form action="{{route('deposit.view.date')}}" method="GET">
-                             
+
                                       <div class="row">
 
                                           <div class="form-group ml-2">
@@ -86,8 +86,8 @@
 
                                     @foreach ($deposits as $deposit)
                                         <tr>
-                                            {{-- {{ $deposits->firstItem() + $loop->index }} --}}
-                                            <th scope="row"></th>
+
+                                            <th scope="row"> {{ $deposits->firstItem() + $loop->index }}</th>
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name?? 'no data'}}</td>
                                             <td>{{ $deposit->office->name }}</td>
@@ -113,9 +113,9 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            {{-- <div class="my-3">
+                            <div class="my-3">
                                 {{ $deposits->links() }}
-                            </div> --}}
+                            </div>
                         </div>
                         {{-- end table --}}
                     </div>

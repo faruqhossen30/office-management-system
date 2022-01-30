@@ -16,7 +16,7 @@ class DepositController extends Controller
 {
     public function deposit_view()
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem', 'banks')->latest()->paginate(6);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem', 'banks')->latest()->paginate(20);
         $total = Deposit::sum('amount');
         // return $test;
         // return $deposits;

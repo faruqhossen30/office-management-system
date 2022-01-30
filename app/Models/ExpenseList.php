@@ -12,6 +12,7 @@ class ExpenseList extends Model
     protected $fillable = [
         'amount',
         'expense_id',
+        'sub_expense_type_id',
         'voucher_no',
         'payment_system_id',
         'office_id',
@@ -44,6 +45,10 @@ class ExpenseList extends Model
     public function bank()
     {
         return $this->hasOne(Bank::class, 'id', 'bank_id');
+    }
+    public function subexpense()
+    {
+        return $this->hasOne(SubExpenseType::class, 'id', 'sub_expense_type_id');
     }
 
 

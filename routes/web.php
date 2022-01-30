@@ -163,3 +163,4 @@ Route::get('/bankingdata', [ExpenseListController::class, 'bankingData']);
 use App\Http\Controllers\APIController;
 
 Route::get('subassetbyasset/{id}', [APIController::class, 'assetTypeToSubassetTypeList']);
+Route::get('subexpensebyexpense/{id}', [APIController::class, 'expenseTypeToSubexpenseTypeList']);
