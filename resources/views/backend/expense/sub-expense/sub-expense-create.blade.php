@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label class="text">Expense Type<span class="text-danger">*</span></label>
                                     <div class="form-group">
-                                        <select class="form-control @error('sub_expense_type_id') is-invalid @enderror"
+                                        <select class="form-control @error('sub_expense_type_id')is-invalid @enderror"
                                             name="sub_expense_type_id">
                                             <option>Select Expense_types </option>
                                             @foreach ($expensetype as $expence)
@@ -37,7 +37,12 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <x-error name='sub_expense_type_id' />
+                                        {{-- <x-error name='sub_expense_type_id'/> --}}
+                                        @error('sub_expense_type_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                         @enderror
                                     </div>
                                 </div>
                                 <div class="form-group">

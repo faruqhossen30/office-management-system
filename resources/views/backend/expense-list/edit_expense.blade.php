@@ -268,7 +268,7 @@
         // Bank for Check
         //  Banking
         var bank_div = $('#bank_div');
-        bank_div.hide();
+        // bank_div.hide();
 
         $(document).on('change', 'select[name="payment_system_id"]', function() {
             var payment_system_id = $('select[name="payment_system_id"]').val();
@@ -287,7 +287,7 @@
 
         // Mobile Banking
         var mobile_div = $('#mobile_div');
-            mobile_div.hide();
+            // mobile_div.hide();
 
         $(document).on('change', 'select[name="payment_system_id"]', function() {
             var payment_system_id = $('select[name="payment_system_id"]').val();
