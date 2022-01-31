@@ -67,6 +67,7 @@
                                         <th>Amount</th>
                                         <th>Office Name</th>
                                         <th>Expense Type</th>
+                                      
                                         <th>Payment Type</th>
                                         <th class="text-center">Expense Date</th>
                                         <th class="text-center">Entry Date</th>
@@ -83,6 +84,7 @@
                                             <td><strong>{{ $expense_list->amount }}Tk</strong></td>
                                             <td>{{ $expense_list->office->name }}</td>
                                             <td>{{ $expense_list->expencetype->name ?? '' }}</td>
+
                                             <td>{{ $expense_list->paymentsystem->name }}</td>
                                             <td>{{ Carbon\Carbon::parse($expense_list->date)->diffForHumans() }}</td>
                                             {{-- Deposite date --}}

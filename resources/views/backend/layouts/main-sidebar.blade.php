@@ -95,40 +95,29 @@
                                 Office List</a></li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index','sub-expense-type.index')) nav-item-expanded nav-item-open @endif">
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('expenselist.create', 'expenselist.index', 'expense.index','sub-expense-type.index','expense.create','sub-expense-type.create')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
                         icon-cash"></i>
                         <span>Debit</span></a>
 
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
-                        <li class="nav-item"><a href="{{ route('expenselist.create') }}"
-                                class="nav-link  @if (request()->routeIs('expenselist.create')) active @endif ">Add Debit</a>
-                        </li>
-                        <li class="nav-item"><a href="{{ route('expenselist.index') }}"
-                                class="nav-link @if (request()->routeIs('expenselist.index')) active @endif">View
-                                Debit</a></li>
-                        <li class="nav-item"><a href="{{ route('expense.index') }}"
-                                class="nav-link @if (request()->routeIs('expense.index')) active @endif">
-                                Debit Type</a></li>
-                        <li class="nav-item"><a href="{{ route('sub-expense-type.index') }}"
-                                class="nav-link @if (request()->routeIs('sub-expense-type.index')) active @endif">
+                        <li class="nav-item"><a href="{{ route('expense.index','expense.create') }}"
+                            class="nav-link @if (request()->routeIs('expense.index','expense.create')) active @endif">
+                            Debit Type</a></li>
+
+
+                        <li class="nav-item"><a href="{{ route('sub-expense-type.index','sub-expense-type.create') }}"
+                                class="nav-link @if (request()->routeIs('sub-expense-type.index','sub-expense-type.create')) active @endif">
                               Sub  Debit Type</a></li>
+                              
+                        </li>
+                        <li class="nav-item"><a href="{{ route('expenselist.index','expenselist.create') }}"
+                                class="nav-link @if (request()->routeIs('expenselist.index','expenselist.create')) active @endif">Add
+                                Debit</a></li>
                     </ul>
                 </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('sub-asset-type.index', 'sub-asset-type.create')) nav-item-expanded nav-item-open @endif">
-                    <a href="#" class="nav-link"><i class="
-                        icon-trophy4"></i>
-                        <span> Sub Asset</span></a>
 
-
-                    <ul class="nav nav-group-sub @if (request()->routeIs('sub-asset-type.create', 'sub-asset-type.index')) nav-item-expanded nav-item-open @endif">
-                        <li class="nav-item"><a href="{{ route('sub-asset-type.create') }}"
-                                class="nav-link  @if (request()->routeIs('sub-asset-type.create')) active @endif">Add sub asset</a></li>
-                        <li class="nav-item"><a href="{{ route('sub-asset-type.index') }}"
-                                class="nav-link  @if (request()->routeIs('sub-asset-type.index')) active @endif">view sub asset</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-submenu @if (request()->routeIs('assettype.index', 'asset.index', 'asset.create')) nav-item-expanded nav-item-open @endif">
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('assettype.index', 'asset.index', 'asset.create','sub-asset-type.index','sub-asset-type.create')) nav-item-expanded nav-item-open @endif">
                     <a href="#" class="nav-link"><i class="
                         icon-trophy4"></i>
                         <span>Asset</span></a>
@@ -139,9 +128,13 @@
                                 class="nav-link @if (request()->routeIs('assettype.index')) active @endif">Asset Type</a>
 
                         </li>
+                        <li class="nav-item"><a href="{{ route('sub-asset-type.index','sub-asset-type.create') }}"
+                            class="nav-link  @if (request()->routeIs('sub-asset-type.index','sub-asset-type.create')) active @endif">Sub Asset Type</a></li>
+
                         <li class="nav-item"><a href="{{ route('asset.index') }}"
                                 class="nav-link @if (request()->routeIs('asset.index') || request()->routeIs('asset.create')) active @endif">Add Asset</a></li>
                         {{-- <li class="nav-item"><a href="#" class="nav-link">Asset Assignment</a></li> --}}
+
                     </ul>
                 </li>
                 <li class="nav-item nav-item-submenu @if (request()->routeIs('position.index', 'advance-salary.index', 'advance-salary.create', 'employee-information.index', 'employee-information.create', 'department.index', 'department.create')) nav-item-expanded nav-item-open @endif">

@@ -262,3 +262,81 @@
 
 
 @endsection
+
+@push('script')
+    <script>
+        // Bank for Check
+        //  Banking
+        var bank_div = $('#bank_div');
+        bank_div.hide();
+
+        $(document).on('change', 'select[name="payment_system_id"]', function() {
+            var payment_system_id = $('select[name="payment_system_id"]').val();
+            bank_div.hide();
+            $.get('/bankingdata', function(data){
+                if(data){
+                    data.map(function(d){
+                        if(d.paymentsystem_id == payment_system_id){
+                            bank_div.show();
+                        }
+
+                    });
+                }
+            });
+        });
+
+        // Mobile Banking
+        var mobile_div = $('#mobile_div');
+            mobile_div.hide();
+
+        $(document).on('change', 'select[name="payment_system_id"]', function() {
+            var payment_system_id = $('select[name="payment_system_id"]').val();
+            mobile_div.hide();
+            $.get('/mobilebankingdata', function(data) {
+                if (data) {
+                    data.map(function(d) {
+                        if (d.paymentsystem_id == payment_system_id) {
+                            mobile_div.show();
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+
+
+<script>
+    var expensetypeid = $('select[name="expense_id"]');
+    var sub_expensetypeid = $('select[name="sub_expense_type_id"]');
+
+    $(document).on('change', 'select[name="expense_id"]', function() {
+        expensetype_id = expensetypeid.val();
+        if(expensetype_id){
+            $.ajax({
+                url: `/subexpensebyexpense/${expensetype_id}`,
+                type: 'GET',
+                // dataType: 'JSON',
+                success: function(data) {
+                    if (data) {
+                        sub_expensetypeid.empty()
+                        data.forEach(function(cat){
+                            sub_expensetypeid.append(`<option value="${cat.id}">${cat.name}</option>`)
+                        })
+                    }
+                },
+                fail: function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            })
+        }
+    });
+
+
+</script>
+
+
+
+@endpush
