@@ -147,7 +147,7 @@
                                             </label>
                                             <input name="phone" type="text"
                                                 class="form-control  @error('phone')is-invalid @enderror "
-                                                placeholder="Please enter your phone number" value="{{ old('phone') }}">
+                                                placeholder="Please enter your phone number" value="{{$expense_list->phone}}">
                                             @error('phone')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -163,7 +163,7 @@
                                             <input name="transaction" type="text"
                                                 class="form-control  @error('transaction')is-invalid @enderror "
                                                 placeholder="Please enter your tranjection id"
-                                                value="{{ old('transaction') }}">
+                                                value="{{$expense_list->transaction}}">
                                             @error('transaction')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
