@@ -83,7 +83,7 @@
                                             <td><strong>{{ $expense_list->amount }}Tk</strong></td>
                                             <td>{{ $expense_list->office->name }}</td>
                                             <td>{{ $expense_list->expencetype->name ?? '' }}</td>
-                                            <td>{{ $expense_list->subexpense->name }}</td>
+                                            <td>{{ $expense_list->subexpense->name ?? '' }}</td>
 
                                             <td>{{ $expense_list->paymentsystem->name }}</td>
                                             <td>{{ Carbon\Carbon::parse($expense_list->date)->format('d M Y') }}</td>
