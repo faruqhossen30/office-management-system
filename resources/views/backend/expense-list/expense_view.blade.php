@@ -25,7 +25,7 @@
 
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <ul class="list-group list-group-horizontal">
+                            <ul class="list-group list-group-horizontal" id="fealtering" >
                                 <a href="{{ route('expenselist.index') }}"
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expenselist.index')) active @endif">All TIme</a>
                                 <a href="{{ route('expense.list.week') }}"
@@ -34,18 +34,18 @@
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expense.list.month')) active @endif">This
                                     Month</a>
                             </ul>
-                           <form action="{{route('expense.list.date')}}" method="GET">
+                            <form action="{{ route('expense.list.date') }}" method="GET">
 
                                 <div class="row">
                                     <div class="form-group ml-2">
                                         <label class="" for="from_date">From</label>
                                         <input type="date" name="from_date" class="form-control " id="from_date"
-                                            placeholder="From" value="{{$_GET['from_date'] ?? ''}}">
+                                            placeholder="From" value="{{ $_GET['from_date'] ?? '' }}">
                                     </div>
                                     <div class="form-group ml-2">
                                         <label class="" for="to_date">To</label>
                                         <input type="date" name="to_date" class="form-control" id="to_date"
-                                            placeholder="To" value="{{$_GET['to_date'] ?? ''}}">
+                                            placeholder="To" value="{{ $_GET['to_date'] ?? '' }}">
                                     </div>
                                     <div class="mt-4 ml-2">
                                         <input type="submit" value="search">
@@ -63,15 +63,14 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sl</th>
-                                        <th>Amount</th>
-                                        <th>Office Name</th>
-                                        <th>Expense Type</th>
-                                      
-                                        <th>Payment Type</th>
+                                        <th class="text-center">Sl</th>
+                                        <th class="text-center">Amount</th>
+                                        <th class="text-center">Office Name</th>
+                                        <th class="text-center">Expense Type</th>
+                                        <th class="text-center">Sub Expense Type</th>
+                                        <th class="text-center">Payment Type</th>
                                         <th class="text-center">Expense Date</th>
-                                        <th class="text-center">Entry Date</th>
-                                        <th class="text-center">Bank</th>
+                                        <th class="text-center">Remarks</th>
                                         {{-- <th>Author</th> --}}
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -84,14 +83,43 @@
                                             <td><strong>{{ $expense_list->amount }}Tk</strong></td>
                                             <td>{{ $expense_list->office->name }}</td>
                                             <td>{{ $expense_list->expencetype->name ?? '' }}</td>
+                                            <td>{{ $expense_list->subexpense->name }}</td>
 
                                             <td>{{ $expense_list->paymentsystem->name }}</td>
-                                            <td>{{ Carbon\Carbon::parse($expense_list->date)->diffForHumans() }}</td>
+                                            <td>{{ Carbon\Carbon::parse($expense_list->date)->format('d M Y') }}</td>
                                             {{-- Deposite date --}}
-                                            <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }}
+                                            {{-- <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }} --}}
+                                            {{-- </td> --}}
+                                            {{-- <td>{{ $expense_list->bank->name ?? '' }}</td> --}}
+
+                                            <td>
+                                                @if ($expense_list->remarks)
+                                                {{ Str::words($expense_list->remarks,2)  }}
+                                                    <a data-toggle="modal"
+                                                    data-target="#myModal{{$expense_list->id}}" style="color: rgb(0, 216, 18)" > >>> </a>
+                                                @endif
+
+                                                <div class="modal" id="myModal{{$expense_list->id}}">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">
+                                                                    Remarks
+                                                                </h5>
+                                                                <button class="close"
+                                                                    data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                {{ $expense_list->remarks ?? 'No remarks.' }}
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-secondery"
+                                                                    data-dismiss="modal">close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
-                                            <td>{{ $expense_list->bank->name ?? '' }}</td>
-                                            {{-- <td>{{ $expense_list->author->name }}</td> --}}
                                             {{-- <td>{{$office->author_id}}</td> --}}
 
                                             <td>
@@ -130,11 +158,18 @@
 
 @push('css')
     <style>
+
         .table td,
         .table th {
             padding: .55rem .55rem .55rem .75rem;
             vertical-align: top;
             border-top: 1px solid #ddd;
+        }
+        #fealtering{
+            width:200px;
+            height:70px;
+            padding: 3;
+            margin:top:5px;
         }
 
     </style>

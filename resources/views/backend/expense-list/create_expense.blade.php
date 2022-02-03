@@ -85,7 +85,12 @@
                                                         </option>
                                                     @endforeach --}}
                                                 </select>
-                                                <x-error name='sub_expense_type_id' />
+                                                {{-- <x-error name='sub_expense_type_id' /> --}}
+                                                @error('sub_expense_type_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
