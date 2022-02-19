@@ -65,14 +65,14 @@
                             <div class="form-group">
                                 <label class="col-xm-3">Buy Date<span class="text-danger">*</span></label>
                                 <input name="buy_date" class="col-xm-9 form-control  @error('buy_date')is-invalid @enderror"
-                                    type="datetime-local" placeholder="Enter your price" value="{{ old('buy_date') }}">
+                                    type="date" placeholder="Enter your price" value="{{ old('buy_date') }}">
                                 <x-error name='buy_date' />
                             </div>
                             <div class="form-group">
                                 <label class="col-xm-3">Expiry Date<span class="text-danger">*</span></label>
                                 <input name="expiry_date"
                                     class="col-xm-9 form-control @error('expiry_date')is-invalid @enderror"
-                                    type="datetime-local" placeholder="Enter your price" value="{{ old('expiry_date') }}">
+                                    type="date" placeholder="Enter your price" value="{{ old('expiry_date') }}">
                                 <x-error name='expiry_date' />
                             </div>
                             <div class="form-group">

@@ -122,7 +122,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Date <span class="text-danger">*</span></label>
+                                        <label>Cradit date <span class="text-danger">*</span></label>
                                         <input name="date" type="datetime-local"
                                             class="form-control @error('date')is-invalid @enderror"
                                             value="{{$deposit->date->format('Y-m-d')."T".$deposit->date->format('H:i')}}"

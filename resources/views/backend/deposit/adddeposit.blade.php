@@ -125,7 +125,7 @@
 
                                 <div class="form-group">
                                     <label>Deposit time<span class="text-danger">*</span></label>
-                                    <input name="date" type="datetime-local"
+                                    <input name="date" type="date"
                                         class="form-control @error('date')is-invalid @enderror" placeholder="Your date">
                                     @error('date')
                                         <div class="invalid-feedback">

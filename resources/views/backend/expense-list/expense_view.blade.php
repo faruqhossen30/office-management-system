@@ -1,5 +1,33 @@
 @extends('backend.layouts.app')
 @section('content')
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ route('expense.list.finddate') }}" method="GET">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Find debit
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group ml-2">
+                            <label class="" for="from_date">Find
+                                date</label>
+                            <input type="date" name="from_date" class="form-control " id="from_date">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -24,12 +52,14 @@
                     @endif
 
                     <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <ul class="list-group list-group-horizontal" id="fealtering" >
+                        <div class="d-flex justify-content-between" >
+                            <ul class="list-group list-group-horizontal" style="padding: 20px 0px" id="fealtering">
                                 <a href="{{ route('expenselist.index') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expenselist.index')) active @endif">All TIme</a>
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expenselist.index')) active @endif">All
+                                    TIme</a>
                                 <a href="{{ route('expense.list.week') }}"
-                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expense.list.week')) active @endif">This week</a>
+                                    class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expense.list.week')) active @endif">This
+                                    week</a>
                                 <a href="{{ route('expense.list.month') }}"
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('expense.list.month')) active @endif">This
                                     Month</a>
@@ -37,23 +67,39 @@
                             <form action="{{ route('expense.list.date') }}" method="GET">
 
                                 <div class="row">
+                                    <div class="mt-4">
+                                        <button type="button"
+                                            class="btn btn-primary btn-sm">Total:{{ $total }}</button>
+                                    </div>
                                     <div class="form-group ml-2">
                                         <label class="" for="from_date">From</label>
                                         <input type="date" name="from_date" class="form-control " id="from_date"
-                                            placeholder="From" value="{{ $_GET['from_date'] ?? '' }}">
+                                            placeholder="From"
+                                            value="{{ $_GET['from_date'] ?? '' }}">
                                     </div>
                                     <div class="form-group ml-2">
                                         <label class="" for="to_date">To</label>
                                         <input type="date" name="to_date" class="form-control" id="to_date"
-                                            placeholder="To" value="{{ $_GET['to_date'] ?? '' }}">
+                                            placeholder="To"
+                                            value=" {{ $_GET['to_date'] ?? '' }}">
+
                                     </div>
                                     <div class="mt-4 ml-2">
-                                        <input type="submit" value="search">
+                                        <input type="submit"class="btn btn-secondary btn-sm" value="search">
                                     </div>
-                                    <div>
-                                        <button class="btn btn-primary btn-lg mt-4 p-1 ml-4">Total: {{ $total }}
-                                            TK</button>
+                                    <!---------- start current date------------------>
+
+
+                                    <div class="mt-4 ml-2">
+                                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal ">
+                                            Find
+                                        </button>
+
+                                        <!-- Modal -->
+
                                     </div>
+                                    <!----------end current date------------------>
                                 </div>
                             </form>
 
@@ -87,19 +133,14 @@
 
                                             <td>{{ $expense_list->paymentsystem->name }}</td>
                                             <td>{{ Carbon\Carbon::parse($expense_list->date)->format('d M Y') }}</td>
-                                            {{-- Deposite date --}}
-                                            {{-- <td>{{ Carbon\Carbon::parse($expense_list->created_at)->diffForHumans() }} --}}
-                                            {{-- </td> --}}
-                                            {{-- <td>{{ $expense_list->bank->name ?? '' }}</td> --}}
-
                                             <td>
                                                 @if ($expense_list->remarks)
-                                                {{ Str::words($expense_list->remarks,2)  }}
-                                                    <a data-toggle="modal"
-                                                    data-target="#myModal{{$expense_list->id}}" style="color: rgb(0, 216, 18)" > >>> </a>
+                                                    {{ Str::words($expense_list->remarks, 2) }}
+                                                    <a data-toggle="modal" data-target="#myModal{{ $expense_list->id }}"
+                                                        style="color: rgb(0, 216, 18)"> >>> </a>
                                                 @endif
 
-                                                <div class="modal" id="myModal{{$expense_list->id}}">
+                                                <div class="modal" id="myModal{{ $expense_list->id }}">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -120,7 +161,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            {{-- <td>{{$office->author_id}}</td> --}}
+
 
                                             <td>
                                                 <div class="d-flex justify-content-start">
@@ -143,7 +184,7 @@
                                 </tbody>
                             </table>
                             <div class="my-3">
-                                {{ $expense_lists->links() }}
+                                {{ $expense_lists->appends($_GET)->links() }}
                             </div>
                         </div>
                     </div>
@@ -158,18 +199,11 @@
 
 @push('css')
     <style>
-
         .table td,
         .table th {
             padding: .55rem .55rem .55rem .75rem;
             vertical-align: top;
             border-top: 1px solid #ddd;
-        }
-        #fealtering{
-            width:200px;
-            height:70px;
-            padding: 3;
-            margin:top:5px;
         }
 
     </style>

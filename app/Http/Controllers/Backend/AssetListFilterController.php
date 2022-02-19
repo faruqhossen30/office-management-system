@@ -20,10 +20,27 @@ class AssetListFilterController extends Controller
 
     public function assetListByDate(Request $request)
     {
-        return $request->all();
-        $assets = Asset::with('assettype')->where('buy_date','>=',$request->from_date)->where('buy_date','<=',$request->to_date)->get();
+        $request->validate([
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+        // return $request->all();
+        $assets = Asset::with('assettype')->where('buy_date', '>=', $request->from_date)->where('buy_date', '<=', $request->to_date)->paginate(10);
         $total = $assets->sum('price');
-        // return $expense_lists;
+        // return $total;
+        return view('backend.asset.asset_view', compact('assets', 'total'));
+    }
+
+    public function currentDate(Request $request)
+    {
+        $request->validate([
+            'from_date' => 'required',
+        ]);
+     
+        $assets = Asset::with('assettype')->whereDate('buy_date', $request->from_date)->paginate(10);
+        $total = $assets->sum('price');
+
+
         return view('backend.asset.asset_view', compact('assets', 'total'));
     }
 
@@ -35,4 +52,7 @@ class AssetListFilterController extends Controller
         // return $expense_lists;
         return view('backend.asset.asset_view', compact('assets', 'total'));
     }
+
+
+
 }

@@ -29,27 +29,7 @@
                                         {{-- <h6> <b>{{ $employees->department->department_name }}</b></h6> --}}
                                         <h6> <b>{{ $employees->position->position }}</b></h6>
 
-                                        {{-- <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                            <strong></strong>
-                                        </p>
-                                        <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                            <strong></strong>
-                                        </p>
-                                        <p class="m-0"><i class="fa fa-mobile" aria-hidden="true"></i>
-                                            <strong></strong>
-                                        </p> --}}
-                                        {{-- <li class="list-inline-item"><a href="#"
-                                                class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
-                                                <i class="icon-phone"></i></a>
-                                        </li> --}}
-                                        {{-- <li class="list-inline-item"><a href="#"
-                                                class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
-                                                <i class="icon-bubbles4"></i></a>
-                                        </li> --}}
-                                        {{-- <li class="list-inline-item"><a href="#"
-                                                class="btn btn-outline btn-icon text-white btn-lg border-white rounded-round">
-                                                <i class="icon-envelop4"></i></a>
-                                        </li> --}}
+                                      
                                     </ul>
                                 </div>
                             </div>

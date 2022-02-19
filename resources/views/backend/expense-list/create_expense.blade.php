@@ -123,9 +123,9 @@
                                         <label>
                                             <h6>Date<span class="text-danger">*</span></h6>
                                         </label>
-                                        <input name="date" type="datetime-local"
+                                        <input name="date" type="date"
                                             class="form-control  @error('date')is-invalid @enderror "
-                                            placeholder="Please enter your date" value="{{ old('date') }}">
+                                            placeholder="dd-mm-yyyy" value="{{ old('date') }}"min="1997-01-01" max="2030-12-31">
                                         @error('date')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -320,5 +320,16 @@
 </script>
 
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<script>
+    config ={
+
+    altInput: true,
+    altFormat: "F j, Y",
+    dateFormat: "Y-m-d",
+    }
+    flatpickr("input[type=date]", config);
+</script>
 @endpush
