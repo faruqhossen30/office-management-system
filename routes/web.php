@@ -67,6 +67,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/deposit-view/week', [DepositController::class, 'depositeListThisWeek'])->name('deposit.view.week');
         Route::get('/deposit-view/month', [DepositController::class, 'depositeListThisMonth'])->name('deposit.view.month');
         Route::get('/deposit-view/date', [DepositController::class, 'depositeListThisDate'])->name('deposit.view.date');
+        Route::get('/deposit-view/finddate', [DepositController::class, 'depositFindDate'])->name('deposit.view.finddate');
 
 
         // <------------------------------deposit-show---------------------------------------->
@@ -100,6 +101,7 @@ Route::prefix('admin')->group(function () {
         Route::get('expencelist-filter/week', [ExpenseListFilterController::class, 'expenseListeByWeek'])->name('expense.list.week');
         Route::get('expencelist-filter/month', [ExpenseListFilterController::class, 'expenseListeByMonth'])->name('expense.list.month');
         Route::get('expencelist-filter/date', [ExpenseListFilterController::class, 'expenseListeByDate'])->name('expense.list.date');
+        Route::get('expencelist-filter/finddate', [ExpenseListFilterController::class, 'FindDate'])->name('expense.list.finddate');
         Route::resource('sub-expense-type', SubExpenseController::class);
 
 
@@ -108,6 +110,7 @@ Route::prefix('admin')->group(function () {
         Route::get('assetlist-filter/week', [AssetListFilterController::class, 'assetListByWeek'])->name('asset.list.week');
         Route::get('assetlist-filter/month', [AssetListFilterController::class, 'assetListByMonth'])->name('asset.list.month');
         Route::get('assetlist-filter/date', [AssetListFilterController::class, 'assetListByDate'])->name('asset.list.date');
+        Route::get('assetlist-filter/currentdate', [AssetListFilterController::class, 'currentDate'])->name('asset.list.currentdate');
         Route::resource('assettype', AssetTypeController::class);
         Route::resource('sub-asset-type', BackendSubAssetTypeController::class);
 

@@ -112,6 +112,8 @@ class DepositController extends Controller
         return redirect()->back()->with('delete', 'Successfully Data delete');
     }
 
+          // <!-------------------- start deposite  date filtering ----------------->
+
     public function depositeListThisWeek()
     {
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->latest()->paginate(7);
@@ -130,9 +132,26 @@ class DepositController extends Controller
         //    return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
+
     public function depositeListThisDate(Request $request)
     {
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->get();
+        $request->validate([
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->paginate(10);
+
+        $total = $deposits->sum('amount');
+        // $total = 2300;
+        //    return $deposits;
+        return view('backend.deposit.deposit-view', compact('deposits', 'total'));
+    }
+    public function depositFindDate(Request $request)
+    {
+        $request->validate([
+            'from_date' => 'required',
+        ]);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date',$request->from_date)->paginate(10);
 
         $total = $deposits->sum('amount');
         // $total = 2300;
@@ -140,6 +159,8 @@ class DepositController extends Controller
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
+
+  // <!-------------------- End  deposite  date filtering ----------------->
     // Mobile Baking data
     public function mobibleBankingData()
     {

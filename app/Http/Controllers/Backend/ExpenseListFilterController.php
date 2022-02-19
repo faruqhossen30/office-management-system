@@ -19,8 +19,23 @@ class ExpenseListFilterController extends Controller
     }
     public function expenseListeByDate(Request $request)
     {
+        $request->validate([
+            'from_date' => 'required',
+            'to_date' => 'required',
+        ]);
         // return "Just for test";
-        $expense_lists = ExpenseList::with('office','expencetype' ,'paymentsystem','author')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->get();
+        $expense_lists = ExpenseList::with('office','expencetype' ,'paymentsystem','author')->whereDate('date','>=',$request->from_date)->whereDate('date','<=',$request->to_date)->paginate(5);
+        $total = $expense_lists->sum('amount');
+        // return $expense_lists;
+        return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
+    }
+    public function FindDate(Request $request)
+    {
+        $request->validate([
+            'from_date' => 'required',
+        ]);
+        // return "Just for test";
+        $expense_lists = ExpenseList::with('office','expencetype' ,'paymentsystem','author')->whereDate('date',$request->from_date)->paginate(10);
         $total = $expense_lists->sum('amount');
         // return $expense_lists;
         return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));

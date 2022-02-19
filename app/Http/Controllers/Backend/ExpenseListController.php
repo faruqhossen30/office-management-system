@@ -13,6 +13,7 @@ use App\Models\PaymentSystem;
 use App\Models\SubExpenseType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ExpenseListController extends Controller
 {
@@ -23,10 +24,11 @@ class ExpenseListController extends Controller
      */
     public function index()
     {
+
         $expense_lists = ExpenseList::with('office', 'expencetype', 'paymentsystem', 'author','bank','subexpense')->latest()->paginate(20);
         // return $expense_lists;
         $total = ExpenseList::sum('amount');
-        return view('backend.expense-list.expense_view', compact('expense_lists', 'total'));
+        return view('backend.expense-list.expense_view', compact('expense_lists', 'total',));
     }
 
 
@@ -57,6 +59,9 @@ class ExpenseListController extends Controller
      */
     public function store(Request $request)
     {
+
+
+
         // return $request->all();
         $request->validate(
             [
@@ -66,6 +71,7 @@ class ExpenseListController extends Controller
                 'payment_system_id' => 'required',
                 'sub_expense_type_id' => 'required',
                 'date'              => 'required',
+
             ],
             [
                 'amount.required'            => 'Please enter your date',
