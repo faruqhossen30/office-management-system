@@ -145,7 +145,7 @@ class ExpenseListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        ExpenseList::findOrFail($id)->update([
+        ExpenseList::where('id',$id)->update([
             'amount'              => $request->amount,
             'office_id'           => $request->office_id,
             'author_id'           => Auth::user()->id,
