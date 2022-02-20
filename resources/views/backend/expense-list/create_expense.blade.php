@@ -320,7 +320,7 @@
 </script>
 
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
@@ -331,5 +331,5 @@
     dateFormat: "Y-m-d",
     }
     flatpickr("input[type=date]", config);
-</script>
+</script> --}}
 @endpush

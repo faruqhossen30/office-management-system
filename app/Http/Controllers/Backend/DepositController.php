@@ -153,7 +153,7 @@ class DepositController extends Controller
         ]);
         $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date',$request->from_date)->paginate(10);
 
-        $total = $deposits->sum('amount');
+        $total = $deposits->sum('amountk');
         // $total = 2300;
         //    return $deposits;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
