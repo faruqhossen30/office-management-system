@@ -14,7 +14,6 @@ use App\Models\SubExpenseType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
 class ExpenseListController extends Controller
 {
     /**
@@ -190,4 +189,6 @@ class ExpenseListController extends Controller
         $data = BankSetting::select('paymentsystem_id')->get()->toArray();
         return $data;
     }
+
+
 }

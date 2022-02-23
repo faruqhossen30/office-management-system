@@ -29,7 +29,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>{{ $expense->name }}</td>
-                                                <td>{{$expense->author->name}}</td>
+                                                <td>{{ $expense->author->name }}</td>
                                                 <td>{{ $expense->created_at }}</td>
                                             </tr>
                                         </tbody>
@@ -41,4 +41,6 @@
                     </div>
                 </div>
             </div>
-        @endsection
+        </div>
+    </div>
+    @endsection

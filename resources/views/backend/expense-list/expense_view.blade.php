@@ -52,6 +52,7 @@
                     @endif
 
                     <div class="card-body">
+                        
                         <div class="d-flex justify-content-between" >
                             <ul class="list-group list-group-horizontal" style="padding: 20px 0px" id="fealtering">
                                 <a href="{{ route('expenselist.index') }}"
@@ -207,4 +208,5 @@
         }
 
     </style>
+
 @endpush
