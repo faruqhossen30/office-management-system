@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\SalarySetupController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\AdvanceSalaryController;
 use App\Http\Controllers\Backend\EmployeeSalaryAPI;
+use App\Http\Controllers\Backend\ExpenseListPdf;
 use App\Http\Controllers\Backend\LoneController;
 use App\Http\Controllers\Backend\SubAssetTypeController as BackendSubAssetTypeController;
 use App\Http\Controllers\DashboardController;
@@ -104,6 +105,8 @@ Route::prefix('admin')->group(function () {
         Route::get('expencelist-filter/finddate', [ExpenseListFilterController::class, 'FindDate'])->name('expense.list.finddate');
         Route::resource('sub-expense-type', SubExpenseController::class);
 
+       
+
 
         // ---------------------Asset-Type---------------------------------------
         Route::resource('asset', AssetController::class);
@@ -118,7 +121,6 @@ Route::prefix('admin')->group(function () {
 
         // -------------------------------------Balance----------------------------------------------
         Route::get('balance', [BalanceController::class, 'balanceView'])->name('balance');
-
 
         // -------------------------------------Bank----------------------------------------------------
         Route::resource('bank', BankController::class);
