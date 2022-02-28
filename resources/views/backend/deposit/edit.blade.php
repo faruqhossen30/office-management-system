@@ -123,10 +123,11 @@
 
                                     <div class="form-group">
                                         <label>Cradit date <span class="text-danger">*</span></label>
-                                        <input name="date" type="datetime-local"
+                                        <input name="date" type="date"
                                             class="form-control @error('date')is-invalid @enderror"
-                                            value="{{$deposit->date->format('Y-m-d')."T".$deposit->date->format('H:i')}}"
+                                            value="{{$deposit->date->format('Y-m-d')}}"
                                             >
+                                            {{-- {{$deposit->date->format('Y-m-d')."T".$deposit->date->format('H:i')}} --}}
                                         @error('date')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
