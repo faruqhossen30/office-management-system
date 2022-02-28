@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 class CreateExpenseListsTable extends Migration
 {
@@ -17,7 +18,7 @@ class CreateExpenseListsTable extends Migration
             $table->id();
             $table->integer('amount');
             $table->unsignedBigInteger('expense_id');
-            $table->unsignedBigInteger('sub_expense_type_id')->nullable();
+            $table->unsignedBigInteger('sub_expense_type_id')->Unique()->nullable();
             $table->string('voucher_no')->nullable();
             $table->unsignedBigInteger('payment_system_id');
             $table->unsignedBigInteger('office_id');

@@ -141,7 +141,7 @@
 
 
                                             {{-- Deposite date --}}
-                                            <td>{{ Carbon\Carbon::parse($deposit->created_at)->format('d M Y') }}</td>
+                                            <td>{{ Carbon\Carbon::parse($deposit->date)->format('d M Y') }}</td>
                                             <td>
                                                 @if ($deposit->remarks)
                                                     {{ Str::words($deposit->remarks, 2) }}

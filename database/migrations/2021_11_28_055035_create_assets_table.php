@@ -17,7 +17,7 @@ class CreateAssetsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('subasset_id')->nullable();
-            $table->unsignedBigInteger('assettype_id');
+            $table->unsignedBigInteger('assettype_id')->unique();
             $table->integer('price');
             $table->dateTime('buy_date');
             $table->dateTime('expiry_date');

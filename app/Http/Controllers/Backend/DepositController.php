@@ -90,14 +90,13 @@ class DepositController extends Controller
     public function update(Request $request, $id)
     {
         //    return $request->all();
-        Deposit::findOrFail($id)->update([
+        Deposit::where('id',$id)->update([
             'amount'            => $request->amount,
             'payment_system_id' => $request->payment_system_id,
             'transaction'       => $request->transaction,
             'source'            => $request->source,
             'phone'             => $request->phone,
             'bank_id'           => $request->bank_id,
-            'office_name'       => $request->office_name,
             'office_id'         => $request->office_id,
             'date'              => $request->date,
             'remarks'           => $request->remarks,
