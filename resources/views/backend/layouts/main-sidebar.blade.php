@@ -109,7 +109,7 @@
                         <li class="nav-item"><a href="{{ route('sub-expense-type.index','sub-expense-type.create') }}"
                                 class="nav-link @if (request()->routeIs('sub-expense-type.index','sub-expense-type.create')) active @endif">
                               Sub  Debit Type</a></li>
-                              
+
                         </li>
                         <li class="nav-item"><a href="{{ route('expenselist.index','expenselist.create') }}"
                                 class="nav-link @if (request()->routeIs('expenselist.index','expenselist.create')) active @endif">Add
@@ -208,6 +208,21 @@
                         </li>
                         <li class="nav-item"><a href="{{ route('lone.index') }}"
                                 class="nav-link @if (request()->routeIs('lone.index')) active @endif">Loan list</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link"></a></li>
+
+                    </ul>
+                </li>
+                <li class="nav-item nav-item-submenu @if (request()->routeIs('lone.index', 'lone.create')) nav-item-expanded nav-item-open @endif">
+                    <a href="#" class="nav-link"><i class="
+                        icon-cash2"></i>
+                        <span>Reports</span></a>
+
+                    <ul class="nav nav-group-sub" data-submenu-title="Layouts">
+                        <li class="nav-item"><a href="#"
+                                class="nav-link ">Debit</a>
+                        </li>
+                        <li class="nav-item"><a href="#"
+                                class="nav-link ">Cradit</a></li>
                         <li class="nav-item"><a href="#" class="nav-link"></a></li>
 
                     </ul>

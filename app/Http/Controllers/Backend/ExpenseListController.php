@@ -58,9 +58,6 @@ class ExpenseListController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         // return $request->all();
         $request->validate(
             [
@@ -70,7 +67,6 @@ class ExpenseListController extends Controller
                 'payment_system_id' => 'required',
                 'sub_expense_type_id' => 'required',
                 'date'              => 'required',
-
             ],
             [
                 'amount.required'            => 'Please enter your date',
