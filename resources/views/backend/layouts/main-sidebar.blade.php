@@ -1,3 +1,8 @@
+@php
+    $user   = App\Models\User::get();
+@endphp
+
+
 <div class="sidebar sidebar-dark sidebar-main sidebar-expand-md">
 
     <!-- Sidebar mobile toggler -->
@@ -21,21 +26,21 @@
         <div class="sidebar-user">
             <div class="card-body">
                 <div class="media">
-                    <div class="mr-3">
-                        <a href="#"><img src="{{ asset('global_assets/images/placeholders/user.png') }}" width="38"
-                                height="38" class="rounded-circle" alt=""></a>
+                    <div class="ml-5">
+                        <img src ="{{asset('/employee/photo/'. Auth::user()->photo)}}" width="50px" height="50px" class="rounded-circle" alt="{{Auth::user()->photo}}">
+                        <div class="media-title font-weight-semibold ">{{ Auth::user()->name }}</div>
                     </div>
 
-                    <div class="media-body">
-                        <div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>
+                    {{-- <div class="media-body">
+
                         <div class="font-size-xs opacity-50">
-                            <i class="icon-pin font-size-sm"></i>{{ Auth::user()->email }}
+                            <a href="#" class="text-white"><i class="icon-cog3"></i></a>
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="ml-3 align-self-center">
+                    {{-- <div class="ml-3 align-self-center">
                         <a href="#" class="text-white"><i class="icon-cog3"></i></a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

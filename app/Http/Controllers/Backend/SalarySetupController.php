@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Lone;
 use App\Models\Office;
 use App\Models\Position;
+use App\Models\Salary;
 use App\Models\SalarySetUp;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,8 @@ class SalarySetupController extends Controller
         $salary_set_ups = SalarySetUp::with('employee', 'position','department','offices')->latest()->paginate(5);
         // return  $salary_set_ups ;
 
-
-       return view('backend.employee.salary.salary-view',compact('salary_set_ups',));
+        // $salaries = Salary::all();
+       return view('backend.employee.salary.salary-view',compact('salary_set_ups','salaries'));
     }
 
     /**
@@ -40,9 +41,10 @@ class SalarySetupController extends Controller
         $departments = Department::all();
         $advance_salaries = AdvanceSalary::all();
         $lones = Lone::all();
+        $salary_set_ups = SalarySetUp::all();
         // return $lones;
         // return $advance_salaries;
-        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices','advance_salaries', 'lones'));
+        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices','advance_salaries', 'lones','salary_set_ups'));
     }
 
     /**
@@ -103,7 +105,11 @@ class SalarySetupController extends Controller
      */
     public function edit($id)
     {
-        //
+        $salary_set_ups = SalarySetUp::findOrFail($id);
+        // return $salary_set_ups;
+        $Installment = Salary::all();
+        // return $Installment;
+        return view('backend.employee.salary.salary-edit',compact('salary_set_ups','Installment'));
     }
 
     /**
@@ -115,6 +121,7 @@ class SalarySetupController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // return $request->all();
         //
     }
 

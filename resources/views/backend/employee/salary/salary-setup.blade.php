@@ -16,8 +16,6 @@
                                             class="icon-menu7"></i></b>List</a>
                             </div>
                             <div class="card-body">
-
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -46,8 +44,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <!-- /left aligned buttons -->
@@ -69,8 +65,8 @@
         var employee_id = $("select[name='employee_id']");
         var month = $("input[name='month']");
         var salary_info = $("#salary_info");
+        var installment = $("input[name='Installment']");
 
-        //    var installment = $("input[name='Installment']");
 
         $(document).on("change", "select[name='employee_id'], input[name='month']", function() {
             let id = employee_id.val();
@@ -112,8 +108,8 @@
             var installment = $("input[name='Installment']");
             var advance = $("input[name='total_advance']");
             // var advance = $("input[name='total_advance']");
-            let paybleSalary = parseInt(gross_salary.val()) - (parseInt(advance.val()) + parseInt(installment
-            .val()) + parseInt(other_deduction.val()));
+            let paybleSalary = parseInt(gross_salary.val()) - (parseInt(advance.val()) +
+            parseInt(installment.val()) + parseInt(other_deduction.val()));
             totalsalary.val(paybleSalary);
 
             // console.log(parseInt( advance.val() ) + parseInt( installment.val() ) +  parseInt( other_deduction.val() ) );

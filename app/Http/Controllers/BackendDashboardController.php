@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Deposit;
 use App\Models\Employee;
 use App\Models\ExpenseList;
+use App\Models\Lone;
+use Illuminate\Foundation\Bootstrap\LoadEnvironmentVariables;
+
 class BackendDashboardController extends Controller
 {
     public function dashboard(){
@@ -18,7 +21,9 @@ class BackendDashboardController extends Controller
         // return $totalbalance;
         $totalEmployee = Employee::count('name');
         // return $totalEmployee;
-        return view('backend.dashboard',compact('totalDeposite','totalExpense','totalbalance','totalEmployee'));
+        $totalLoan = Lone::sum('amount');
+        // return $totalEmployee;
+        return view('backend.dashboard',compact('totalDeposite','totalExpense','totalbalance','totalEmployee','totalLoan'));
     }
 
 }

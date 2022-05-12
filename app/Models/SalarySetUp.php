@@ -34,4 +34,5 @@ class SalarySetUp extends Model
     {
         return $this->hasOne(Office::class, 'id', 'office_id');
     }
+    
 }
