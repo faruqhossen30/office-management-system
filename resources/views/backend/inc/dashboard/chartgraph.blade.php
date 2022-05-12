@@ -44,12 +44,12 @@
                     <div class="card bg-pink-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">{{$totalExpense}}</h3>
+                                <h3 class="font-weight-semibold mb-0">{{$totalExpense}} TK</h3>
                                 <div class="list-icons ml-auto">
                                     <div class="list-icons-item dropdown" >
                                         <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="
                                             icon-cash" style="font-size: 50px"></i></a>
-                                       
+
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                     <div class="card bg-blue-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">{{$totalDeposite}}</h3>
+                                <h3 class="font-weight-semibold mb-0">{{$totalDeposite}} TK</h3>
                                 <div class="list-icons ml-auto">
                                     <div class="list-icons-item dropdown">
                                         <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-piggy-bank" style="font-size: 50px"></i></a>
@@ -104,7 +104,7 @@
                     <div class="card bg-teal-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">{{$totalEmployee}}</h3>
+                                <h3 class="font-weight-semibold mb-0">{{$totalEmployee}} TK</h3>
                                 <div class="list-icons ml-auto">
                                     <div class="list-icons-item dropdown">
                                         <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-user-plus" style="font-size: 50px"></i></a>
@@ -134,7 +134,7 @@
                     <div class="card bg-pink-400">
                         <div class="card-body">
                             <div class="d-flex">
-                                <h3 class="font-weight-semibold mb-0">49.4%</h3>
+                                <h3 class="font-weight-semibold mb-0">{{$totalLoan}} TK</h3>
                                 <div class="list-icons ml-auto">
                                     <div class="list-icons-item dropdown">
                                         <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-credit-card" style="font-size: 50px"></i></a>

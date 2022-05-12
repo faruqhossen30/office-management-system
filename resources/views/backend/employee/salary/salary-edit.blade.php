@@ -230,7 +230,7 @@
         var month = $("input[name='month']");
         var salary_info = $("#salary_info");
 
-        //    var installment = $("input[name='Installment']");
+           var installment = $("input[name='Installment']");
 
         $(document).on("change", "select[name='employee_id'], input[name='month']", function() {
             let id = employee_id.val();

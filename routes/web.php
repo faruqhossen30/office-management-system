@@ -105,7 +105,7 @@ Route::prefix('admin')->group(function () {
         Route::get('expencelist-filter/finddate', [ExpenseListFilterController::class, 'FindDate'])->name('expense.list.finddate');
         Route::resource('sub-expense-type', SubExpenseController::class);
 
-       
+
 
 
         // ---------------------Asset-Type---------------------------------------
@@ -137,7 +137,7 @@ Route::prefix('admin')->group(function () {
         // -------------------------------------Employee--------------------------------------------------------
         Route::resource('position', EmployeePositionController::class);
         Route::resource('employee-information', EmployeeInformationController::class);
-        Route::get('employee/salaryinfo', [EmployeeSalaryAPI::class, 'showInfoAndSalary'])->name('showinfoandsalary');
+
 
 
         // -------------------------------------------------Department------------------------------------------------
@@ -153,6 +153,7 @@ Route::prefix('admin')->group(function () {
         Route::resource('user-admin', AdminController::class);
     });
 });
+Route::get('employee/salaryinfo', [EmployeeSalaryAPI::class, 'showInfoAndSalary'])->name('showinfoandsalary');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // <!---------------------------banking-------------------------------------------------->

@@ -26,9 +26,8 @@
         <span class="badge bg-dark ml-md-3 mr-md-auto">&nbsp;</span>
         <ul class="navbar-nav">
             <li class="nav-item dropdown dropdown-user">
-                <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset('global_assets/images/placeholders/25ef6c771e4a03d26549fcedc54e32af.png') }}"
-                        class="rounded-circle mr-2" height="34" alt="">
+                <a href="#" class="navbar-nav-link d-flex align-items-center dropdown-toggle mr-2" data-toggle="dropdown">
+                    <img src ="{{asset('/employee/photo/'. Auth::user()->photo)}}" width="45px" height="45px" class="rounded-circle mr-2" alt="{{Auth::user()->photo}}">
                     <span>{{ Auth::user()->name }}</span>
                 </a>
 
@@ -42,7 +41,7 @@
 
 
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"> <i
+                         document.getElementById('logout-form').submit();"> <i
                             class="icon-switch2"></i>
                         {{ __('Logout') }}
                     </a>

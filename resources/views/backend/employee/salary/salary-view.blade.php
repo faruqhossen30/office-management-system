@@ -66,7 +66,7 @@
                                                 <a href="{{route('salary.edit',$salary->id)}}"
                                                     class="btn btn-warning btn-xm ml-1 icon-pencil7">
                                                 </a>
-                                                <form action="{{route('salary-setup.destroy',$salary->id)}}"
+                                                <form action="{{route('salary.destroy',$salary->id)}}"
                                                     method="POST" style="display: inline-flex">
                                                     @csrf
                                                     @method('DELETE')
