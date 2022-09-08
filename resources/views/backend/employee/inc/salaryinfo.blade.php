@@ -114,14 +114,14 @@
                 </td>
 
             </tr>
-            @if ($loan)
+            {{-- @if ($lones) --}}
             <tr>
                 <th><strong>Deduct For Loan: </strong></th>
                 <td>
-                    <input type="number" name="Installment" id="" value="{{$loan->Installment}}" style="border: none; font-weight:bolder">
+                    <input type="number" name="Installment" id="" value="{{$lone->Installment}}" style="border: none; font-weight:bolder">
                 </td>
             </tr>
-            @endif
+            {{-- @endif --}}
             <tr>
             <tr>
                 <th><strong>Other Deduction : </strong></th>
@@ -141,10 +141,10 @@
             <tr>
                 <th class="text-right"><strong>Payable Salary: </strong></th>
                 <td>
-                    <input type="number" id="totalSalaryInfo" name="totalsalary"  value="{{($employee->gross_salary - ($advance->sum('amount') + $loan->Installment))}}" readonly style="border: none; font-weight:bolder">
+                    <input type="number" id="totalSalaryInfo" name="totalsalary"  value="{{($employee->gross_salary - ($advance->sum('amount') +$lone->Installment ))}}" readonly style="border: none; font-weight:bolder">
                 </td>
             </tr>
-
+            {{--  --}}
         </tbody>
     </table>
     <div class="d-flex justify-content-start align-items-center">

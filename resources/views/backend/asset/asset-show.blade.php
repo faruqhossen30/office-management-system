@@ -17,7 +17,19 @@
                                         class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
                                                 class="icon-menu7"></i></b>List</a>
                                     </div>
-                                    <h1 class="text-center">Asset  information</h1>
+                                    <h1 class="text-center my-2">Asset  information</h1>
+
+                                    <div class="dropdown " style="d-flex; margin:auto ">
+                                        <button class="btn  btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            invoice pdf
+                                        </button>
+                                        <div class="dropdown-menu ">
+                                            <li><a class="dropdown-item" target="_blank" href="{{route('asset.single.invoice.pdf',['type'=>'stream'])}}">view</a></li>
+                                            <li><a class="dropdown-item" target="_blank" href="{{route('asset.single.invoice.pdf',['type'=>'download'])}}">Download</a></li>
+                                        </ul>
+                                        </div>
+                                      </div>
+
                                     <caption class="resumecaption">Asset  information</caption>
                                     <tbody>
                                         <tr>

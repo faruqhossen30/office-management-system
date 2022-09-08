@@ -25,7 +25,7 @@ class CreateSalariesTable extends Migration
             $table->integer('other_allowance');
             $table->integer('gross_salary');
             $table->integer('total_advance');
-            $table->integer('Installment');
+            $table->integer('Installment')->default(0);
             $table->integer('other_deduction')->nullable();
             $table->string('deduction_detail')->nullable();
             $table->integer('totalsalary');

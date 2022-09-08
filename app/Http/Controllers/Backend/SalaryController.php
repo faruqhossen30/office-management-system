@@ -23,7 +23,7 @@ class SalaryController extends Controller
         $salaries = Salary::with('employee')->latest()->get();
 
         // return $salaries;
-        return view('backend.employee.salary.salary-view',compact('salaries',));
+        return view('backend.employee.salary.salary-view', compact('salaries',));
     }
 
     /**
@@ -36,7 +36,7 @@ class SalaryController extends Controller
         $salary = Salary::all();
         $salarysetup = SalarySetUp::all();
         // return $salarysetup;
-        return view('backend.employee.inc.salaryinfo', compact('salary','salarysetup'));
+        return view('backend.employee.inc.salaryinfo', compact('salary', 'salarysetup'));
     }
 
     /**
@@ -47,7 +47,7 @@ class SalaryController extends Controller
      */
     public function store(Request $request)
     {
-            //  return $request->all();
+        //  return $request->all();
 
         $request->validate([
             'employee_id'          => 'required',
@@ -95,8 +95,7 @@ class SalaryController extends Controller
         ]);
         // return "ok";
 
-        return redirect()->route('salary.index')->with('success','Successfully data Added');
-
+        return redirect()->route('salary.index')->with('success', 'Successfully data Added');
     }
 
     /**
@@ -110,7 +109,7 @@ class SalaryController extends Controller
         $salary = Salary::Where('id', $id)->first();
         // return $employees;
 
-        return view('backend.employee.salary.salary-details',compact('salary'));
+        return view('backend.employee.salary.salary-details', compact('salary'));
     }
 
     /**
@@ -120,13 +119,14 @@ class SalaryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $lone = Lone::all();
+    {
+        $lone      = Lone::all();
         // return $lone;
-        $advance  =AdvanceSalary::all();
+        $advance   = AdvanceSalary::all();
         $employees = Employee::all();
-        $salary = Salary::findOrFail($id);
+        $salary    = Salary::findOrFail($id);
         // return   $salary;
-        return view('backend.employee.salary.salary-edit' ,compact('salary','employees','advance','lone'));
+        return view('backend.employee.salary.salary-edit', compact('salary', 'employees', 'advance', 'lone'));
     }
 
     /**

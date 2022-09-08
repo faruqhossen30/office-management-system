@@ -16,6 +16,16 @@
                                         class="btn btn-light btn-sm btn-labeled btn-labeled-left"><b><i
                                                 class="icon-menu7"></i></b>List</a>
                                     </div>
+                                    <div class="dropdown " style="d-flex; margin:auto">
+                                        <button class="btn  btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                            invoice pdf
+                                        </button>
+                                        <div class="dropdown-menu ">
+                                            <li><a class="dropdown-item" target="_blank" href="{{route('deposit.single.invoice.pdf',['type'=>'stream'])}}">view</a></li>
+                                            <li><a class="dropdown-item" target="_blank" href="{{route('deposit.single.invoice.pdf',['type'=>'download'])}}">Download</a></li>
+                                        </ul>
+                                        </div>
+                                      </div>
                                     <table class="table table-hover" width="100%">
 
                                         <h1 class="text-center">Deposit information</h1>

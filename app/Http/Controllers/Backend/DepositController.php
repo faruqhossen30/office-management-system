@@ -16,10 +16,13 @@ class DepositController extends Controller
 {
     public function deposit_view()
     {
+
         $deposits = Deposit::with('office', 'author', 'paymentsystem', 'banks')->latest()->paginate(20);
         $total = Deposit::sum('amount');
         // return $test;
-        // return $deposits;
+        // $alldebit = Deposit::where('id', $officeid)
+        // ->get();
+        // return $alldebit;
         return view('backend.deposit.deposit-view', compact('deposits', 'total'));
     }
 
@@ -138,7 +141,7 @@ class DepositController extends Controller
             'from_date' => 'required',
             'to_date' => 'required',
         ]);
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date','>=',$request->from_date)->where('date','<=',$request->to_date)->paginate(10);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereDate('date','>=',$request->from_date)->whereDate('date','<=',$request->to_date)->paginate(10);
 
         $total = $deposits->sum('amount');
         // $total = 2300;
@@ -150,7 +153,7 @@ class DepositController extends Controller
         $request->validate([
             'from_date' => 'required',
         ]);
-        $deposits = Deposit::with('office', 'author', 'paymentsystem')->where('date',$request->from_date)->paginate(10);
+        $deposits = Deposit::with('office', 'author', 'paymentsystem')->whereDate('date',$request->from_date)->paginate(10);
 
         $total = $deposits->sum('amountk');
         // $total = 2300;

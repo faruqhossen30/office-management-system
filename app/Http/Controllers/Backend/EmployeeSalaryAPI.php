@@ -19,8 +19,8 @@ class EmployeeSalaryAPI extends Controller
             $employee = Employee::where('id', $request->id)->first();
             $advance = AdvanceSalary::where('employee_id',$request->id)->get();
 
-            $loan = Lone::where('employee_id', $request->id)->first();
-            $data = view('backend.employee.inc.salaryinfo', compact('employee', 'advance', 'loan','month'))->render();
+            $lone = Lone::where('employee_id', $request->id)->first();
+            $data = view('backend.employee.inc.salaryinfo', compact('employee', 'advance', 'lone','month'))->render();
             return response()->json($data);
         }
     }

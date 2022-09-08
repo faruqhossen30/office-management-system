@@ -25,6 +25,9 @@ use App\Http\Controllers\Backend\AdvanceSalaryController;
 use App\Http\Controllers\Backend\EmployeeSalaryAPI;
 use App\Http\Controllers\Backend\ExpenseListPdf;
 use App\Http\Controllers\Backend\LoneController;
+use App\Http\Controllers\Backend\Pdf\AssetPdfController;
+use App\Http\Controllers\Backend\Pdf\DepositPdfController;
+use App\Http\Controllers\Backend\Pdf\ExpensePdfController;
 use App\Http\Controllers\Backend\SubAssetTypeController as BackendSubAssetTypeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubAssetTypeController;
@@ -60,8 +63,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/dashboard', [BackendDashboardController::class, 'dashboard'])->name('dashboard');
 
 
-
         // -----------------------------------Deposit-VIEW----------------------------------------------------------
+
         Route::get('/deposit', [DepositController::class, 'create'])->name('deposit');
         Route::post('/deposit', [DepositController::class, 'store'])->name('deposit.amount');
         Route::get('/deposit-view', [DepositController::class, 'deposit_view'])->name('deposit.view');
@@ -70,6 +73,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/deposit-view/date', [DepositController::class, 'depositeListThisDate'])->name('deposit.view.date');
         Route::get('/deposit-view/finddate', [DepositController::class, 'depositFindDate'])->name('deposit.view.finddate');
 
+        Route::group(['prefix' => 'deposit'], function () {
+            Route::get('/invoice', [DepositPdfController::class, 'index'])->name('deposit.invoice');
+            Route::get('/invoice-pdf/{type}', [DepositPdfController::class, 'depositPdf'])->name('deposit.invoice.pdf');
+            Route::get('/single/invoice', [DepositPdfController::class, 'singleview'])->name('deposit.single.invoice');
+            Route::get('/single/invoice-pdf/{type}', [DepositPdfController::class, 'singleViewPdf'])->name('deposit.single.invoice.pdf');
+
+        });
 
         // <------------------------------deposit-show---------------------------------------->
         Route::get('/deposit-show/show/{id}', [DepositController::class, 'show'])->name('deposit.show');
@@ -105,7 +115,13 @@ Route::prefix('admin')->group(function () {
         Route::get('expencelist-filter/finddate', [ExpenseListFilterController::class, 'FindDate'])->name('expense.list.finddate');
         Route::resource('sub-expense-type', SubExpenseController::class);
 
+        Route::group(['prefix' => 'expense'], function () {
+            Route::get('/invoice', [ExpensePdfController::class, 'index'])->name('expense.invoice');
+            Route::get('/invoice-pdf/{type}', [ExpensePdfController::class, 'ExpensePdf'])->name('expense.invoice.pdf');
+            Route::get('/single/invoice', [ExpensePdfController::class, 'singleview'])->name('expense.single.invoice');
+            Route::get('/single/invoice-pdf/{type}', [ExpensePdfController::class, 'singleViewPdf'])->name('expense.single.invoice.pdf');
 
+        });
 
 
         // ---------------------Asset-Type---------------------------------------
@@ -117,7 +133,13 @@ Route::prefix('admin')->group(function () {
         Route::resource('assettype', AssetTypeController::class);
         Route::resource('sub-asset-type', BackendSubAssetTypeController::class);
 
+        Route::group(['prefix' => 'asset'], function () {
+            Route::get('/invoice', [AssetPdfController::class, 'index'])->name('asset.invoice');
+            Route::get('/invoice-pdf/{type}', [AssetPdfController::class, 'assetPdf'])->name('asset.invoice.pdf');
+            Route::get('/single/invoice', [AssetPdfController::class, 'singleview'])->name('asset.single.invoice');
+            Route::get('/single/invoice-pdf/{type}', [AssetPdfController::class, 'singleViewPdf'])->name('asset.single.invoice.pdf');
 
+        });
 
         // -------------------------------------Balance----------------------------------------------
         Route::get('balance', [BalanceController::class, 'balanceView'])->name('balance');

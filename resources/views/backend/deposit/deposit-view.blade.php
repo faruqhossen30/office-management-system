@@ -3,7 +3,7 @@
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ route('asset.list.currentdate') }}" method="GET">
+            <form action="{{ route('deposit.view.finddate') }}" method="GET">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Find Cradit
@@ -71,6 +71,38 @@
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('deposit.view.month')) active @endif">This
                                     Month</a>
                             </ul>
+
+                            <div class="dropdown " style="d-flex; margin:auto">
+                                <button class="btn  btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    invoice pdf
+                                </button>
+                                <div class="dropdown-menu ">
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="{{ route('deposit.invoice.pdf', ['type' => 'stream']) }}">view</a></li>
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="{{ route('deposit.invoice.pdf', ['type' => 'download']) }}">Download</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="dropdown " style="d-flex; margin:auto">
+                                <button class="btn  btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Office
+                                </button>
+                                <div class="dropdown-menu ">
+                                    <div class="form-group">
+                                        <select class="form-control @error('office') is-invalid @enderror" name="office">
+                                            {{-- <option value="">Select your office </option> --}}
+                                            @foreach ($deposits as $deposit)
+                                                <option value="{{ $deposit->id }}"> {{ $deposit->office->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <x-error name='office' />
+                                    </div>
+
+                                </div>
+                            </div>
                             <form action="{{ route('deposit.view.date') }}" method="GET">
 
                                 <div class="row">
@@ -90,7 +122,9 @@
                                             placeholder="To" value="{{ $_GET['to_date'] ?? '' }}required ">
                                     </div>
                                     <div class="mt-4 ml-2">
-                                        <input type="submit" class="btn btn-secondary btn-sm @if (request()->routeIs('deposit.view.date')) active @endif " value="search">
+                                        <input type="submit"
+                                            class="btn btn-secondary btn-sm @if (request()->routeIs('deposit.view.date')) active @endif "
+                                            value="search">
                                     </div>
                                     <!---------- start current date------------------>
 
@@ -131,8 +165,8 @@
 
                                     @foreach ($deposits as $deposit)
                                         <tr>
-
-                                            <th scope="row"> {{ $deposits->firstItem() + $loop->index }}</th>
+                                            {{-- {{ $deposits->firstItem() + $loop->index }} --}}
+                                            <th scope="row"></th>
                                             <td><strong>{{ $deposit->amount }} TK</strong> </td>
                                             <td>{{ $deposit->paymentsystem->name ?? 'no data' }}</td>
                                             <td>{{ $deposit->office->name }}</td>
@@ -187,7 +221,7 @@
                                 </tbody>
                             </table>
                             <div class="my-3">
-                                {{ $deposits->appends($_GET)->links() }}
+                                {{-- {{ $deposits->appends($_GET)->links() }} --}}
                             </div>
                         </div>
                         {{-- end table --}}
@@ -208,6 +242,5 @@
             vertical-align: top;
             border-top: 1px solid #ddd;
         }
-
     </style>
 @endpush
