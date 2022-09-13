@@ -25,7 +25,7 @@ class SalarySetupController extends Controller
         $salary_set_ups = SalarySetUp::with('employee', 'position','department','offices')->latest()->paginate(5);
         // return  $salary_set_ups ;
 
-        // $salaries = Salary::all();
+        $salaries = Salary::all();
        return view('backend.employee.salary.salary-view',compact('salary_set_ups','salaries'));
     }
 
@@ -39,12 +39,12 @@ class SalarySetupController extends Controller
         $positions = Position::all();
         $employees = Employee::all();
         $departments = Department::all();
-        $advance_salaries = AdvanceSalary::all();
-        $lones = Lone::all();
+        $advance = AdvanceSalary::all();
+        $lone = Lone::get();
         $salary_set_ups = SalarySetUp::all();
-        // return $lones;
+        // return $lone;
         // return $advance_salaries;
-        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices','advance_salaries', 'lones','salary_set_ups'));
+        return view('backend.employee.salary.salary-setup', compact('employees', 'positions', 'departments','offices','advance', 'lone','salary_set_ups'));
     }
 
     /**
@@ -55,6 +55,8 @@ class SalarySetupController extends Controller
      */
     public function store(Request $request)
     {
+
+        // return $request->all();
         $request->validate([
             'employee_id'   => 'required',
             'position_id'   => 'required',

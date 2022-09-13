@@ -73,6 +73,21 @@
                                     class="list-group-item btn btn-primary text-dark @if (request()->routeIs('asset.list.month')) active @endif">This
                                     Month</a>
                             </ul>
+
+
+                            <div class="dropdown " style="d-flex; margin:auto">
+                                <button class="btn  btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                    invoice pdf
+                                </button>
+                                <div class="dropdown-menu ">
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="{{ route('asset.invoice.pdf', ['type' => 'stream']) }}">view</a></li>
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="{{ route('asset.invoice.pdf', ['type' => 'download']) }}">Download</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                             <form action="{{ route('asset.list.date') }}" method="GET">
 
                                 <div class="row">

@@ -174,7 +174,7 @@
                                         <tr>
                                             <th><strong>Deduct For Loan: </strong></th>
                                             <td>
-                                                <input type="number" name="Installment" id="" value="{{$salary->Installment}}" style="border: none; font-weight:bolder">
+                                                <input typ e="number" name="Installment" id="" value="{{$salary->Installment}}" style="border: none; font-weight:bolder">
                                             </td>
                                         </tr>
                                         @endif
